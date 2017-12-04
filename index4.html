@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-arHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-arHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
     <!-- <link href="css/style2.css" rel="stylesheet"> -->
     <link href="assets/style3.css" rel="stylesheet">
 
@@ -23,27 +23,7 @@
     <![endif]-->
   </head>
   <body>
-    <div id = "pinContainer"> 
-      <!-- <div id = "slideContainer"> -->
-        <div class = "introBackground"></div>
-        <section class = "intro">
-          <div class = "name-container">
-            <div class = "rect-about-link"></div>
-            <h1 class="name">PARIMA SHAH</h1>
-            <h2 class="title">developer and creative</h2>
-          </div>
-          <div class = "title-scroll-hr">  
-            <hr class = "yellow vertical title-scroll" /> 
-          </div>
-          <div class = "work-heading vertical">
-              <h2 class = "title in-pursuit"> in pursuit of </h2>
-              <h2 class = "subheader elegant-solutions">ELEGANT SOLUTIONS</h2>
-           </div>
-           <div class = "work-scroll-hr">  
-              <hr class = "yellow vertical work-scroll" /> 
-          </div>
-        </section>
-        <section class = "work">
+   <section class = "work">
           <div class = "work-contents">
           <div class = "title-row">
             <div class = "work-title">
@@ -81,61 +61,36 @@
             </div>
           </div><!-- closes the lists -->
           <div class = "work-cases-container" id = "work-cases-container">
-            <div class = "work-case-number">
-              <div class = "step-number active">01</div>
-              <!-- <div class = "step-number">02</div>
-              <div class = "step-number">03</div> -->
-            </div>
+            <div class = "work-case-number"></div>
+            <div id = "trigger1"></div>
             <div class = "work-cases-scroll">
-              <div class = "work-case-container" id="case1">
+              <div class = "work-case-container active" id="case1">
                 <div class = "letter">C</div>
                 <div class = "work-case-line"></div>
                 <div class = "fullName">Cybersecurity</div>
-                 <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
                 <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
               </div>
               <div class = "work-case-container" id = "case2">
-                 <div class = "letter">S</div>
+                <div class = "letter">A</div>
                 <div class = "work-case-line"></div>
-                 <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
-                <div class = "fullName"> Smart Lock</div>
-                <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
               </div>
               <div class = "work-case-container" id = "case3">
-                 <div class = "letter">M</div>
+                <div class = "letter">S</div>
                 <div class = "work-case-line"></div>
-                <div class = "fullName">Micron</div>
-                <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
-                <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
               </div>
             </div>
             </div>
           </div>
         </div>
         </section>
-      <!-- </div> -->
-    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/ScrollToPlugin.min.js"></script>
-   <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
-    <script src = "js/mustache.min.js"></script>
-    <script src = "js/scrollMonitor.js"></script>
-    <script src = "js/main.js"></script>
-
-     <script id = "template" type="text/x-tmpl-mustache">
-      {{#workCases}}
-       <!--  <div class = "work-case-container">
-          
-            <div class = "letter">{{letter}}</div>
-            <div class = "work-case-line"></div>
-        </div> -->
-      {{/workCases}}
-    </script>
+    <script src = "js/index4.js"></script>
     <!-- <script src="js/flowtype.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->

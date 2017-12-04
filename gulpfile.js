@@ -5,12 +5,15 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
 
-var coffeeSources = ['scripts/hello.coffee'],
-    jsSources = ['scripts/*.js'],
-    sassSources = ['styles/*.scss'],
-    htmlSources = ['**/*.html'],
-    outputDir = 'assets';
+// var jsSources = ['scripts/*.js'],
+//     sassSources = ['css/*.scss'],
+//     htmlSources = ['**/*.html'],
+//     outputDir = 'assets';
 
+var jsSources = ['js/*.js'], 
+    sassSources = ['css/*.scss'], 
+    htmlSources = ['./*.html'], 
+    outputDir = 'assets';
 
 gulp.task('log', function() {
   gutil.log('== My First Task ==')
@@ -29,23 +32,20 @@ gulp.task('sass', function() {
   .pipe(connect.reload())
 });
 
-gulp.task('coffee', function() {
-  gulp.src(coffeeSources)
-  .pipe(coffee({bare: true})
-    .on('error', gutil.log))
-  .pipe(gulp.dest('scripts'))
-});
+// gulp.task('js', function() {
+//   gulp.src(jsSources)
+//   .pipe(uglify().on('error', function(e){console.log(e)}))
+//   .pipe(concat('script.js'))
+//   .pipe(gulp.dest(outputDir))
+//   .pipe(connect.reload())
+// });
 
-gulp.task('js', function() {
+gulp.task('js', function(){
   gulp.src(jsSources)
-  .pipe(uglify())
-  .pipe(concat('script.js'))
-  .pipe(gulp.dest(outputDir))
-  .pipe(connect.reload())
+  .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
-  gulp.watch(coffeeSources, ['coffee']);
   gulp.watch(jsSources, ['js']);
   gulp.watch(sassSources, ['sass']);
   gulp.watch(htmlSources, ['html']);
@@ -63,4 +63,4 @@ gulp.task('html', function() {
   .pipe(connect.reload())
 });
 
-gulp.task('default', ['html', 'coffee', 'js', 'sass', 'connect', 'watch']);
+gulp.task('default', ['html', 'sass', 'connect', 'watch']);
