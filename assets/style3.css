@@ -357,18 +357,31 @@ ul.work-list-subcategory {
 
 .work-case-number {
   position: absolute;
+  left: -40px;
+  z-index: 1;
   top: 50%;
   transform: translateY(-50%);
-  left: -40px;
-  z-index: 1; }
+  height: 19em;
+  /*background-color: blue;*/
+  overflow: scroll; }
+
+.work-number-scroller {
+  height: auto;
+  /*background-color: red;*/ }
 
 .work-case-number .step-number {
   font-size: 25em;
   line-height: 1em;
   font-family: 'Consolas', sans-serif;
   font-weight: 700;
-  color: #2F2F2F; }
+  color: #2F2F2F;
+  /*position: absolute;	*/
+  /*display: none;*/ }
 
+/*
+.work-case-number .step-number.active{
+	display: block;
+}*/
 /*.work-case-container.active .description,
 .work-case-container.active .fullName{
 	display: block;

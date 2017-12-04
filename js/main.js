@@ -49,10 +49,11 @@ $(function(){
 
 	// }; 
 
-	var animateWorkCaseIn = function(){
+	var animateWorkCaseIn = function(numberScroller){
 		console.log("Animating");
 		var workCaseAnimation = new TimelineMax()
 			.fromTo(".work-case-container.active .letter", .2, {rotationZ: -90}, {rotationZ: 0, fontSize: "5em", color: white}) 
+			.to('.work-number-scroller', .2, {y: numberScroller})
 			.to(".work-case-container.active .work-case-line", .3, {width: 0}, .1)
 			.fromTo(".work-case-container.active .fullName", .3, {width: 0, display: "block", opacity: 0}, {width: "100%", opacity: 1, color: white}, .1)
 			.to(".work-case-container.active .letter", .1, {opacity: 0}, .4)
@@ -61,9 +62,10 @@ $(function(){
 			.fromTo(".work-case-container.active .yellow-circle-button", .3, {display: "block", rotationZ: "-90", opacity: "0"}, {rotationZ: 0, opacity: "1"}, .5);
 	}
 
-	var animateWorkCaseOut = function(){
+	var animateWorkCaseOut = function(numberScroller){
 		var workCaseAnimationOut = new TimelineMax()
 			.to(".work-case-container.active .description", .3, {top: "50%", opacity: 0, visibility: "none"}, 0)
+			.to('.work-number-scroller', .2, {y: numberScroller})
 			.to(".work-case-container.active .fullName", .3, {top: "50%", opacity: 0, visibility: "none", width: 0}, 0)
 			.to(".work-case-container.active .work-case-line", .3, {width: "70%"}, .3)
 			.to(".work-case-container.active .letter", .3, {opacity: 1, rotationZ: -90, fontSize: "7em", color: darkGreyText})
@@ -75,9 +77,11 @@ $(function(){
 		if(".work-container-container"){}
 	}
 
+	
+
  	var animateWorkCases = function(){
 	   var windowHeight = $(window).height();
-	   var bottomActivate = (windowHeight/2) + (windowHeight/6);
+	   var bottomActivate = (windowHeight/2) + (windowHeight/8);
 	   var topActivate = (windowHeight/2) - (windowHeight/3);
 	   console.log("Window Height: " + windowHeight + " Top Offset: " + topActivate
 	   	 + " Bottom Activate: " + bottomActivate);
@@ -87,40 +91,39 @@ $(function(){
 	   var inActiveZone = false;
 	   var currElementActivated = false; 
 	   var scrollUp = true; 
-	   scrollMagicScene.on("progress", function(e){
-	   		var currEl = $('.work-case-container')[step];
-	   		// console.log(step); 
-	   		var currPos = $(currEl).offset().top - $(window).scrollTop()		
-	   		// console.log(currPos); 
+
+	   function checkActiveCase(i, el){
+	   		//and check if it's different from the currently active case too... 
+	   		var currPos =  $(el).offset().top - $(window).scrollTop()
 	   		if(currPos <= bottomActivate && currPos >= topActivate){
-	   			inActiveZone = true; 
+	   			console.log(i); 
+	   			return [el, i]; 
 	   		}
-	   		else{
-	   			inActiveZone = false;
+	   }; 
+	   var previousActivatedEl; 
+	   scrollMagicScene.on("progress", function(e){
+	   		var shouldBeActive = $('.work-case-container').filter(checkActiveCase); 
+	   		if(shouldBeActive.length>1){
+	   			shouldBeActive = shouldBeActive[-1]; 
 	   		}
-	   		console.log(inActiveZone);
-	   		if(inActiveZone && !currElementActivated){
-	   			turnClassOn(currEl, "active");
-	   			currElementActivated = true; 
-	   			console.log("this should be called once " + step);
-	   			animateWorkCaseIn();  
-	   		}
-	   		if(!inActiveZone && currElementActivated){
-	   			animateWorkCaseOut();  
-	   			turnClassOff(currEl, "active"); 
-	   			currElementActivated = false; 
-	   			console.log("step before: " + step); 
-	   			console.log( "e.scrollDirection: " + e.scrollDirection );
-	   			//animateWorkCaseIn("REVERSE"); 
-	   			if(e.scrollDirection == "FORWARD" && step < $('.work-case-container').length){
-	   				if(! (step == $('.work-case-container').length -1)){
-	   					step++; 
-	   				}
-	   			} 
-	   			if(e.scrollDirection == "REVERSE" && step > 0){
-	   				step--; 
+	   		// if(shouldBeActive && shouldBeActive.length == 0 && previousActivatedEl == $('.work-case-container').last()){
+	   		// 	console.log("LAST ONE HAS BEEN PASSED"); 
+	   		// }
+	   		if(shouldBeActive && shouldBeActive.length != 0 && !$(shouldBeActive).hasClass('active')){
+	   			console.log("shouldBeActive");
+	   			console.log(shouldBeActive);
+	   			console.log("previousActivatedEl");
+	   			console.log(previousActivatedEl)
+	   			var index = shouldBeActive.index();
+	   			var numberPercentage = index * -33.33; 
+	   			if(previousActivatedEl){
+	   				animateWorkCaseOut(numberPercentage + "%"); 
+	   				turnClassOff(previousActivatedEl, "active"); 
 	   			}
-	   			console.log("step after: " + step); 
+	   			turnClassOn(shouldBeActive, "active"); 
+	   			animateWorkCaseIn(numberPercentage); 
+	   			previousActivatedEl = null;
+	   			previousActivatedEl = shouldBeActive;  
 	   		}
 	   }); 
 	};

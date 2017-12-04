@@ -443,10 +443,18 @@ ul.work-list-subcategory{
 
 .work-case-number{
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	left: -40px;
-	z-index: 1;
+    left: -40px;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 19em;
+    /*background-color: blue;*/
+    overflow: scroll;
+}
+
+.work-number-scroller{
+	height: auto;
+	/*background-color: red;*/
 }
 
 .work-case-number .step-number{
@@ -455,7 +463,13 @@ ul.work-list-subcategory{
 	font-family: 'Consolas', sans-serif;
 	font-weight: 700;
 	color: #2F2F2F;
+	/*position: absolute;	*/
+	/*display: none;*/
 }
+/*
+.work-case-number .step-number.active{
+	display: block;
+}*/
 
 
 
