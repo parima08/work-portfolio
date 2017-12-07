@@ -63,18 +63,18 @@
                 </div>
                 <div class = "work-list-container">
                   <ul class = "work-list">
-                    <li class = "active">Javascript</li>
+                    <li class = "active" id="javascript">Javascript</li>
                       <ul class = "work-list-subcategory">
                         <li>d3.js</li>
                         <li>AngularJS</li>
                         <li>jQuery</li>
                         <li>React.js</li>
                       </ul>
-                    <li>Ruby</li>
-                    <li>Java</li>
-                    <li>Python</li>
-                    <li>C</li>
-                    <li>Version Control</li> 
+                    <li id= "ruby">Ruby</li>
+                    <li id = "java">Java</li>
+                    <li id = "python">Python</li>
+                    <li id = "c">C</li>
+                    <li id="versionControl">Version Control</li> 
                   </ul>
                 </div> 
               </div>
@@ -83,7 +83,7 @@
           <div class = "work-cases-container" id = "work-cases-container">
             <div class = "work-case-number">
               <div class = "work-number-scroller">
-                <div class = "step-number active">01</div>
+                <div class = "step-number">01</div>
                 <div class = "step-number">02</div>
                 <div class = "step-number">03</div>
               </div>
@@ -97,11 +97,14 @@
                 <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
               </div>
               <div class = "work-case-container" id = "case2">
-                 <div class = "letter">S</div>
+                <div class = "letter">S</div>
                 <div class = "work-case-line"></div>
-                 <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
+                <a class = "yellow-circle-button" data-type="modal-trigger">
+                </a>
+                <!--  <img class="yellow-circle-button" src="img/yellow-circle.svg"></img> -->
                 <div class = "fullName"> Smart Lock</div>
                 <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
+                <span class="work-case-modal-bg"></span>
               </div>
               <div class = "work-case-container" id = "case3">
                  <div class = "letter">M</div>
@@ -112,8 +115,14 @@
               </div>
             </div>
             </div>
-          </div>
         </div>
+         <div class = "work-case-modal">
+            <div class = "work-case-modal-content">
+              <h1>Hello!</h1>
+              <a class="modal-close">Close</a>
+            </div>
+          </div>
+          </div>
         </section>
       <!-- </div> -->
     </div>
@@ -127,15 +136,21 @@
    <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
     <script src = "js/mustache.min.js"></script>
     <script src = "js/scrollMonitor.js"></script>
+     <script src = "js/workcase.js"></script>
     <script src = "js/main.js"></script>
 
      <script id = "template" type="text/x-tmpl-mustache">
       {{#workCases}}
-       <!--  <div class = "work-case-container">
-          
-            <div class = "letter">{{letter}}</div>
-            <div class = "work-case-line"></div>
-        </div> -->
+        <div class = "work-case-container" data-work-case={{name}} data-index = {{idx}}>
+          <div class = "letter">{{letter}}</div>
+          <div class = "work-case-line"></div>
+          <a class = "yellow-circle-button" data-type="modal-trigger">
+          </a>
+          <!--  <img class="yellow-circle-button" src="img/yellow-circle.svg"></img> -->
+          <div class = "fullName"> {{name}}</div>
+          <div class = "description">{{shortDescription}}</div>
+          <span class="work-case-modal-bg"></span>
+        </div>
       {{/workCases}}
     </script>
     <!-- <script src="js/flowtype.js"></script> -->

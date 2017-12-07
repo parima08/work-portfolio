@@ -1,38 +1,5 @@
 $(function(){
 
-	// var technology = ["Javascript": ["d3.js", "AngularJS", "jQuery"], "Ruby": { "Ruby on Rails"}, 
-	// 					"Java": {"Android Studio Library"}, 
-	// 					"Python", "C"]
-
-	var workCases = { "workCases": [
-		{
-			name: "Micron",
-			letter: "M",  
-			shortDescription: "Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum", 
-			"technology": ["jQuery", "HTML/CSS"], 
-			"skill": ["Project Management", "User Experience"], 
-		},
-		{
-			name: "NOTX", 
-			letter: "N",
-			shortDescription: "Cybersecurity Project, blah", 
-			"technology": ["jQuery", "HTML/CSS"], 
-			"skill": ["Project Management", "Development"],
-			
-		},
-		{
-			name: "Piggybank", 
-			letter: "P",
-			shortDescription: "Cybersecurity Project, blah", 
-			"technology": ["jQuery", "HTML/CSS"], 
-			"skill": ["Project Management", "Development"],
-			
-		}
-	]}; 
-
-	// letter: getLetter(this.name)
-	// function getLetter(name){ return name.charAt(0).toUpperCase()}
-	
 	var white  = "#FFF"
 	  	lightGrey = "#4A4A4A",
 	   	yellow = "#F8E71C",
@@ -45,15 +12,11 @@ $(function(){
 
 	var controller = new ScrollMagic.Controller();
 
-	// var animateNumber = function{
-
-	// }; 
-
 	var animateWorkCaseIn = function(numberScroller){
 		console.log("Animating");
 		var workCaseAnimation = new TimelineMax()
 			.fromTo(".work-case-container.active .letter", .2, {rotationZ: -90}, {rotationZ: 0, fontSize: "5em", color: white}) 
-			.to('.work-number-scroller', .2, {y: numberScroller})
+			.to('.work-number-scroller', .2, {y: numberScroller}, 0)
 			.to(".work-case-container.active .work-case-line", .3, {width: 0}, .1)
 			.fromTo(".work-case-container.active .fullName", .3, {width: 0, display: "block", opacity: 0}, {width: "100%", opacity: 1, color: white}, .1)
 			.to(".work-case-container.active .letter", .1, {opacity: 0}, .4)
@@ -65,7 +28,7 @@ $(function(){
 	var animateWorkCaseOut = function(numberScroller){
 		var workCaseAnimationOut = new TimelineMax()
 			.to(".work-case-container.active .description", .3, {top: "50%", opacity: 0, visibility: "none"}, 0)
-			.to('.work-number-scroller', .2, {y: numberScroller})
+			.to('.work-number-scroller', .2, {y: numberScroller}, 0)
 			.to(".work-case-container.active .fullName", .3, {top: "50%", opacity: 0, visibility: "none", width: 0}, 0)
 			.to(".work-case-container.active .work-case-line", .3, {width: "70%"}, .3)
 			.to(".work-case-container.active .letter", .3, {opacity: 1, rotationZ: -90, fontSize: "7em", color: darkGreyText})
@@ -76,8 +39,6 @@ $(function(){
 		//for all work case containers get rid of the stuff
 		if(".work-container-container"){}
 	}
-
-	
 
  	var animateWorkCases = function(){
 	   var windowHeight = $(window).height();
@@ -101,14 +62,14 @@ $(function(){
 	   		}
 	   }; 
 	   var previousActivatedEl; 
+
+	   //need an initalize function for on refreshes!!
+
 	   scrollMagicScene.on("progress", function(e){
 	   		var shouldBeActive = $('.work-case-container').filter(checkActiveCase); 
 	   		if(shouldBeActive.length>1){
 	   			shouldBeActive = shouldBeActive[-1]; 
 	   		}
-	   		// if(shouldBeActive && shouldBeActive.length == 0 && previousActivatedEl == $('.work-case-container').last()){
-	   		// 	console.log("LAST ONE HAS BEEN PASSED"); 
-	   		// }
 	   		if(shouldBeActive && shouldBeActive.length != 0 && !$(shouldBeActive).hasClass('active')){
 	   			console.log("shouldBeActive");
 	   			console.log(shouldBeActive);
@@ -122,11 +83,30 @@ $(function(){
 	   			}
 	   			turnClassOn(shouldBeActive, "active"); 
 	   			animateWorkCaseIn(numberPercentage); 
+	   			findWorkDetails(); 
 	   			previousActivatedEl = null;
 	   			previousActivatedEl = shouldBeActive;  
 	   		}
 	   }); 
 	};
+
+	function findWorkDetails(){
+		var index = $('.work-case-container.active').data('index');
+		console.log("index: " + index ); 
+		var currentWC = workCases["workCases"][index];
+		var activeTech = currentWC["technology"][0];
+		console.log("activeTech: " + activeTech.toString()); 
+		//remove all active Classes
+		$('.technologies  .work-list').children().removeClass("active")
+		$('.technologies  .work-list').children().remove("ul")
+		$.each(activeTech, function(key,value) {
+		  $('#' + key).addClass("active"); 
+		  var list = '<ul class="work-list-subcategory"><li>' + 
+		  			value.join('</a></li><li>') + 
+		  			'</li></ul>';
+		  $("#" + key).after(list); 
+		}); 
+	}
 
 	function turnClassOn(element, className){
 		el = $(element);
@@ -157,17 +137,7 @@ $(function(){
  		.fromTo(".work-details-column", 0.2, {transformStyle:"preserve-3d", rotationY: 90, transformOrigin:" center top", transformPerspective: 2300 }, {rotationY: 0}, .5)
  		.fromTo(".work-cases-scroll", 1.2, {y: "80%"} , {y: "-130%"}, .55) 
  		.addCallback(animateWorkCases, .6);
- 	
- 		//.from("hr.small-hr", 0.2, {width: "0px"}, .5);
- 		// .to('section.intro', 0.5, {z: -150});
 
- 	// function animateWorkCaseScroll(){
- 	// 	return new TimelineMax()
- 	// 		.fromTo('.work-cases-scroll', {y: "100%"} , {y: "-100%"},  0)
- 	// }
-
- 	// var workScrollAnimation = new TimelineMax()
- 	// 	.fromTo(".work-cases-scroll", 1, {y: "100%"}, {y: "-100%"}, 1)
 
  	var scrollMagicScene = new ScrollMagic.Scene({
             triggerElement: "#pinContainer",
@@ -179,58 +149,77 @@ $(function(){
           .setTween(scrollAnimation)
           .addIndicators() // add indicators (requires plugin)
           .addTo(controller);
-    
-   
- //    scrollMagicScene.on("progress", function (e) {
-	//     var distanceFromTop = $('.work-case-container').offset().top - $(window).scrollTop()
 
-	//     // console.log(e);
-	//     // var scrolledAmount = $(".")._gsTransform.y
-	//     // var active_element = Math.floor( (degree +15) /30) * -1 ;
-	//     // console.log("Active Element: " + active_element);
-	//     // setActiveElement(active_element);    
-	// }); 
 
- //    var workScroll = $('.work-cases-scroll');
- //   	var workScrollWatcher = scrollMonitor.create(workScroll, -600);
+    //based on the active work-case, we'll get the data 
 
-	// workScrollWatcher.exitViewport(function() {
-	//    console.log("Viewport Exit, but really just enetered");
-	//    //$(".work-case-container").removeClass("active");
-	//    // alert("exited viewport")
-	// });
-	// workScrollWatcher.enterViewport(function() {
-	//     console.log("Viewport Entered, but really just exited");
-	//    // $(".work-case-container").addClass("active");
-	// });
+     //Mustache: 
+	console.log(workCases);
+	console.log("About to start Mustache"); 
+	var template =$('#template').html();
+	Mustache.parse(template);
+	//TODO: add index and letter to workcases dynamically
+	var rendered = Mustache.render(template, workCases);
+	$('.work-cases-scroll').html(rendered);
 
-   
+    //MODAL: 
 
- //    //Handlebars: 
+ 	$('[data-type="modal-trigger"]').on('click', function(){
+ 		console.log("Clicked this!");
+		var actionBtn = $(this),
+			modalBg = actionBtn.siblings('.work-case-modal-bg'), 
+			scaleValue = retrieveScale(modalBg);
+		modalBg.addClass('is-visible'); 
+		animateLayer(modalBg, scaleValue, true);
+
+		//if browser doesn't support transitions...
+		//if(actionBtn.parents('.no-csstransitions').length > 0 ) animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
+	});
+
+ 	function retrieveScale(btn) {
+		console.log("Getting the scale");
+		var btnRadius = btn.width()/2,
+			left = btn.offset().left + btnRadius,
+			top = btn.offset().top + btnRadius - $(window).scrollTop(),
+			scale = scaleValue(top, left, btnRadius, $(window).height(), $(window).width());
+		console.log(scale);
+		return scale;
+	}
+
+	function scaleValue( topValue, leftValue, radiusValue, windowW, windowH) {
+		var maxDistHor = ( leftValue > windowW/2) ? leftValue : (windowW - leftValue),
+			maxDistVert = ( topValue > windowH/2) ? topValue : (windowH - topValue);
+		return Math.ceil(Math.sqrt( Math.pow(maxDistHor, 2) + Math.pow(maxDistVert, 2) )/radiusValue);
+	}
+
+	$('.modal-close').on("click", function(){
+		var parent = $('.modal-close').parent('.work-case-modal'); 
+		var animateLayerAnimation = new TimelineMax()
+			.set(".work-case-modal.is-visible", {className:"-=is-visible"})
+			.to('.is-visible.work-case-modal-bg', .5, {scale: 1}, "0")
+			.set('body', {className: "-=no-scroll"}, 0)
+			.set('.is-visible.work-case-modal-bg', {className:"-=is-visible"}, 1.5)
+			; 
+	});
+
+	function animateLayer(layer, scaleVal, bool) {
+		console.log("In Animate Layer- animating");
+		console.log(layer);
+		var animateLayerAnimation = new TimelineMax()
+			.to(layer, .3, {scale: scaleVal})
+			.set('body', {className: "+=no-scroll"}, 0)
+			.set(".work-case-modal", {className:"+=is-visible"}, "+=.6"); 
+	}
+
+	 //    //Handlebars: 
  // 	console.log("About to start Handlebars"); 
  //    var template =$('#template').html();
 	// var compiled_template = Handlebars.compile(template);
 	// var rendered = compiled_template({title: "Parima"});
 	// $('#work-cases-container').html(rendered);
 
-	//Mustache: 
-	// console.log("About to start Mustache"); 
-	// var template =$('#template').html();
-	// Mustache.parse(template);
-	// //TODO: add index and letter to workcases dynamically
-	// var rendered = Mustache.render(template, workCases);
-	// $('.work-cases-scroll').html(rendered);
 
-    //TECHNOLOGY ACTIVATIONS: 
-
-    //TECHNOLOGY ANIMATION
-
-   		//Display all main categories. 
-   		//If there is a subcategory, display all and activate the
-   		//ones listed. (add class "active") 
-
-
-    //WORK CASE 
+ 	
 });
 
 
