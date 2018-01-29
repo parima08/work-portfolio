@@ -132,7 +132,7 @@ $(function(){
  		.from("section.work", 0.2, {backgroundColor: white}, .3)
  		.from("section.work", 0, {z: -150, }, .25)
  		.fromTo(".work-scroll", 0.4, {width: "350px"}, {width: "10px"}, .55)
- 		.fromTo("section.work", .4, {y: "100%"}, {y: "0%"}, .3)
+ 		.fromTo("section.work", .4, {y: "100%"}, {y: "0%"}, .25)
  		.from(".work-title", 0.2, {x: "100%"}, .37)
  		.fromTo(".work-details-column", 0.2, {transformStyle:"preserve-3d", rotationY: 90, transformOrigin:" center top", transformPerspective: 2300 }, {rotationY: 0}, .5)
  		.fromTo(".work-cases-scroll", 1.2, {y: "80%"} , {y: "-130%"}, .55) 
@@ -196,7 +196,7 @@ $(function(){
 		var parent = $('.modal-close').parent('.work-case-modal'); 
 		var animateLayerAnimation = new TimelineMax()
 			.set(".work-case-modal.is-visible", {className:"-=is-visible"})
-			.to('.is-visible.work-case-modal-bg', .5, {scale: 1}, "0")
+			.to('.is-visible.work-case-modal-bg', .3, {scale: 1}, "0")
 			.set('body', {className: "-=no-scroll"}, 0)
 			.set('.is-visible.work-case-modal-bg', {className:"-=is-visible"}, 1.5)
 			; 
@@ -206,9 +206,10 @@ $(function(){
 		console.log("In Animate Layer- animating");
 		console.log(layer);
 		var animateLayerAnimation = new TimelineMax()
-			.to(layer, .3, {scale: scaleVal})
+			.to(layer, .3, {scale: scaleVal,})
 			.set('body', {className: "+=no-scroll"}, 0)
-			.set(".work-case-modal", {className:"+=is-visible"}, "+=.6"); 
+			.set(".work-case-modal", {className:"+=is-visible"}, "+=.6")
+			.to([".work-case-modal"], .4, { backgroundColor: white }, ".6"); 
 	}
 
 	 //    //Handlebars: 

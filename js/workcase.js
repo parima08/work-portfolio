@@ -6,7 +6,7 @@ var workCases = {
 			letter: "M",  
 			shortDescription: "Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum", 
 			technology: [{
-					"javascript": ["jQuery", "d3.js"], 
+					"javascript": ["jQuery"], 
 					"ruby": ["Ruby On Rails"],
 					"versionControl": ["Git", "Jenkins"]
 			}], 
@@ -18,7 +18,6 @@ var workCases = {
 			shortDescription: "Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum", 
 			technology: [{
 					"javascript": ["jQuery", "d3.js"], 
-					"ruby": ["Ruby On Rails"],
 					"c" : ["SNMP"], 
 					"versionControl": ["Git", "Jenkins"]
 			}], 

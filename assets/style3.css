@@ -4,6 +4,9 @@ body {
   padding: 0 !important;
   color: #4A4A4A; }
 
+body.no-scroll {
+  overflow: hidden; }
+
 #pinContainer {
   width: 100%;
   height: 100%;
@@ -229,14 +232,23 @@ ul.work-list, ul.work-list-subcategory {
   width: 80%; }
 
 ul.work-list li.active {
-  color: #F8E71C; }
+  color: #F8E71C;
+  transition: color .5s; }
 
 ul.work-list li, ul.work-list-subcategory li {
   margin: 10px auto; }
 
 ul.work-list-subcategory {
   padding: 0 0 0 20px;
-  /*color: white;*/ }
+  color: white;
+  height: auto;
+  overflow: hidden;
+  transition: all 1s ease-in;
+  -webkit-animation: animateIn .75s ease-in;
+  animation: animateIn .75s ease-in;
+  text-align: left;
+  margin: 0 0 0 10px;
+  white-space: nowrap; }
 
 .work-cases-container {
   position: absolute;
@@ -342,7 +354,10 @@ ul.work-list-subcategory {
 .yellow-circle-button {
   position: absolute;
   right: 0;
-  top: 25%; }
+  top: 25%;
+  background-image: url(../img/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .work-case-container .description,
 .work-case-container .fullName,
@@ -350,7 +365,13 @@ ul.work-list-subcategory {
   display: none; }
 
 .yellow-circle-button:hover {
-  background: white; }
+  background: #F8E71C;
+  border-color: white; }
+
+.yellow-circle-button:hover {
+  background-image: url(../img/arrow-white.svg);
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .yellow-circle-button:hover svg #Oval {
   fill: white; }
@@ -466,5 +487,51 @@ a.yellow-circle-button {
 .work-case-modal.is-visible {
   z-index: 101; }
 
-body.no-scroll {
-  overflow: hidden; }
+@-webkit-keyframes animateIn {
+  0% {
+    width: 0;
+    color: #606060; }
+  100% {
+    width: 100%; } }
+
+@keyframes animateIn {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+/* WORK CASE INDIVIUAL PAGE
+*/
+.work-case-modal-content {
+  width: 100%;
+  height: auto; }
+
+.work-case-modal-content .title {
+  width: 80%;
+  height: 200px;
+  position: relative;
+  top: 100px;
+  /*background: red;*/
+  box-sizing: border-box !important; }
+
+.work-case-modal-content .title .number {
+  width: 25%;
+  border-right: 1px solid #606060;
+  font-family: 'Consolas', 'sans-serif';
+  text-align: right;
+  font-size: 1.3em;
+  float: left;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box !important;
+  /*line-height: 5em;*/
+  font-weight: 700; }
+
+.work-case-modal-content .title .heading {
+  color: #606060;
+  width: 70%;
+  font-size: 5em;
+  font-family: 'Playfair Display', serif;
+  float: right;
+  line-height: 1em;
+  box-sizing: border-box !important; }
