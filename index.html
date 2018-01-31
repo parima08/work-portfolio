@@ -7,8 +7,16 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Parima Shah Portfolio</title>
 
-    <link href="assets/style3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Lekton:400,700" rel="stylesheet">
 
+    <link href="css/pure.min.css" rel="stylesheet">
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="css/pure-grid-responsive-old-ie.min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="css/pure-grid-responsive.min.css">
+    <!--<![endif]-->
+    <link href="assets/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,156 +26,77 @@
     <![endif]-->
   </head>
   <body>
-    <div id = "pinContainer"> 
-      <!-- <div id = "slideContainer"> -->
-        <div class = "introBackground"></div>
-        <section class = "intro">
-          <div class = "name-container">
-            <div class = "rect-about-link"></div>
-            <h1 class="name">PARIMA SHAH</h1>
-            <h2 class="title">developer and creative</h2>
-          </div>
-          <div class = "title-scroll-hr">  
-            <hr class = "yellow vertical title-scroll" /> 
-          </div>
-          <div class = "work-heading vertical">
-              <h2 class = "title in-pursuit"> in pursuit of </h2>
-              <h2 class = "subheader elegant-solutions">ELEGANT SOLUTIONS</h2>
-           </div>
-           <div class = "work-scroll-hr">  
-              <hr class = "yellow vertical work-scroll" /> 
-          </div>
-        </section>
-        <section class = "work">
-          <div class = "work-contents">
-          <div class = "title-row">
-            <div class = "work-title">
-              <h3>SELECTED WORK</h3><hr class = "small-hr yellow"/> 
-            </div>
-          </div>
-          <div class = "work-details-container">
-            <div class = "work-details-column">
-              <div class = "work-details-box skills">
-                <div class = "work-details-box-title">
-                  <p>SKILLS</p>
+    <div id = "layout">
+        <div id = "sort-options">
+            <div class = "sort-groups">
+                <div class = "sort-group">
+                    <h1>ALL PROJECTS</h1>
                 </div>
-              </div>
-              <div class = "work-details-box technologies">
-                <div class = "work-details-box-title">
-                  <p>TECHNOLOGY</p>
+                <div class = "sort-group skill-set">
+                    <h1>Skill Set</h1>
+                    <ul>
+                        <li>Full Stack Dev</li>
+                        <li>Project Management</li>
+                        <li>Mobile Application</li>
+                        <li>UI/Design</li>
+                        <li>CMS</li>
+                        <li>Cloud</li>
+                    </ul>
                 </div>
-                <div class = "work-list-container">
-                  <ul class = "work-list">
-                    <li class = "active" id="javascript">Javascript</li>
-                      <ul class = "work-list-subcategory">
-                        <li>d3.js</li>
-                        <li>AngularJS</li>
-                        <li>jQuery</li>
-                        <li>React.js</li>
-                      </ul>
-                    <li id= "ruby">Ruby</li>
-                    <li id = "java">Java</li>
-                    <li id = "python">Python</li>
-                    <li id = "c">C</li>
-                    <li id="versionControl">Version Control</li> 
-                  </ul>
-                </div> 
-              </div>
-            </div>
-          </div><!-- closes the lists -->
-          <div class = "work-cases-container" id = "work-cases-container">
-            <div class = "work-case-number">
-              <div class = "work-number-scroller">
-                <div class = "step-number">01</div>
-                <div class = "step-number">02</div>
-                <div class = "step-number">03</div>
-              </div>
-            </div>
-            <div class = "work-cases-scroll">
-              <div class = "work-case-container" id="case1">
-                <div class = "letter">C</div>
-                <div class = "work-case-line"></div>
-                <div class = "fullName">Cybersecurity</div>
-                 <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
-                <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
-              </div>
-              <div class = "work-case-container" id = "case2">
-                <div class = "letter">S</div>
-                <div class = "work-case-line"></div>
-                <a class = "yellow-circle-button" data-type="modal-trigger">
-                </a>
-                <!--  <img class="yellow-circle-button" src="img/yellow-circle.svg"></img> -->
-                <div class = "fullName"> Smart Lock</div>
-                <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
-                <span class="work-case-modal-bg"></span>
-              </div>
-              <div class = "work-case-container" id = "case3">
-                 <div class = "letter">M</div>
-                <div class = "work-case-line"></div>
-                <div class = "fullName">Micron</div>
-                <img class="yellow-circle-button" src="img/yellow-circle.svg"></img>
-                <div class = "description">Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum</div>
-              </div>
-            </div>
+                <div class = "sort-group industries">
+                    <h1>Industries</h1>
+                    <ul>
+                        <li>Internet of Things</li>
+                        <li>Cybersecurity</li>
+                        <li>Non Profit</li>
+                    </ul>
+                </div>
             </div>
         </div>
-         <div class = "work-case-modal">
-           <a class="modal-close">x</a>
-            <div class = "work-case-modal-content">
-              <div class = "modal-title">
-                <div class = "number">
-                  02
-                </div>
-                <div class = "heading">
-                  Cybersecurity
-                  <h4>network topology</h4>
-                </div>
-              </div>
-              <div class = "challenge">
-                <div class= "case-image"><img src="img/network-topology.png" /></div>
-                <div class = "challenge-title">THE CHALLENGE</div>
-                <div class = "challenge-text">
-                  How do you show, at a glance, the state of a novel security protocol that’s designed to protect the internet from DDoS (Distributed Denial of Service Attacks)?
-                </div>
-              </div>
+        <div id = "project-list"></div>
+        <div id = "project-content">
+            <div class = "project-content-container">
             </div>
-            <div class = "solution">
-             <div class = "challenge-title">THE SOLUTION</div>
-            </div>
-          </div>
-          </div>
-        </section>
-      <!-- </div> -->
-    </div>
+        </div>
+    </div><!-- end of layout --> 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+   <!--  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/ScrollToPlugin.min.js"></script> -->
    <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
-    <script src = "js/mustache.min.js"></script>
-    <script src = "js/scrollMonitor.js"></script>
-     <script src = "js/workcase.js"></script>
+   <script src = "js/mustache.min.js"></script>
+    <!--  <script src = "js/scrollMonitor.js"></script> -->
+     <script src = "js/workcase.js"></script> 
     <script src = "js/main.js"></script>
-
-     <script id = "template" type="text/x-tmpl-mustache">
-      {{#workCases}}
-        <div class = "work-case-container" data-work-case={{name}} data-index = {{idx}}>
-          <div class = "letter">{{letter}}</div>
-          <div class = "work-case-line"></div>
-          <a class = "yellow-circle-button" data-type="modal-trigger">
-          </a>
-          <!--  <img class="yellow-circle-button" src="img/yellow-circle.svg"></img> -->
-          <div class = "fullName"> {{name}}</div>
-          <div class = "description">{{shortDescription}}</div>
-          <span class="work-case-modal-bg"></span>
-        </div>
-      {{/workCases}}
-    </script>
     <!-- <script src="js/flowtype.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
+
+    <script id = "project-list-template" type="text/x-tmpl-mustache">
+      {{#workCases}}
+        <div class = "project-timeline-item" data-work-case={{name}}>
+            <div class = "project-index">{{idx}}</div>
+            <div class = "project-timeline-name"> {{name}}</div>
+        </div>
+      {{/workCases}}
+    </script>
+    <script id = "project-content-template" type="text/x-tmpl-mustache">
+        {{#workCases}}
+            <div class = "project-content-item">
+                <div class = "project-content-item-container">
+                    <div class = "type-of-project">{{type}}</div>
+                    <div class = "project-title"><h1>{{name}}<h1></div>
+                    <div class = "role">
+                        <span class="role-text"> ROLE </span> {{role}}
+                    </div>
+                    <div class = "subheading">{{subheading}}</div>
+                </div>
+            </div>
+        {{/workCases}}
+    </script>
   </body>
 </html>

@@ -1,0 +1,134 @@
+/* FONTS */
+/* COLORS */
+/* WIDTHS */
+html {
+  font-size: 14px; }
+
+body {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #616161; }
+
+#sort-options, #project-list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding: 10px; }
+
+#layout {
+  width: 100vh;
+  height: 100vh; }
+
+#sort-options {
+  position: fixed;
+  height: 100%;
+  width: 230px;
+  background: #EEEEEE;
+  display: inline-block;
+  padding-left: 1.8rem; }
+
+#sort-options .sort-groups {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%); }
+
+#sort-options .sort-group {
+  padding: 8px 0 8px 0; }
+
+#sort-options h1 {
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  letter-spacing: .2rem;
+  font-weight: 900; }
+
+#sort-options ul {
+  list-style-type: none;
+  color: #616161;
+  margin: 0;
+  padding: 0 0 0 10px; }
+
+#sort-options li {
+  font-family: "Lekton", "Courier New", sans-serif;
+  letter-spacing: .02rem;
+  font-weight: 200;
+  padding: 9px; }
+
+#sort-options li:before {
+  position: relative;
+  top: -3px;
+  right: 8px;
+  content: url("../img/bullet-line.png"); }
+
+#project-list {
+  position: fixed;
+  height: 100%;
+  width: 130px;
+  margin-left: 230px;
+  background: #F8F8F8;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; }
+
+#project-list .project-timeline-item {
+  padding: 5px; }
+
+#project-list .project-index {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  padding-bottom: 3px;
+  font-weight: 400; }
+
+#project-list .project-timeline-name {
+  font-family: "Lekton", "Courier New", sans-serif;
+  font-size: .8rem;
+  line-height: 1rem; }
+
+#project-content {
+  position: fixed;
+  margin-left: 360px;
+  height: 100vh;
+  width: 100%-360px;
+  background: yellow;
+  overflow: scroll; }
+
+#project-content .project-content-container {
+  height: auto;
+  padding: 2em;
+  /*background: pink;*/ }
+
+#project-content .project-content-item {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black; }
+
+#project-content .project-content-item .project-content-item-container {
+  background: yellow;
+  width: 80%;
+  max-width: 600px; }
+
+#project-content .project-content-item .type-of-project {
+  font-family: "Lekton", "Courier New", sans-serif;
+  text-transform: uppercase; }
+
+#project-content .project-content-item .project-title h1 {
+  font-family: "Lekton", "Courier New", sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  text-align: center; }
+
+#project-content .project-content-item .role {
+  text-align: center; }
+
+#project-content .project-content-item .role .role-text {
+  font-family: "Lekton", "Courier New", sans-serif;
+  text-transform: uppercase;
+  margin-right: 10px; }
+
+#project-content .project-content-item .subheading {
+  padding-top: 2em;
+  font-size: 1rem;
+  line-height: 2.3rem; }
