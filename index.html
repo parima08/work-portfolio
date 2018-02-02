@@ -54,6 +54,7 @@
             </div>
         </div>
         <div id = "project-list"></div>
+        <div id = "project-timeline"></div>
         <div id = "project-content">
             <div class = "project-content-container">
             </div>
@@ -62,13 +63,15 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <!--  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/ScrollToPlugin.min.js"></script> -->
+
    <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
    <script src = "js/mustache.min.js"></script>
+   <script src = "js/lettering.min.js"></script>
     <!--  <script src = "js/scrollMonitor.js"></script> -->
      <script src = "js/workcase.js"></script> 
     <script src = "js/main.js"></script>
@@ -78,22 +81,27 @@
 
     <script id = "project-list-template" type="text/x-tmpl-mustache">
       {{#workCases}}
-        <div class = "project-timeline-item" data-work-case={{name}}>
-            <div class = "project-index">{{idx}}</div>
-            <div class = "project-timeline-name"> {{name}}</div>
-        </div>
+        <a class = "project-timeline-link" href="#{{css_class}}">
+            <div class = "project-timeline-item" data-work-case={{name}}>
+                <div class = "project-index">{{idx}}</div>
+                <div class = "project-timeline-name"> {{name}}</div>
+            </div>
+        </a>
       {{/workCases}}
     </script>
     <script id = "project-content-template" type="text/x-tmpl-mustache">
         {{#workCases}}
-            <div class = "project-content-item">
+            <div id = {{css_class}} class = "project-content-item {{class}} {{css_class}}">
+                <div class = "project-image-container">
+                    <img src = {{image}} />
+                </div>
                 <div class = "project-content-item-container">
                     <div class = "type-of-project">{{type}}</div>
-                    <div class = "project-title"><h1>{{name}}<h1></div>
+                    <div class = "project-title"><h1 class = "title">{{name}}<h1></div>
                     <div class = "role">
-                        <span class="role-text"> ROLE </span> {{role}}
+                        <span class="role-text"> ROLE </span> <span class = "the-role">{{role}}</span>
                     </div>
-                    <div class = "subheading">{{subheading}}</div>
+                    <div class = "subheading"><p>{{subheading}}</p></div>
                 </div>
             </div>
         {{/workCases}}
