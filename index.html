@@ -74,7 +74,7 @@
    <script src = "js/lettering.min.js"></script>
     <!--  <script src = "js/scrollMonitor.js"></script> -->
      <script src = "js/workcase.js"></script> 
-    <script src = "js/main.js"></script>
+    <script src = "js/main_test.js"></script>
     <!-- <script src="js/flowtype.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
@@ -84,7 +84,7 @@
         <a class = "project-timeline-link" href="#{{css_class}}">
             <div class = "project-timeline-item" data-work-case={{name}}>
                 <div class = "project-index">{{idx}}</div>
-                <div class = "project-timeline-name"> {{name}}</div>
+                <div class = "project-timeline-name"><span data-letters="{{name}}">{{name}}</span></div>
             </div>
         </a>
       {{/workCases}}

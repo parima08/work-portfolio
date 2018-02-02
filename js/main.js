@@ -65,6 +65,7 @@ $(function(){
 	let tweenAnimations = []; 
 
 	function sectionExit(currClass){
+
 		tweenAnimations.push(new TweenMax.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, .07))
 		tweenAnimations.push(new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"))
 		tweenAnimations.push(new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"))
@@ -79,7 +80,7 @@ $(function(){
 		tweenAnimations.push(new TweenLite.from(nextClass + ' .type-of-project', .2, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"));
 		tweenAnimations.push(new TweenLite.from(nextClass + ' .role', .2, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.5"));
 		tweenAnimations.push(new TweenLite.from(nextClass + ' .subheading p', .2, {opacity: 0, y: "40%", ease:Expo.easeOut},"-=.5"))
-		//tweenAminmations.push(new TweenLite.)
+
 	}
 
 	//div id: 
@@ -95,8 +96,11 @@ $(function(){
 		tweenAnimations.push(new TweenLite.to(".project-content-container", .01, {y: "-" + yMove + "%"}, "+=.1")); 
 		tweenAnimations.push(new TweenLite.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8"));
 		sectionEnter(nextClass);
+		//TODO: Add a call to a function to record the calculated position of the object from the top
+	}
 
-		//tweenAnimations.push(new TweenLite.to(".project-content-container", .5, {y: "-" + yMove + "%"})); 
+	function completeAnimation(){
+		console.log("Completed Section: " + scrollController.scrollPos());
 	}
 	projectScrollAnimation.add(tweenAnimations, ".2", "start", .05);
 	console.log("Tween Animations: " + tweenAnimations);
