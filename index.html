@@ -34,21 +34,21 @@
                 </div>
                 <div class = "sort-group skill-set">
                     <h1>Skill Set</h1>
-                    <ul>
-                        <li>Full Stack Dev</li>
-                        <li>Project Management</li>
-                        <li>Mobile Application</li>
-                        <li>UI/Design</li>
-                        <li>CMS</li>
-                        <li>Cloud</li>
+                    <ul id = "skill-set-list">
+                        <a id="full-stack-dev" class="filter-proj"><li>Full Stack Dev</li></a>
+                        <a id="project-management" class="filter-proj"><li>Project Management</li></a>
+                        <a id="mobile-application" class="filter-proj"><li>Mobile Application</li></a>
+                        <a id="ui-design" class="filter-proj"><li>UI/Design</li></a>
+                        <a id="cms" class="filter-proj"><li>CMS</li></a>
+                        <a id="cloud" class="filter-proj"><li>Cloud</li></a>
                     </ul>
                 </div>
                 <div class = "sort-group industries">
                     <h1>Industries</h1>
-                    <ul>
-                        <li>Internet of Things</li>
-                        <li>Cybersecurity</li>
-                        <li>Non Profit</li>
+                    <ul id = "industries-list">
+                        <a id = "iot" class="filter-proj"><li>Internet of Things</li></a>
+                        <a id="cybersecurity" class="filter-proj"><li>Cybersecurity</li></a>
+                        <a id="non-profit" class="filter-proj"><li>Non Profit</li></a>
                     </ul>
                 </div>
             </div>
@@ -81,8 +81,8 @@
 
     <script id = "project-list-template" type="text/x-tmpl-mustache">
       {{#workCases}}
-        <a class = "project-timeline-link" href="#{{css_class}}">
-            <div class = "project-timeline-item" data-work-case={{name}}>
+        <a class = "project-timeline-link" href="#{{css_class}}" data-index = {{index}}>
+            <div class = "project-timeline-item" data-work-case={{css_class}}>
                 <div class = "project-index">{{idx}}</div>
                 <div class = "project-timeline-name"><span data-letters="{{name}}">{{name}}</span></div>
             </div>
@@ -91,7 +91,8 @@
     </script>
     <script id = "project-content-template" type="text/x-tmpl-mustache">
         {{#workCases}}
-            <div id = {{css_class}} class = "project-content-item {{class}} {{css_class}}">
+            <div id = {{css_class}} data-skill-set = "{{skill_set}}" data-industries = "{{industries}}"
+            data-index="{{index}}" class = "project-content-item {{class}} {{css_class}}">
                 <div class = "project-image-container">
                     <img src = {{image}} />
                 </div>

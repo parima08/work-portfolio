@@ -27,6 +27,11 @@ body{
 	box-sizing: border-box;
 }
 
+h1, h2, h3, h4, p, ul, li{
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
 
 #sort-options, #project-list{
 	margin: 0;
@@ -79,6 +84,7 @@ body{
 		letter-spacing: .02rem;
 		font-weight: 200;
 		padding: 9px;
+		cursor: pointer;
 	}
 
 	li:before{
@@ -86,6 +92,14 @@ body{
 		top: -3px;
 		right: 8px;
 		content: url("../img/bullet-line.png");
+	}
+
+	li:hover{
+		background: $highlight-yellow;
+	}
+
+	li.active{
+		background: black;
 	}
 }
 
@@ -226,8 +240,8 @@ body{
 	.project-image-container{
 		position: absolute;
 		max-width: 240px;
-		top: 200px;
-		right: 100px;
+		top: 20%;
+    	right: 10%;
 	}
 
 	.project-image-container img{
@@ -244,6 +258,7 @@ body{
 			/*background: yellow;*/
 			width: 80%;
 			max-width: 600px;
+			z-index: 10;
 		}
 
 		.type-of-project{
@@ -279,6 +294,8 @@ body{
 			font-size: 1rem;
 			line-height: 2.3rem;
 			overflow: hidden;
+			max-width: 80%;
+    		margin: 0 auto;
 		}
 
 	}

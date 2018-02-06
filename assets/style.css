@@ -11,6 +11,10 @@ body {
   color: #616161;
   box-sizing: border-box; }
 
+h1, h2, h3, h4, p, ul, li {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; }
+
 #sort-options, #project-list {
   margin: 0;
   padding: 0;
@@ -54,13 +58,20 @@ body {
   font-family: "Lekton", "Courier New", sans-serif;
   letter-spacing: .02rem;
   font-weight: 200;
-  padding: 9px; }
+  padding: 9px;
+  cursor: pointer; }
 
 #sort-options li:before {
   position: relative;
   top: -3px;
   right: 8px;
   content: url("../img/bullet-line.png"); }
+
+#sort-options li:hover {
+  background: #F8E71C; }
+
+#sort-options li.active {
+  background: black; }
 
 #project-timeline {
   position: fixed;
@@ -180,8 +191,8 @@ body {
 #project-content .project-image-container {
   position: absolute;
   max-width: 240px;
-  top: 200px;
-  right: 100px; }
+  top: 20%;
+  right: 10%; }
 
 #project-content .project-image-container img {
   width: 100%; }
@@ -192,7 +203,8 @@ body {
 #project-content .project-content-item .project-content-item-container {
   /*background: yellow;*/
   width: 80%;
-  max-width: 600px; }
+  max-width: 600px;
+  z-index: 10; }
 
 #project-content .project-content-item .type-of-project {
   font-family: "Lekton", "Courier New", sans-serif;
@@ -221,4 +233,6 @@ body {
   padding-top: 2em;
   font-size: 1rem;
   line-height: 2.3rem;
-  overflow: hidden; }
+  overflow: hidden;
+  max-width: 80%;
+  margin: 0 auto; }
