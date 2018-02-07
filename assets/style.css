@@ -75,6 +75,9 @@ h1, h2, h3, h4, p, ul, li {
   text-decoration: underline;
   font-weight: 300; }
 
+#sort-options a.filter-proj.selected li {
+  background: green; }
+
 #project-timeline {
   position: fixed;
   top: 0;
@@ -103,68 +106,60 @@ h1, h2, h3, h4, p, ul, li {
 
 
 */
-#project-list .project-timeline-item {
-  padding: 5px; }
-
-#project-list a {
-  color: #616161;
-  text-decoration: none;
-  overflow: hidden;
-  position: relative; }
-
-#project-list .project-timeline-name {
-  overflow: hidden; }
-
-#project-list .project-timeline-name span {
-  display: block;
-  position: relative; }
-
-#project-list a:hover span::before {
-  width: 100%; }
-
-#project-list .project-timeline-name span::before {
-  content: attr(data-letters);
-  position: absolute;
-  color: black;
-  left: 0;
-  overflow: hidden;
-  /*white-space: nowrap;*/
-  width: 0%;
-  -webkit-transition: width 0.5s;
-  transition: width 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
-
-#project-list a::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background: #F8E71C;
-  -webkit-transform: translate3d(101%, 0, 0);
-  transform: translate3d(101%, 0, 0);
-  -webkit-transition: -webkit-transform 0.5s;
-  transition: transform 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
-
-#project-list a:hover::after {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
-
-#project-list .project-index {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  padding-bottom: 3px;
-  font-weight: 400; }
-
-#project-list .project-timeline-name {
-  font-family: "Lekton", "Courier New", sans-serif;
-  font-size: .8rem;
-  line-height: 1rem; }
+#project-list {
+  /*.project-timeline-name span::before{
+		content: attr(data-letters);
+		position: absolute;
+		color: black;
+		left: 0;
+		overflow: hidden;
+		width: 0%;
+		-webkit-transition: width 0.5s;
+		transition: width 0.5s;
+		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	}*/ }
+  #project-list .project-timeline-item {
+    padding: 5px; }
+  #project-list a {
+    color: #616161;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative; }
+  #project-list .project-timeline-name {
+    overflow: hidden; }
+  #project-list .project-timeline-name span {
+    display: block;
+    position: relative; }
+  #project-list a:hover span::before {
+    width: 100%; }
+  #project-list a::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #F8E71C;
+    -webkit-transform: translate3d(101%, 0, 0);
+    transform: translate3d(101%, 0, 0);
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
+  #project-list a:hover::after {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  #project-list .project-index {
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    padding-bottom: 3px;
+    font-weight: 400; }
+  #project-list .project-timeline-name {
+    font-family: "Lekton", "Courier New", sans-serif;
+    font-size: .8rem;
+    line-height: 1rem; }
 
 #project-content {
   /*position: fixed;*/

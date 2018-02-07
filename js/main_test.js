@@ -22,8 +22,8 @@ $(function(){
 	//loads the templates and draws them onto the screen
 	draw(workCases);
 
-	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id)});
-	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id)});
+	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); $(this).addClass('selected');});
+	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id); $(this).addClass('selected')});
 	$('#all-projects').on('click', function(){
 		idx = 1
 		draw(workCases); 
@@ -100,14 +100,14 @@ $(function(){
 				new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
-				new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"),
+				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6"),
 			];
 		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
 		}
 
 		function sectionEnter(nextClass){
 			return [
-				new TweenLite.from(nextClass + ' img', .3, {opacity: 0, y: "20%", ease:Expo.easeOut}),
+				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut}),
 				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, .08),
 				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
 				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
@@ -140,7 +140,10 @@ $(function(){
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
 			}
 			//ADDS A DELAY of 1 second:
-			projectScrollAnimation.set({}, {}, "+=.5");
+			projectScrollAnimation.set({}, {}, "+=.5")
+
+			//TODO: Add a bounce to the image
+			//projectScrollAnimation.to(nextClass + ' img', .5, {y: "-20%", ease:Expo.easeOut}, "-=.5");
 		}
 
 		console.log("Duration is: " + projectScrollAnimation.totalDuration());
@@ -178,7 +181,7 @@ $(function(){
 		//
 
 		$('.project-timeline-link').on("click", function(e){
-			alert("got clicked");
+			//alert("got clicked");
 			var id = $(this).attr("href"); 
 			let numOfProjects = $('.project-content-item').length; 
 			if($(id).length > 0){
@@ -206,10 +209,6 @@ $(function(){
 
 	}
 
-	
-
-
-
 
 	
 	//Scrolling behavior: 
@@ -217,12 +216,6 @@ $(function(){
 	//
 
 	//TODO: Animation only when there is more than 1 project!
-
-
-	
-
-
-
 
 
 

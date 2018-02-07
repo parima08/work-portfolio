@@ -104,6 +104,10 @@ h1, h2, h3, h4, p, ul, li{
 		text-decoration: underline;
 		font-weight: 300;
 	}
+
+	a.filter-proj.selected li{
+		background: green;
+	}
 }
 
 #project-timeline{
@@ -161,19 +165,18 @@ h1, h2, h3, h4, p, ul, li{
 		width: 100%;
 	}
 
-	.project-timeline-name span::before{
+	/*.project-timeline-name span::before{
 		content: attr(data-letters);
 		position: absolute;
 		color: black;
 		left: 0;
 		overflow: hidden;
-		/*white-space: nowrap;*/
 		width: 0%;
 		-webkit-transition: width 0.5s;
 		transition: width 0.5s;
 		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	}
+	}*/
 
 	a::after{
 		content: '';
