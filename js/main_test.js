@@ -22,22 +22,29 @@ $(function(){
 	//loads the templates and draws them onto the screen
 	draw(workCases);
 
-	//Filtering: 
-	$('a.filter-proj').on('click', function(){
-		let skillItem = this.id
+	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id)});
+	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id)});
+	$('#all-projects').on('click', function(){
+		idx = 1
+		draw(workCases); 
+	}); 
+
+	function filterObject(filterTopic, skillItem){
 		let filteredWc = workCases.workCases.filter(function(val){
-			console.log(val.skill_set);
-			if(val.skill_set && val.skill_set.includes(skillItem)){
+			console.log(val[filterTopic]);
+			if(val[filterTopic] && val[filterTopic].includes(skillItem)){
 				return val;
 			}
 		}); 
 		console.log(filteredWc);
+		idx = 1; 
 		draw({
 			"workCases": filteredWc,
 			"idx": workCases.idx, 
 			"css_class": workCases.css_class,
 		});
-	});
+
+	}
 
 
 	//draws everything onto the screen.
@@ -48,6 +55,7 @@ $(function(){
 		$('.project-content-container').html();
 
 		//rescrolls to the top of the page... 
+		TweenMax.set(window, {scrollTo: { y: 0}});
 
 		//TODO: preloader animation? where everything switches color
 
@@ -123,34 +131,29 @@ $(function(){
 			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
 			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400}, "-=1.1");
 			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600}, "-=1.1");
-			highlightNextItems(nextClass); 
+			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(nextClass), "-=.3", "start", .01);
+			let nextItemsToHighlight = highlightNextItems(nextClass); 
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
+			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
+				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			}
 			//ADDS A DELAY of 1 second:
-			projectScrollAnimation.set({}, {}, "+=1");
+			projectScrollAnimation.set({}, {}, "+=.5");
 		}
 
-		//console.log(projectScrollAnimation);
-		//projectScrollAnimation.add(tweenAnimations, ".2", "start", .05);
-		//console.log("Tween Animations: " + tweenAnimations);
 		console.log("Duration is: " + projectScrollAnimation.totalDuration());
 
-		// if(scrollController){
-		// 	alert("there was a previous controller");
-		// 	scrollController = scrollController.destroy(true);
-		// }
-
 		console.log("This many scenes: " + scrollMagicScenes.length); 
-
 		if(scrollMagicScenes.length >= 1){
 			console.log("Another scroll Magic Scene exits - deleting it now");
 			scrollController.removeScene(scrollMagicScenes.pop());
 			//scrollController.destroy(true); 
 			console.log("This many scenes again: " + scrollMagicScenes.length); 
+			TweenMax.set(window, {scrollTo: { y: 0}});
 		}
 
-		
-		console.log("ScrollController--------");
-		console.log(scrollController);
 		let duration = numOfProjects * 100 * 1.5; 
 		//let duration = numOfProjects * 100; 
 		let scrollMagicScene = new ScrollMagic.Scene({
@@ -236,16 +239,25 @@ $(function(){
 		console.log("highlightNextItems");
 
 		//removes all active classes 
-		$('#skill-set-list li').removeClass("active"); 
+		//$('#skill-set-list a').removeClass("active"); 
 		let skillSet = $(activeClass).data('skill-set');
-		if(skillSet){
-			skillSet = skillSet.split(" ")
-			console.log("skillSet: " + skillSet);
-			$.each(skillSet, function(i, v){
-				$("#" + v).addClass("active");
-			})
-		}
+		let industrySet = $(activeClass).data('industries');
+		let skillSetClasses = skillSetToArray(skillSet) || []; 
+		let industrySetClasses = skillSetToArray(industrySet)|| []; 
+		
+		console.log(skillSetClasses.concat(industrySetClasses));
 
+		return skillSetClasses.concat(industrySetClasses);
+
+	}
+
+	function skillSetToArray(skillSet){
+		skillSet = skillSet.split(" ").filter(function(entry) { return /\S/.test(entry); });
+		console.log("skillSet: " + skillSet);
+		let classesToHighlight = $.map(skillSet, function(v){
+			return "#" + v + " li"; 
+		});
+		return classesToHighlight
 	}
 
 	function getDocHeight() {

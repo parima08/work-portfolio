@@ -44,7 +44,7 @@ var workCases = {
 			index: 5,
 			name: 'Verifone',
 			image: "../img/project-bg/verifone.png",
-			skill_set: "full-stack-dev  project-management",
+			skill_set: "full-stack-dev project-management",
 		},
 		{
 			index: 6,
