@@ -10,7 +10,7 @@ var workCases = {
 			skill_set: "full-stack-dev mobile-application cloud ui-design",
 			industries: "iot",
 			subheading: "We were approached by one of America’s biggest banks with the challenge to increase their accounts with children. We developed an IoT artifact for them that engaged children and taught them basic budgetting techniques." , 
-			imageimg/project-bg/iot-piggybank-grad.png"
+			image: "img/project-bg/iot-piggybank-grad.png"
 			
 		}, 
 		{
