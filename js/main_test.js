@@ -55,7 +55,6 @@ $(function(){
 		$('.project-content-container').empty();
 
 		//rescrolls to the top of the page... 
-		TweenMax.set(window, {scrollTo: { y: 0}});
 
 		//TODO: preloader animation? where everything switches color
 
@@ -159,8 +158,9 @@ $(function(){
 			scrollController.removeScene(scrollMagicScenes.pop());
 			//scrollController.destroy(true); 
 			console.log("This many scenes again: " + scrollMagicScenes.length); 
-			TweenMax.set(window, {scrollTo: { y: 0}});
-		}
+			reintialize(); 
+
+		};
 
 		let duration = numOfProjects * 100 * 1.5; 
 		//let duration = numOfProjects * 100; 
@@ -196,7 +196,8 @@ $(function(){
 
 				//TODO: Need to get this "index" value dynamically... the index
 				//of the value in the array of project-content-items. 
-				$('.uncover_slice').hide()
+				$('.uncover_slice').hide();
+				$(id + ' .uncover_slice').show(); 
 				let indexOfId = $(this).data('index');
 				//console.log(indexOfId);
 				let docHeight = getDocHeight();
@@ -214,6 +215,11 @@ $(function(){
 
 		function unhideSlices(){
 			$('.uncover_slice').show(); 
+		}
+
+		function reintialize(){
+			TweenMax.set('.project-content-container', {y: "0%"});
+			TweenMax.set('#project-timeline', {height: "0%"});
 		}
 
 

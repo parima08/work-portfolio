@@ -160,6 +160,8 @@ h1, h2, h3, h4, p, ul, li {
     font-family: "Lekton", "Courier New", sans-serif;
     font-size: .8rem;
     line-height: 1rem; }
+  #project-list #all-projects {
+    cursor: pointer; }
 
 #project-content {
   /*position: fixed;*/
