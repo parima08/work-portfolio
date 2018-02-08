@@ -22,8 +22,16 @@ $(function(){
 	//loads the templates and draws them onto the screen
 	draw(workCases);
 
-	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); $(this).addClass('selected');});
-	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id); $(this).addClass('selected')});
+	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); 
+													$(this).addClass('selected')
+																.siblings()
+										       		    		.removeClass('selected');
+										   		});
+	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id);
+										 			$(this).addClass('selected')
+										 			.siblings()
+										 			.removeClass('selected');
+										 		});
 	$('#all-projects').on('click', function(){
 		idx = 1
 		draw(workCases); 
@@ -78,7 +86,7 @@ $(function(){
 		//
 		$('.project-content-item .project-title h1').lettering('words');
 		slices('#project-content .uncover', {
-			slicesTotal: 6,
+			slicesTotal: 5,
 			slicesColor: 'white',
 			orientation: 'vertical'
 		});
