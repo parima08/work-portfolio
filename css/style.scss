@@ -218,13 +218,23 @@ h1, h2, h3, h4, p, ul, li{
 	}
 }
 
-#project-content{
+#project-content, #project-uncover{
 	/*position: fixed;*/
 	position: absolute;
 	margin-left: $project-content-offset;
 	height: 100vh;
 	/*background: yellow;*/
 	width: calc(100% - 130px - 230px);
+}
+
+#project-uncover{
+	display: none;
+}
+
+#project-uncover{
+	.uncover_slice{
+		background: $highlight-yellow!important;
+	}
 }
 
 #project-content{

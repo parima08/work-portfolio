@@ -38,6 +38,9 @@ $(function(){
 		}); 
 		console.log(filteredWc);
 		idx = 1; 
+
+		//TODO: preloader animation? where everything switches color
+		loadPreloader();
 		draw({
 			"workCases": filteredWc,
 			"idx": workCases.idx, 
@@ -55,8 +58,6 @@ $(function(){
 		$('.project-content-container').empty();
 
 		//rescrolls to the top of the page... 
-
-		//TODO: preloader animation? where everything switches color
 
 		//Mustache templates load everything!
 		var projectList  =$('#project-list-template').html();
@@ -76,7 +77,11 @@ $(function(){
 		// Seperates each "word" by putting spans around them
 		//
 		$('.project-content-item .project-title h1').lettering('words');
-		slices();
+		slices('#project-content .uncover', {
+			slicesTotal: 6,
+			slicesColor: 'white',
+			orientation: 'vertical'
+		});
 		animateSlices('#pc_iot_piggybank', "100%"); 
 
 		//calculate the timeline
@@ -198,10 +203,18 @@ $(function(){
 				//of the value in the array of project-content-items. 
 				$('.uncover_slice').hide();
 				$(id + ' .uncover_slice').show(); 
-				let indexOfId = $(this).data('index');
+
+				
+				//alert($('.project-timeline-link').index(this));
 				//console.log(indexOfId);
 				let docHeight = getDocHeight();
-				let scrollToPos = (docHeight/numOfProjects) * (indexOfId - 1) * (1.03)
+
+				//let indexOfId = $(this).data('index');
+				//let scrollToPos = (docHeight/numOfProjects) * (indexOfId - 1) * (1.03)
+				
+				let indexOfId =  $('.project-timeline-link').index(this); 
+				let scrollToPos = (docHeight/numOfProjects) * indexOfId * (1.03)
+
 				//TODO: 
 				//change the tween duration to calculate overall height and divide it
 				//by the amount needed to scroll.
@@ -260,13 +273,9 @@ $(function(){
 
 	}
 
-	function slices(){
-		this.options = {
-			slicesTotal: 6,
-			slicesColor: 'white',
-			orientation: 'vertical'
-		};
-		let uncoverItems = $('.uncover');
+	function slices(selector, options){
+		this.options = options; 
+		let uncoverItems = $(selector);
 		console.log("slices: " + uncoverItems.length); 
 		//console.log("slices: " + ); 
 		$.each(uncoverItems, (i, el) => {
@@ -281,22 +290,24 @@ $(function(){
 		});
 	}
 
-	function animateSlices(selector, direction){
+	function animateSlices(selector, yMove, cb=null){
 		console.log("animateSlicesReveal");
-		let slices = $(selector + ' .uncover .uncover_slice'); 
+		let slices = $(selector + ' .uncover_slice'); 
 		console.log("slices: " + slices.length);
 		let sliceAnimation = new TimelineMax(); 
 		//let randomSlices = shuffle(slices);
 		slices.each((i, el) => {
 			sliceAnimation.to(el, 
 						.5, 
-						{y: direction}, 
+						{y: yMove}, 
 						i * .07
 						//Math.abs(i- Math.random(0, 2)) * .15
 						//Math.random(.5, 2.5)
 			);
 		});
-		//sliceAnimation.play(); 
+		if(cb){
+			sliceAnimation.call(cb); 
+		}
 	}
 
 	function reverseCheck(selector, nextClass){
@@ -312,6 +323,18 @@ $(function(){
 			return "#" + v + " li"; 
 		});
 		return classesToHighlight
+	}
+
+	function loadPreloader(){
+		$('#project-uncover.uncover').empty();
+		slices('#project-uncover.uncover', {
+			slicesTotal: 5,
+			slicesColor: 'blue',
+			orientation: 'vertical'
+		}); 
+		TweenLite.set('#project-uncover.uncover .uncover_slice', {y: "-100%"}); 
+		$('#project-uncover').show(); 
+		animateSlices('#project-uncover', "0%", ()=>{animateSlices('#project-uncover', "100%", ()=>{$('#project-uncover').hide();})}); 
 	}
 
 	function getDocHeight() {
