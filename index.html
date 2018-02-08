@@ -30,7 +30,7 @@
         <div id = "sort-options">
             <div class = "sort-groups">
                 <div class = "sort-group">
-                    <a id = "all-projects" ><h1>ALL PROJECTS</h1></a>
+                    <a ><h1>ALL PROJECTS</h1></a>
                 </div>
                 <div class = "sort-group skill-set">
                     <h1>Skill Set</h1>
@@ -94,7 +94,7 @@
             <div id = {{css_class}} data-skill-set = "{{skill_set}}" data-industries = "{{industries}}"
             data-index="{{index}}" class = "project-content-item {{class}} {{css_class}}">
                 <div class = "project-image-container">
-                    <img src = {{image}} />
+                    <div class = "project-image uncover" style="background-image: url('{{image}}');" />
                 </div>
                 <div class = "project-content-item-container">
                     <div class = "type-of-project">{{type}}</div>

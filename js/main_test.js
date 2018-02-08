@@ -50,9 +50,9 @@ $(function(){
 	//draws everything onto the screen.
 
 	function draw(filteredProjects){
-		//removes all the stuff
-		$('#project-list').html();
-		$('.project-content-container').html();
+		//TODO: removes all the stuff
+		$('#project-list').empty();
+		$('.project-content-container').empty();
 
 		//rescrolls to the top of the page... 
 		TweenMax.set(window, {scrollTo: { y: 0}});
@@ -77,6 +77,8 @@ $(function(){
 		// Seperates each "word" by putting spans around them
 		//
 		$('.project-content-item .project-title h1').lettering('words');
+		slices();
+		animateSlices('#pc_iot_piggybank', "100%"); 
 
 		//calculate the timeline
 		//reintialize the controller
@@ -100,14 +102,17 @@ $(function(){
 				new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
-				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6"),
+				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
+				.eventCallback("onComplete", animateSlices, [currClass, "0%"]), 
 			];
 		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
 		}
 
-		function sectionEnter(nextClass){
+		function sectionEnter(currClass, nextClass){
 			return [
-				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut}),
+				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut})
+				.eventCallback("onComplete", animateSlices, [nextClass, "100%"])
+				.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass]),
 				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, .08),
 				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
 				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
@@ -132,7 +137,7 @@ $(function(){
 			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400}, "-=1.1");
 			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600}, "-=1.1");
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
-			projectScrollAnimation.add(sectionEnter(nextClass), "-=.3", "start", .01);
+			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
 			let nextItemsToHighlight = highlightNextItems(nextClass); 
 			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
@@ -140,7 +145,7 @@ $(function(){
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
 			}
 			//ADDS A DELAY of 1 second:
-			projectScrollAnimation.set({}, {}, "+=.5")
+			projectScrollAnimation.set({}, {}, "+=1")
 
 			//TODO: Add a bounce to the image
 			//projectScrollAnimation.to(nextClass + ' img', .5, {y: "-20%", ease:Expo.easeOut}, "-=.5");
@@ -191,7 +196,7 @@ $(function(){
 
 				//TODO: Need to get this "index" value dynamically... the index
 				//of the value in the array of project-content-items. 
-
+				$('.uncover_slice').hide()
 				let indexOfId = $(this).data('index');
 				//console.log(indexOfId);
 				let docHeight = getDocHeight();
@@ -202,9 +207,14 @@ $(function(){
 				
 				//let travelSpeed = scrollToPos/docHeight * 1.2;
 				//console.log("Amount to travel:" + scrollToPos/docHeight);
-				TweenMax.to(window, .6, {scrollTo: { y: scrollToPos}});
+				TweenMax.to(window, .6, {scrollTo: { y: scrollToPos}})
+						.eventCallback('onComplete', unhideSlices);
 			}
 		});
+
+		function unhideSlices(){
+			$('.uncover_slice').show(); 
+		}
 
 
 	}
@@ -244,6 +254,51 @@ $(function(){
 
 	}
 
+	function slices(){
+		this.options = {
+			slicesTotal: 6,
+			slicesColor: 'white',
+			orientation: 'vertical'
+		};
+		let uncoverItems = $('.uncover');
+		console.log("slices: " + uncoverItems.length); 
+		//console.log("slices: " + ); 
+		$.each(uncoverItems, (i, el) => {
+			console.log("slices: " + el); 
+			let inner = '';
+			inner += `<div class="uncover_slices uncover_slices-${this.options.orientation}">`
+			for (let i = 0; i <= this.options.slicesTotal - 1; ++i) {
+                inner += `<div class="uncover_slice" style="background-color:${this.options.slicesColor}"></div>`;
+            }
+            inner += `</div>`; 
+            $(el).append(inner);
+		});
+	}
+
+	function animateSlices(selector, direction){
+		console.log("animateSlicesReveal");
+		let slices = $(selector + ' .uncover .uncover_slice'); 
+		console.log("slices: " + slices.length);
+		let sliceAnimation = new TimelineMax(); 
+		//let randomSlices = shuffle(slices);
+		slices.each((i, el) => {
+			sliceAnimation.to(el, 
+						.5, 
+						{y: direction}, 
+						i * .07
+						//Math.abs(i- Math.random(0, 2)) * .15
+						//Math.random(.5, 2.5)
+			);
+		});
+		//sliceAnimation.play(); 
+	}
+
+	function reverseCheck(selector, nextClass){
+		console.log("Slices: Reverse Check");
+		animateSlices(selector, "-100%");
+		animateSlices(nextClass, "0%");
+	}
+
 	function skillSetToArray(skillSet){
 		skillSet = skillSet.split(" ").filter(function(entry) { return /\S/.test(entry); });
 		console.log("skillSet: " + skillSet);
@@ -261,6 +316,15 @@ $(function(){
 	        D.body.clientHeight, D.documentElement.clientHeight
 	    )
 	}
+
+	function range(start, end) {
+	  return Array(end - start + 1).fill().map((_, idx) => start + idx)
+	}
+
+	function shuffle(o) {
+		for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	};
 
 });
 
