@@ -10,7 +10,7 @@ var workCases = {
 			skill_set: "full-stack-dev mobile-application cloud ui-design",
 			industries: "iot",
 			subheading: "We were approached by one of America’s biggest banks with the challenge to increase their accounts with children. We developed an IoT artifact for them that engaged children and taught them basic budgetting techniques." , 
-			image: "../img/project-bg/iot-piggybank-grad.png"
+			imageimg/project-bg/iot-piggybank-grad.png"
 			
 		}, 
 		{
@@ -22,7 +22,7 @@ var workCases = {
 			class: "next",
 			skill_set: "full-stack-dev cloud",
 			industries: "iot",
-			image: "../img/project-bg/smart-lock-grad.png"
+			image: "img/project-bg/smart-lock-grad.png"
 		},
 		{
 			index: 3,
@@ -31,52 +31,52 @@ var workCases = {
 			type: "Case Study/Room 5",
 			skill_set: "full-stack-dev ui-design",
 			industries: "cybersecurity",
-			image: "../img/project-bg/network-visualization-grad.png"
+			image: "img/project-bg/network-visualization-grad.png"
 			
 		},
 		{
 			index: 4,
 			name: "Microns Developer Portal",
-			image: "../img/project-bg/micron-grad.png", 
+			image: "img/project-bg/micron-grad.png", 
 			skill_set: "full-stack-dev ui-design",
 		},
 		{
 			index: 5,
 			name: 'Verifone',
-			image: "../img/project-bg/verifone-grad.png",
+			image: "img/project-bg/verifone-grad.png",
 			skill_set: "full-stack-dev project-management",
 		},
 		{
 			index: 6,
 			name: 'SR Love and Care',
-			image: "../img/project-bg/srlc-grad.png",
+			image: "img/project-bg/srlc-grad.png",
 			skill_set: "full-stack-dev  project-management ui-design",
 			industries: "non-profit"
 		}, 
 		{
 			index: 7,
 			name: 'Net Zero Enterprises',
-			image: "../img/project-bg/net-zero-grad.png",
+			image: "img/project-bg/net-zero-grad.png",
 			skill_set: "project-management cms ui-design",
 		},
 		{
 			index: 8,
 			name: 'Neurohacker',
 			skill_set: "project-management cms",
-			image: "../img/project-bg/neurohacker-grad.png",
+			image: "img/project-bg/neurohacker-grad.png",
 		}, 
 		{
 			index: 9,
 			name: 'Rural India - Workshop',
 			skill_set: "project-management",
-			image: "../img/project-bg/engineering-workshop.png",
+			image: "img/project-bg/engineering-workshop.png",
 			industries: "non-profit"
 		},
 		{
 			index: 10,
 			name: 'L7 Partnership', 
 			skill_set: "project-management cms",
-			image: "../img/project-bg/l7-partnership-grad.png",
+			image: "img/project-bg/l7-partnership-grad.png",
 			
 		}, 
 		{
