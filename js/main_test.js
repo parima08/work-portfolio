@@ -165,7 +165,7 @@ $(function(){
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
 			let nextItemsToHighlight = highlightNextItems(nextClass); 
-			projectScrollAnimation.set(".filter-proj li-active", {className: "-=active"}, "-=.8")
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
