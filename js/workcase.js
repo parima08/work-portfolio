@@ -7,7 +7,7 @@ var workCases = {
 			type: "Case Study/Ciklum",
 			role: "Lead Android Developer",
 			class: "active",
-			skill_set: "full-stack-dev mobile-application cloud ui-design",
+			skill_set: "mobile-application cloud ui-design",
 			industries: "iot",
 			subheading: "We were approached by one of America’s biggest banks with the challenge to increase their accounts with children. We developed an IoT artifact for them that engaged children and taught them basic budgetting techniques." , 
 			image: "img/project-bg/iot-piggybank-grad.png"
@@ -50,7 +50,7 @@ var workCases = {
 			index: 6,
 			name: 'SR Love and Care',
 			image: "img/project-bg/srlc-grad.png",
-			skill_set: "full-stack-dev  project-management ui-design",
+			skill_set: "full-stack-dev  project-management ui-design cloud",
 			industries: "non-profit"
 		}, 
 		{

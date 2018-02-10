@@ -23,16 +23,15 @@ $(function(){
 	draw(workCases);
 
 	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); 
-													$(this).addClass('selected')
-																.siblings()
-										       		    		.removeClass('selected');
+													$('.filter-proj').removeClass('selected');
+													$(this).addClass('selected');
 										   		});
 	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id);
-										 			$(this).addClass('selected')
-										 			.siblings()
-										 			.removeClass('selected');
+										 			$('.filter-proj').removeClass('selected');
+													$(this).addClass('selected');
 										 		});
 	$('#all-projects').on('click', function(){
+		$('a.filter-proj').removeClass('selected').removeClass('active');
 		idx = 1
 		draw(workCases); 
 	}); 
@@ -90,7 +89,8 @@ $(function(){
 			slicesColor: 'white',
 			orientation: 'vertical'
 		});
-		animateSlices('#pc_iot_piggybank', "100%"); 
+
+		animateSlices('#' + $('.project-content-item')[0].id, "100%"); 
 
 		//calculate the timeline
 		//reintialize the controller
@@ -105,8 +105,22 @@ $(function(){
 		let numOfProjects = $('.project-content-item').length; 
 		let stepLength = 100/numOfProjects; 
 		let yMove = 0,
-			timelineMove = stepLength;  
+			timelineMove = stepLength;
+
+		let contentItemIds = $('.project-content-item').map(function(index,dom){return dom.id})
+		
 		//let tweenAnimations = []; 
+
+		function initialize(){
+			let firstClass = "#" + contentItemIds[0]; 
+			let nextItemsToHighlight = highlightNextItems(firstClass)
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
+			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
+				projectScrollAnimation.set({}, {}, "+=.5")
+				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			}
+		}
 
 		function sectionExit(currClass){
 			return [
@@ -133,8 +147,8 @@ $(function(){
 			];
 		 }
 
-		let contentItemIds = $('.project-content-item').map(function(index,dom){return dom.id})
 
+		initialize(); 
 		for(let i = 0; i < numOfProjects -1; i++){
 			//console.log("Build Timeline - yMove: " + yMove); 
 			yMove += stepLength;
@@ -151,7 +165,7 @@ $(function(){
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
 			let nextItemsToHighlight = highlightNextItems(nextClass); 
-			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
+			projectScrollAnimation.set(".filter-proj li-active", {className: "-=active"}, "-=.8")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
@@ -336,8 +350,8 @@ $(function(){
 	function loadPreloader(){
 		$('#project-uncover.uncover').empty();
 		slices('#project-uncover.uncover', {
-			slicesTotal: 5,
-			slicesColor: 'blue',
+			slicesTotal: 3,
+			slicesColor: 'yellow',
 			orientation: 'vertical'
 		}); 
 		TweenLite.set('#project-uncover.uncover .uncover_slice', {y: "-100%"}); 
