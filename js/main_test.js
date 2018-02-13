@@ -124,7 +124,7 @@ $(function(){
 
 		function sectionExit(currClass){
 			return [
-				new TweenMax.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, .08),
+				new TweenMax.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-140%", ease:Expo.easeOut}, .08),
 				new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
@@ -139,7 +139,7 @@ $(function(){
 				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut})
 				.eventCallback("onComplete", animateSlices, [nextClass, "100%"])
 				.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass]),
-				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, .08),
+				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "200%", ease:Expo.easeOut}, .08),
 				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
 				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
 				new TweenLite.from(nextClass + ' .role', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
