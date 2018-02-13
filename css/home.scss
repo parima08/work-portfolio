@@ -1,0 +1,147 @@
+$text-font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$lekton-font: 'Lekton', 'Courier New', sans-serif;
+$grey-line-thickness: 50px; 
+$highlight-yellow: #F8E71C;
+$text-color: #616161;
+
+html{
+	font-size: 14px;
+}
+
+body{
+	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+	margin: 0!important;
+	padding: 0!important;
+	color: $text-color;
+	box-sizing: border-box;
+	/*background: blue;*/
+}
+
+h1, h2, h3, h4, p, ul, li{
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#canvas-container{
+	background: #FFFFFF;
+}
+
+canvas {
+  opacity: 0.6;
+}
+
+.grey-line { 
+	background: #F1F1F1; 
+	position: absolute;
+}
+
+.grey-line.top, .grey-line.bottom{
+	height: $grey-line-thickness;
+	width: 100%;
+}
+
+.grey-line.right, .grey-line.left{
+	width: $grey-line-thickness;
+	height: 100%;
+}
+
+.top {  top: 0; }
+.bottom { bottom: 0; }
+.left { left: 0; }
+.right { right: 0; }
+
+.page-content{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.portfolio-title-container{
+	max-width: 350px;
+	/*background: blue;*/
+	position: absolute;
+	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.title{
+	text-align: center;
+	color: $text-color;
+}
+
+.title{
+	h3{
+		font-family: 'Playfair Display', serif;
+		font-style: italic;
+		font-size: 1em;
+		font-weight: 300;
+	}
+	
+	h1{
+		text-transform: uppercase; 
+		font-size: 3em;
+		border-top: 1px solid $text-color;
+		border-bottom: 1px solid $text-color;
+		padding: 20px 5px;
+		margin: 5px;
+		font-weight: 600;
+		letter-spacing: .1em;
+	}
+	h1 span{
+		font-weight: 800;
+	}
+}
+
+.subheading{
+	h2{
+		font-family: $lekton-font;
+		font-size: 1.3em;
+		line-height: 1.6em;
+		color: $text-color;
+		font-weight: 400;
+		padding: 10px;
+		position: relative;
+	}
+	h2 span{
+		width: auto;
+		display: inline-block;
+		position: relative;
+	}
+
+	h2 span::before{
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 100%;
+		bottom: 12%;
+		left: -100%;
+		z-index: -1;
+		background: $highlight-yellow;
+		-webkit-transform: translate3d(101%,0,0);
+		transform: translate3d(101%,0,0);
+		-webkit-transition: -webkit-transform 0.5s;
+		transition: transform 0.5s;
+		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	}
+}
+
+.particles-container{
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+}
+
+
+
+
+
+
