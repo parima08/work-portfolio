@@ -1,228 +1,385 @@
-// From https://davidwalsh.name/javascript-debounce-function.
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
+let scrollController = new ScrollMagic.Controller();
+
+function onWorkPageLoad(){
+	console.log("onWorkPageLoad"); 
+	idx = 1; 
+	var scrollMagicScenes = []; 
+	//loads the templates and draws them onto the screen
+	scrollController = new ScrollMagic.Controller();
+	draw(workCases);
+
+	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); 
+													$('.filter-proj').removeClass('selected');
+													$(this).addClass('selected');
+										   		});
+	$('.industries a.filter-proj').on('click', function(){filterObject('industries', this.id);
+										 			$('.filter-proj').removeClass('selected');
+													$(this).addClass('selected');
+										 		});
+	$('#all-projects').on('click', function(){
+		$('a.filter-proj').removeClass('selected').removeClass('active');
+		idx = 1
+		draw(workCases); 
+	}); 
+
+	function filterObject(filterTopic, skillItem){
+		let filteredWc = workCases.workCases.filter(function(val){
+			console.log(val[filterTopic]);
+			if(val[filterTopic] && val[filterTopic].includes(skillItem)){
+				return val;
+			}
+		}); 
+		console.log(filteredWc);
+		idx = 1; 
+
+		//TODO: preloader animation? where everything switches color
+		loadPreloader();
+		draw({
+			"workCases": filteredWc,
+			"idx": workCases.idx, 
+			"css_class": workCases.css_class,
+		});
+
+	}
+
+
+	//draws everything onto the screen.
+
+	function draw(filteredProjects){
+		//TODO: removes all the stuff
+		$('#project-list').empty();
+		$('.project-content-container').empty();
+
+		//rescrolls to the top of the page... 
+
+		//Mustache templates load everything!
+		$.get('../templates.html', function(template){
+			//var projectList  =$('#project-list-template').html();
+			var projectList  = $(template).filter('#project-list-template').html();
+			//console.log($(template).html());
+			Mustache.parse(projectList);
+			var rendered = Mustache.render(projectList, filteredProjects);
+			$('#project-list').html(rendered);
+
+			//Project Content:
+			console.log("About to start Mustache"); 
+			var projectContent  = $(template).filter('#project-content-template').html();
+			//var projectContent  =$('#project-content-template').html();
+			Mustache.parse(projectContent);
+			var rendered = Mustache.render(projectContent, filteredProjects);
+			$('.project-content-container').html(rendered);
+		})
+		.done(function(){
+
+			// Charming: 
+			// Seperates each "word" by putting spans around them
+			//
+			$('.project-content-item .project-title h1').lettering('words');
+			slices('#project-content .uncover', {
+				slicesTotal: 5,
+				slicesColor: 'white',
+				orientation: 'vertical'
+			});
+
+			animateSlices('#' + $('.project-content-item')[0].id, "100%"); 
+
+			//calculate the timeline
+			//reintialize the controller
+			//reintialize the scrollmagic scene
+			scrollMagicCreation();
+		}); 
+	}
+
+	function scrollMagicCreation(){
+		let projectScrollAnimation = new TimelineMax(); 
+
+		//Overall movement of the container
+		let numOfProjects = $('.project-content-item').length; 
+		let stepLength = 100/numOfProjects; 
+		let yMove = 0,
+			timelineMove = stepLength;
+
+		let contentItemIds = $('.project-content-item').map(function(index,dom){return dom.id})
+		
+		//let tweenAnimations = []; 
+
+		function initialize(){
+			let firstClass = "#" + contentItemIds[0]; 
+			let nextItemsToHighlight = highlightNextItems(firstClass)
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
+			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
+				projectScrollAnimation.set({}, {}, "+=.5")
+				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			}
+		}
+
+		function sectionExit(currClass){
+			return [
+				new TweenMax.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-140%", ease:Expo.easeOut}, .08),
+				new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
+				new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
+				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
+				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
+				.eventCallback("onComplete", animateSlices, [currClass, "0%"]), 
+			];
+		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
+		}
+
+		function sectionEnter(currClass, nextClass){
+			return [
+				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut})
+				.eventCallback("onComplete", animateSlices, [nextClass, "100%"])
+				.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass]),
+				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "200%", ease:Expo.easeOut}, .08),
+				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
+				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
+				new TweenLite.from(nextClass + ' .role', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
+				new TweenLite.from(nextClass + ' .subheading p', .4, {opacity: 0, y: "40%", ease:Expo.easeOut}),
+			];
+		 }
+
+
+		initialize(); 
+		for(let i = 0; i < numOfProjects -1; i++){
+			//console.log("Build Timeline - yMove: " + yMove); 
+			yMove += stepLength;
+			timelineMove += stepLength;
+			let currClass = "#" + contentItemIds[i].trim();
+			let nextClass = "#" + contentItemIds[i+1].trim();
+			let nextProjectItem = $(".project-timeline-item[data-work-case = '" + contentItemIds[i+1].trim() + "'] .project-timeline-name"); 
+			console.log(nextProjectItem);
+			projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
+			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%"}, "-=.5"); 
+			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
+			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400}, "-=1.1");
+			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600}, "-=1.1");
+			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
+			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
+			let nextItemsToHighlight = highlightNextItems(nextClass); 
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
+			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
+				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			}
+			//ADDS A DELAY of 1 second:
+			projectScrollAnimation.set({}, {}, "+=1")
+
+			//TODO: Add a bounce to the image
+			//projectScrollAnimation.to(nextClass + ' img', .5, {y: "-20%", ease:Expo.easeOut}, "-=.5");
+		}
+
+		console.log("Duration is: " + projectScrollAnimation.totalDuration());
+
+		console.log("This many scenes: " + scrollMagicScenes.length); 
+		if(scrollMagicScenes.length >= 1){
+			console.log("Another scroll Magic Scene exits - deleting it now");
+			scrollController.removeScene(scrollMagicScenes.pop());
+			//scrollController.destroy(true); 
+			console.log("This many scenes again: " + scrollMagicScenes.length); 
+			reintialize(); 
+
 		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
 
-$(function(){
+		let duration = numOfProjects * 100 * 1.5; 
+		//let duration = numOfProjects * 100; 
+		let scrollMagicScene = new ScrollMagic.Scene({
+				triggerElement: "#layout", 
+				triggerHook: "onLeave", 
+				duration: duration + "%",
+		    })
+			.setPin('#project-content')
+			.setTween(projectScrollAnimation)
+			.addIndicators()
+			.addTo(scrollController); 
 
-	// //CSS Changes: 
-	// //
-	// //
-	// let projectWidth = $('#project-list').width();
-	// let sortWidth = $('#sort-options').width();
-	// let windowWidth = $(window).width(); 
-	// let projectContentWidth = windowWidth - sortWidth - projectWidth; 
-	// console.log(projectContentWidth);
+		scrollMagicScenes.push(scrollMagicScene);
 
-	// $('#project-content').width(projectContentWidth); 
+	    scrollController.scrollTo(function (newpos) {
+	    	console.log(newpos);
+			TweenMax.to(window, 0.7, {scrollTo: { y: newpos}});
+		});
+
+		//Timeline Clicks: 
+		//
+		//
+
+		$('.project-timeline-link').on("click", function(e){
+			//alert("got clicked");
+			var id = $(this).attr("href"); 
+			let numOfProjects = $('.project-content-item').length; 
+			if($(id).length > 0){
+				e.preventDefault(); 
+				console.log("The id place: " + id);
+				console.log("The position place: " + $(id).offset().top);
+
+				//TODO: Need to get this "index" value dynamically... the index
+				//of the value in the array of project-content-items. 
+				$('.uncover_slice').hide();
+				$(id + ' .uncover_slice').show(); 
+
+				
+				//alert($('.project-timeline-link').index(this));
+				//console.log(indexOfId);
+				let docHeight = getDocHeight();
+
+				//let indexOfId = $(this).data('index');
+				//let scrollToPos = (docHeight/numOfProjects) * (indexOfId - 1) * (1.03)
+				
+				let indexOfId =  $('.project-timeline-link').index(this); 
+				let scrollToPos = (docHeight/numOfProjects) * indexOfId * (1.03)
+
+				//TODO: 
+				//change the tween duration to calculate overall height and divide it
+				//by the amount needed to scroll.
+				
+				//let travelSpeed = scrollToPos/docHeight * 1.2;
+				//console.log("Amount to travel:" + scrollToPos/docHeight);
+				TweenMax.to(window, .6, {scrollTo: { y: scrollToPos}})
+						.eventCallback('onComplete', unhideSlices);
+			}
+		});
+
+		function unhideSlices(){
+			$('.uncover_slice').show(); 
+		}
+
+		function reintialize(){
+			TweenMax.set('.project-content-container', {y: "0%"});
+			TweenMax.set('#project-timeline', {height: "0%"});
+		}
 
 
-    //Mustache: 
-	//
-	//
-	console.log("About to start Mustache"); 
-	
-	//Project List: 
-	var projectList  =$('#project-list-template').html();
-	Mustache.parse(projectList);
-	var rendered = Mustache.render(projectList, workCases);
-	$('#project-list').html(rendered);
+	}
 
-	//Project Content:
-	console.log("About to start Mustache"); 
-	var projectContent  =$('#project-content-template').html();
-	Mustache.parse(projectContent);
-	var rendered = Mustache.render(projectContent, workCases);
-	$('.project-content-container').html(rendered);
-
-
-	//Charming: 
-	//
-	//
-	$('.project-content-item .project-title h1').lettering('words');
 
 	
 	//Scrolling behavior: 
 	//
-	let projectScrollAnimation = new TimelineMax(); 
-
-	//Overall movement of the container
-	let numOfProjects = $('.project-content-item').length; 
-	let stepLength = 100/numOfProjects; 
-	let yMove = 0,
-		timelineMove = stepLength;  
-	let tweenAnimations = []; 
-
-	function sectionExit(currClass){
-
-		tweenAnimations.push(new TweenMax.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, .07))
-		tweenAnimations.push(new TweenLite.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"))
-		tweenAnimations.push(new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"))
-		tweenAnimations.push(new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"))
-		tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
-	}
-
-	function sectionEnter(nextClass){
-		tweenAnimations.push(new TweenLite.from(nextClass + ' img', .1, {opacity: 0, y: "20%", ease:Expo.easeOut}, "-=.7"));
-		tweenAnimations.push(new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7")); 
-		//tweenAnimations.push(new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, .07, "-=.7"));
-		tweenAnimations.push(new TweenLite.from(nextClass + ' .type-of-project', .2, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"));
-		tweenAnimations.push(new TweenLite.from(nextClass + ' .role', .2, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.5"));
-		tweenAnimations.push(new TweenLite.from(nextClass + ' .subheading p', .2, {opacity: 0, y: "40%", ease:Expo.easeOut},"-=.5"))
-
-	}
-
-	//div id: 
-	let contentItemIds = $('.project-content-item').map(function(index,dom){return dom.id})
-
-	for(let i = 0; i < numOfProjects -1; i++){
-		console.log("Build Timeline - yMove: " + yMove); 
-		yMove += stepLength;
-		timelineMove += stepLength;
-		let currClass = "#" + contentItemIds[i].trim();
-		let nextClass = "#" + contentItemIds[i+1].trim();
-		sectionExit(currClass);
-		tweenAnimations.push(new TweenLite.to(".project-content-container", .01, {y: "-" + yMove + "%"}, "+=.1")); 
-		tweenAnimations.push(new TweenLite.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8"));
-		sectionEnter(nextClass);
-		//TODO: Add a call to a function to record the calculated position of the object from the top
-	}
-
-	function completeAnimation(){
-		console.log("Completed Section: " + scrollController.scrollPos());
-	}
-	projectScrollAnimation.add(tweenAnimations, ".2", "start", .05);
-	console.log("Tween Animations: " + tweenAnimations);
-	console.log("Duration is: " + projectScrollAnimation.totalDuration());
-
-	let scrollController = new ScrollMagic.Controller();
-
-	let scrollMagicScene = new ScrollMagic.Scene({
-			triggerElement: "#layout", 
-			triggerHook: "onLeave", 
-			duration: $('.project-content-container').height() + 600,
-	    })
-		.setPin('#project-content')
-		.setTween(projectScrollAnimation)
-		.addIndicators()
-		.addTo(scrollController); 
-
-    scrollController.scrollTo(function (newpos) {
-    	console.log(newpos);
-		TweenMax.to(window, 0.7, {scrollTo: { y: newpos}});
-	});
-
-
-	//Timeline Clicks: 
 	//
-	//
-	$('.project-timeline-link').on("click", function(e){
-		var id = $(this).attr("href"); 
-		if($(id).length > 0){
-			e.preventDefault(); 
-			console.log("The id place: " + id);
-			console.log("The position place: " + $(id).offset().top);
-			scrollController.scrollTo(id); 
+
+	//TODO: Animation only when there is more than 1 project!
+
+
+
+	//Be able to correctly calculate the positions of "paused"
+	//timeline? 
+
+
+	//Highlights on the correct data cases:
+	function highlightNextItems(activeClass){
+
+		//watches as the screen scrolls - highlight 
+		//the various skill sets
+
+		console.log("highlightNextItems");
+
+		//removes all active classes 
+		//$('#skill-set-list a').removeClass("active"); 
+		let skillSet = $(activeClass).data('skill-set');
+		let industrySet = $(activeClass).data('industries');
+		let skillSetClasses = skillSetToArray(skillSet) || []; 
+		let industrySetClasses = skillSetToArray(industrySet)|| []; 
+		
+		console.log(skillSetClasses.concat(industrySetClasses));
+
+		return skillSetClasses.concat(industrySetClasses);
+
+	}
+
+	function slices(selector, options){
+		this.options = options; 
+		let uncoverItems = $(selector);
+		console.log("slices: " + uncoverItems.length); 
+		//console.log("slices: " + ); 
+		$.each(uncoverItems, (i, el) => {
+			console.log("slices: " + el); 
+			let inner = '';
+			inner += `<div class="uncover_slices uncover_slices-${this.options.orientation}">`
+			for (let i = 0; i <= this.options.slicesTotal - 1; ++i) {
+                inner += `<div class="uncover_slice" style="background-color:${this.options.slicesColor}"></div>`;
+            }
+            inner += `</div>`; 
+            $(el).append(inner);
+		});
+	}
+
+	function animateSlices(selector, yMove, cb=null){
+		console.log("animateSlicesReveal");
+		let slices = $(selector + ' .uncover_slice'); 
+		console.log("slices: " + slices.length);
+		let sliceAnimation = new TimelineMax(); 
+		//let randomSlices = shuffle(slices);
+		slices.each((i, el) => {
+			sliceAnimation.to(el, 
+						.5, 
+						{y: yMove}, 
+						i * .07
+						//Math.abs(i- Math.random(0, 2)) * .15
+						//Math.random(.5, 2.5)
+			);
+		});
+		if(cb){
+			sliceAnimation.call(cb); 
 		}
-	});
-
-});
-
-	// projectScrollAnimation
-	// 	.staggerTo('.project-content-item.active .project-title h1.title span', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, .07)
-	// 	.to('.project-content-item.active .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, 0)
-	// 	.to('.project-content-item.active .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, 0)
-	// 	.to('.project-content-item.active .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, 0)
-	// 	.to('.project-content-item.active img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, 0)
-	// 	.to(".project-content-container", .01, {y: "-9%"}, .5)
-	// 	.from('.project-content-item.next img', .5, {opacity: 0, y: "20%", ease:Expo.easeOut}, .5)
-	// 	.staggerFrom('.project-content-item.next .project-title h1.title span', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}, .07, .65)
-	// 	.from('.project-content-item.next .type-of-project', .2, {opacity: 0, y: "100%", ease:Expo.easeOut}, .8 )
-	// 	.from('.project-content-item.next .role', .4, {opacity: 0, y: "100%", ease:Expo.easeOut}, .65)
-	// 	.from('.project-content-item.next .subheading p', .2, {opacity: 0, y: "40%", ease:Expo.easeOut}, .7)
-
-
-/*
-//Scrolling behavior: 
-	//
-	//
-
-	let typeOfProject = $('.active.project-content-item .type-of-project'), 
-		projectTitle = $('.active.project-content-item  .project-title'),
-		subheading = $('.active.project-content-item  .subheading'), 
-		role = $('.active.project-content-item .role');
-
-	let typeOfProjectOffset = typeOfProject.offset().top + typeOfProject.height(),
-		projectTitleOffset = projectTitle.offset().top + projectTitle.height(), 
-		subheadingOffset = subheading.offset().top + subheading.height() + 20, 
-		roleOffset = role.offset().top + role.height(); 
-
-	let typeOfProjectOffsetBttm = $(window).height() - (typeOfProject.offset().top - typeOfProject.height()),
-		projectTitleOffsetBttm = $(window).height() - (projectTitle.offset().top - projectTitle.height()), 
-		subheadingOffsetBttm = $(window).height() - (subheading.offset().top - subheading.height() - 20), 
-		roleOffsetBttm = $(window).height() - (role.offset().top - role.height()); 
-
-	console.log("Offsets: typeOfProjectOffset: " + typeOfProjectOffset);
-	console.log("Offsets: typeOfProjectOffset: " + typeOfProjectOffsetBttm);
-
-
-	var projectScrollAnimation = new TimelineMax()
-		.to('.active.project-content-item .type-of-project', .8, {y: "-" + typeOfProjectOffset + "px"})
-		.to('.active.project-content-item .project-title', 1.2, {y: "-" + projectTitleOffset + "px"}, "0.4") 
-		.to('.active.project-content-item .subheading', .4, {y: "-" + subheadingOffset + "px"}, "0.52") 
-		.to('.active.project-content-item .role', .48, {y: "-" + roleOffset + "px"}, "0.6")
-		.to(".project-content-container", .1, {y: "-9%"}, "1")
-		.from('.next.project-content-item .type-of-project', .5, {y: typeOfProjectOffsetBttm + "px"}, "1.2")
-		.from('.next.project-content-item .project-title', .8, {y: projectTitleOffsetBttm + "px"}, "1") 
-		.from('.next.project-content-item .subheading', .4, {y: subheadingOffsetBttm + "px"}, "1.4") 
-		.from('.next.project-content-item .role', .48, {y: roleOffsetBttm + "px"}, "1.3")
-
-
-	//Overall movement of the container
-	let numOfProjects = $('.project-content-item').length; 
-	let stepLength = 100/numOfProjects; 
-	let yMove = 0; 
-	let tweenAnimations = []; 
-
-	//class names: 
-	let pc_classnames = $.map($('.project-content-item'), function(el){ 
-		let classes = el.className; 
-		let css_class = classes.substring(classes.lastIndexOf("pc"));
-		return css_class
-	});
-
-	console.log("pc_classnames: " + pc_classnames);
-
-	for(let i = 0; i < numOfProjects; i++){
-		console.log("Build Timeline - yMove: " + yMove); 
-		yMove += stepLength;
-		tweenAnimations.push(new TweenLite.to(".project-content-container", .5, {y: "-" + yMove + "%"})); 
 	}
-	projectScrollAnimation.add(tweenAnimations, "1.2", "sequence", 1.5);
 
-	var scrollController = new ScrollMagic.Controller();
+	function reverseCheck(selector, nextClass){
+		console.log("Slices: Reverse Check");
+		animateSlices(selector, "-100%");
+		animateSlices(nextClass, "0%");
+	}
 
-	var scrollMagicScene = new ScrollMagic.Scene({
-			triggerElement: "#layout", 
-			triggerHook: "onLeave", 
-			duration: $('.project-content-container').height(),
-	    })
-		.setPin('#project-content')
-		.setTween(projectScrollAnimation)
-		.addIndicators()
-		.addTo(scrollController); 
-*/
+	function skillSetToArray(skillSet){
+		skillSet = skillSet.split(" ").filter(function(entry) { return /\S/.test(entry); });
+		console.log("skillSet: " + skillSet);
+		let classesToHighlight = $.map(skillSet, function(v){
+			return "#" + v + " li"; 
+		});
+		return classesToHighlight
+	}
+
+	function loadPreloader(){
+		$('#project-uncover.uncover').empty();
+		slices('#project-uncover.uncover', {
+			slicesTotal: 3,
+			slicesColor: 'yellow',
+			orientation: 'vertical'
+		}); 
+		TweenLite.set('#project-uncover.uncover .uncover_slice', {y: "-100%"}); 
+		$('#project-uncover').show(); 
+		animateSlices('#project-uncover', "0%", ()=>{animateSlices('#project-uncover', "100%", ()=>{$('#project-uncover').hide();})}); 
+	}
+
+	function getDocHeight() {
+	    var D = document;
+	    return Math.max(
+	        D.body.scrollHeight, D.documentElement.scrollHeight,
+	        D.body.offsetHeight, D.documentElement.offsetHeight,
+	        D.body.clientHeight, D.documentElement.clientHeight
+	    )
+	}
+
+	function range(start, end) {
+	  return Array(end - start + 1).fill().map((_, idx) => start + idx)
+	}
+
+	function shuffle(o) {
+		for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	};
+
+	//pageTransitions();
+};
+
+function onHomepageLoad(){
+	scrollController.destroy(true); 
+	console.log("home.js");
+	particlesJS.load('particles-js', './js/particles2.json'
+	 , function(){
+	  	console.log("Particles Loaded");
+	 });
+}
 
 
  

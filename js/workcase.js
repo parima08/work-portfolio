@@ -10,8 +10,9 @@ var workCases = {
 			skill_set: "mobile-application cloud ui-design",
 			industries: "iot",
 			subheading: "We were approached by one of America’s biggest banks with the challenge to increase their accounts with children. We developed an IoT artifact for them that engaged children and taught them basic budgetting techniques." , 
-			image: "img/project-bg/iot-piggybank-grad.png"
-			
+			image: "img/project-bg/iot-piggybank-grad.png", 
+			readMore: true,
+			case_study_link: "work-cases/iot-piggybank.html" 
 		}, 
 		{
 			index: 2,
@@ -36,52 +37,62 @@ var workCases = {
 		},
 		{
 			index: 4,
+			name: "Cybersecurity Dashboard", 
+			subheading: "Lorem ipsum dolor sit amet, doctus facilisi recusabo mel ex. Te omittam maluisset has, mea agam graecis sensibus ut. Sonet placerat nec ea, te ius nobis dolorem efficiendi, ex omnes causae suscipit eam. No eam primis tritani, elit minimum", 
+			type: "Case Study/Room 5",
+			skill_set: "full-stack-dev ui-design",
+			industries: "cybersecurity",
+			image: "img/project-bg/network-visualization-grad.png"
+			
+		},
+		{
+			index: 5,
 			name: "Microns Developer Portal",
 			image: "img/project-bg/micron-grad.png", 
 			skill_set: "full-stack-dev ui-design",
 		},
 		{
-			index: 5,
+			index: 6,
 			name: 'Verifone',
 			image: "img/project-bg/verifone-grad.png",
 			skill_set: "full-stack-dev project-management",
 		},
 		{
-			index: 6,
+			index: 7,
 			name: 'SR Love and Care',
 			image: "img/project-bg/srlc-grad.png",
 			skill_set: "full-stack-dev  project-management ui-design cloud",
 			industries: "non-profit"
 		}, 
 		{
-			index: 7,
+			index: 8,
 			name: 'Net Zero Enterprises',
 			image: "img/project-bg/net-zero-grad.png",
 			skill_set: "project-management cms ui-design",
 		},
 		{
-			index: 8,
+			index: 9,
 			name: 'Neurohacker',
 			skill_set: "project-management cms",
 			image: "img/project-bg/neurohacker-grad.png",
 		}, 
 		{
-			index: 9,
+			index: 10,
 			name: 'Rural India - Workshop',
 			skill_set: "project-management",
 			image: "img/project-bg/engineering-workshop.png",
 			industries: "non-profit"
 		},
 		{
-			index: 10,
+			index: 11,
 			name: 'L7 Partnership', 
 			skill_set: "project-management cms",
 			image: "img/project-bg/l7-partnership-grad.png",
 			
 		}, 
 		{
-			index: 11,
-			name: 'The Graveyard-Misc Projects-', 
+			index: 12,
+			name: 'Other Projects', 
 		}
 		
 	],

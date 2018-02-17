@@ -1,0 +1,31 @@
+<script id = "project-list-template" type="text/html">
+      {{#workCases}}
+        <a class = "project-timeline-link" href="#{{css_class}}" data-index = {{index}}>
+            <div class = "project-timeline-item" data-work-case={{css_class}}>
+                <div class = "project-index">{{idx}}</div>
+                <div class = "project-timeline-name"><span data-letters="{{name}}">{{name}}</span></div>
+            </div>
+        </a>
+      {{/workCases}}
+    </script>
+    <script id = "project-content-template" type="text/x-tmpl-mustache">
+        {{#workCases}}
+            <div id = {{css_class}} data-skill-set = "{{skill_set}}" data-industries = "{{industries}}"
+            data-index="{{index}}" class = "project-content-item {{class}} {{css_class}}">
+                <div class = "project-image-container">
+                    <div class = "project-image uncover" style="background-image: url('{{image}}');" />
+                </div>
+                <div class = "project-content-item-container">
+                    <div class = "type-of-project">{{type}}</div>
+                    <div class = "project-title"><h1 class = "title">{{name}}<h1></div>
+                    <div class = "role">
+                        <span class="role-text"> ROLE </span> <span class = "the-role">{{role}}</span>
+                    </div>
+                    <div class = "subheading"><p>{{subheading}}</p></div>
+                    {{#readMore}}
+                        <div class ="read-more"><a href="{{case_study_link}}"><p>read more</p></a></div>
+                    {{/readMore}}
+                </div>
+            </div>
+        {{/workCases}}
+    </script>

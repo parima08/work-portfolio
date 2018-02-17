@@ -6,165 +6,101 @@ particlesJS.load('particles-js', './js/particles2.json'
 
 );
 
-// console.clear();
-// let canvas = document.createElement("canvas");
-// let ctx = canvas.getContext("2d");
+$(function(){
+	pageTransitions(); 
+	// var lastElementClicked;
 
-// const PADDING = 5;
-// const MARGIN = 20;
-// const CURVATURE = 0.2;
-// const CONNECTABLE = 150;
-// const FOCUSABLE = 200;
-// const ELEMENTS = 300;
+	// var Homepage = Barba.BaseView.extend({
+	// 	namespace: 'homepage',
+	// 	onEnter: function() {
+	// 	  // The new Container is ready and attached to the DOM.
+	// 	},
+	// 	onEnterCompleted: function() {
+	// 	  // The Transition has just finished.
+	// 	},
+	// 	onLeave: function() {
+	// 	  // A new Transition toward a new page has just started.
+	// 	},
+	// 	onLeaveCompleted: function() {
+	// 	 	console.log("URL: " + window.location.href)
+	// 	 	onWorkPageLoad(); 
+	// 	}
+	// });
+	// Homepage.init();
 
-// let elements = [];
-// let connections = [];
-// let mouse = { x: 0, y: 0 }
 
-// function setup() {
-//   canvas.width = window.innerWidth;
-//   canvas.height = window.innerHeight;
-//   $('#canvas-container').append(canvas);
-  
-//   mouse.x = canvas.width / 2;
-//   mouse.y = canvas.width / 2;
-  
-//   window.addEventListener("mousemove", event => {
-//     mouse.x = event.clientX;
-//     mouse.y = event.clientY;
-//   });
-  
-//   for (let i = 0; i < ELEMENTS; i++) {
-//     let element = {
-//       id: i,
-//       size: 10 + Math.random() * 10,
-//       x: Math.random() * canvas.width,
-//       y: Math.random() * canvas.height
-//     };
-    
-//     if (!willOverlap(element)) {
-//       elements.push(element);
-//     }
-//   }
-  
-//   for (let i = 0; i < 50; i++) {
-//     let to = elements[Math.floor(Math.random() * elements.length)];
-//     let candidates = elements.filter(element => distance(to, element) < CONNECTABLE);
-//     let from = candidates[Math.floor(Math.random() * candidates.length)];
-//     let connection = { to: to.id, from: from.id };
-//     let existing = findConnection(connection.from, connection.to);
-    
-//     if (to !== from && !existing) {
-//       connections.push(connection);
-//     }
-//   }
-  
-//   removeOrphans();
-// }
+	// console.log("Barba is starting... ")
+	// Barba.Pjax.start();
+	// Barba.Prefetch.init();
 
-// function render() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-//   let drawn = {};
-  
-//   for (let from of elements) {
-//     for (let to of elements) {
-//       if (from === to) continue;
-//       if (drawn[[from.id, to.id]]) continue;
-//       drawn[[from.id, to.id]] = true;
-//       drawn[[to.id, from.id]] = true;
-      
-//       let dist = distance(from, to);
-//       if (dist > CONNECTABLE) continue;
-//       let focus = distance(from, mouse);
-//       if (focus > FOCUSABLE) continue;
-//       let alpha = (1 - dist / CONNECTABLE) * (1 - focus / FOCUSABLE);
+	// Barba.Dispatcher.on('linkClicked', function(el) {
+	// 	lastElementClicked = el;
+	// 	console.log("Barba: Something was clicked");
+	// });
 
-//       let vector = [from.x - to.x, from.y - to.y];
-//       let normal = [-vector[1], vector[0]];
-//       let offset = [normal[0] * CURVATURE, normal[1] * CURVATURE];
+	// var MovePage = Barba.BaseTransition.extend({
+	// 	start: function() {
+	// 		this.originalThumb = lastElementClicked;
 
-//       let midpoint = {
-//         x: (from.x + to.x) / 2,
-//         y: (from.y + to.y) / 2
-//       };
+	// 		Promise
+	// 		.all([this.newContainerLoading, this.scrollTop()])
+	// 		.then(this.movePages.bind(this));
+	// 	},
 
-//       let handle = {
-//         x: offset[0] + midpoint.x,
-//         y: offset[1] + midpoint.y
-//       };
+	// 	scrollTop: function() {
+	// 		var deferred = Barba.Utils.deferred();
+	// 		var obj = { y: window.pageYOffset };
 
-//       ctx.strokeStyle = `rgba(227, 208, 0, ${alpha})`;
-//       ctx.lineWidth = 3;
-//       ctx.beginPath();
-//       ctx.moveTo(from.x, from.y);
-//       ctx.quadraticCurveTo(handle.x, handle.y, to.x, to.y)
-//       ctx.stroke();
-//     }
-//   }
-  
-//   for (let element of elements) {
-//     let focus = distance(element, mouse);
-//     if (focus > FOCUSABLE) continue;
-//     let alpha = 1 - focus / FOCUSABLE;
-    
-//     ctx.fillStyle = `#F8E71C`;
-//     ctx.beginPath();
-//     ctx.arc(element.x, element.y, element.size + PADDING, 0, Math.PI * 2, false);
-//     ctx.fill();
-//     ctx.fillStyle = `rgba(255, 235, 0, ${alpha})`;
-    
-//     ctx.beginPath();
-//     ctx.arc(element.x, element.y, element.size, 0, Math.PI * 2, false);
-//     ctx.fill();
-//   }
-// }
+	// 		TweenLite.to(obj, 0.4, {
+	// 		y: 0,
+	// 		onUpdate: function() {
+	// 		  if (obj.y === 0) {
+	// 		    deferred.resolve();
+	// 		  }
 
-// function distance(p, q) {
-//   return Math.sqrt(Math.pow(q.y - p.y, 2) + Math.pow(q.x - p.x, 2));
-// }
+	// 		  window.scroll(0, obj.y);
+	// 		},
+	// 		onComplete: function() {
+	// 		  deferred.resolve();
+	// 		}
+	// 	});
 
-// function willOverlap(element) {
-//   return elements.some(other => {
-//     return distance(element, other) < element.size + other.size + MARGIN;
-//   });
-// }
+	// 	return deferred.promise;
+	// },
 
-// function removeOrphans() {
-//   let orphans = new Set(elements.map(element => element.id));
-  
-//   for (let connection of connections) {
-//     orphans.delete(connection.to);
-//     orphans.delete(connection.from);
-//   }
-  
-//   elements = elements.filter(element => {
-//     return !orphans.has(element.id);
-//   });
-// }
+	// movePages: function() {
+	// 	var _this = this;
+	// 	var goingForward = true;
+	// 	//this.updateLinks();
 
-// function findElement(id) {
-//   return elements.find(element => element.id === id);
-// }
+	// 	console.log("old data container; " + this.oldContainer.dataset.prev); 
 
-// function findConnection(to, from) {
-//   return connections.find(connection => (
-//     (connection.to === to && connection.from === from) ||
-//     (connection.to === from && connection.from === to)
-//   ));
-// }
+	// 	if (this.getNewPageFile() === this.oldContainer.dataset.prev) {
+	// 		goingForward = false;
+	// 	}
 
-// function getConnections(elementId) {
-//   return connections.find(connection => (
-//     connection.from === elementId ||
-//     connection.to === elementId
-//   ));
-// }
+	// 	TweenLite.set(this.newContainer, {
+	// 		visibility: 'visible',
+	// 		xPercent: goingForward ? 100 : -100,
+	// 		position: 'fixed',
+	// 		left: 0,
+	// 		top: 0,
+	// 		right: 0
+	// 	});
 
-// function play() {
-//   setTimeout(play, 30);
-//   render();
-// }
+	// 	TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100 });
+	// 	TweenLite.to(this.newContainer, 0.6, { xPercent: 0, onComplete: function() {
+	// 	TweenLite.set(_this.newContainer, { clearProps: 'all' });
+	// 		_this.done();
+	// 	}});
+	// 	},
 
-// setup();
-// play();
+	// 	getNewPageFile: function() {
+	// 		return Barba.HistoryManager.currentStatus().url.split('/').pop();
+	// 	}
+	// });
+
+	// Barba.Pjax.getTransition = function() {
+	// 	return MovePage;
+	// };
+});
