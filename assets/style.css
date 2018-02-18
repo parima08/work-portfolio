@@ -315,6 +315,12 @@ h1, h2, h3, h4, p, ul, li {
 .uncover_slices-vertical {
   flex-direction: row; }
 
+.uncover_slices-horizontal {
+  flex-direction: column; }
+
+#preloader .uncover_slices .uncover_slice {
+  background: yellow; }
+
 .uncover_slice {
   color: #fff;
   background-color: #fff;

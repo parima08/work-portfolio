@@ -287,42 +287,7 @@ function onWorkPageLoad(){
 
 	}
 
-	function slices(selector, options){
-		this.options = options; 
-		let uncoverItems = $(selector);
-		console.log("slices: " + uncoverItems.length); 
-		//console.log("slices: " + ); 
-		$.each(uncoverItems, (i, el) => {
-			console.log("slices: " + el); 
-			let inner = '';
-			inner += `<div class="uncover_slices uncover_slices-${this.options.orientation}">`
-			for (let i = 0; i <= this.options.slicesTotal - 1; ++i) {
-                inner += `<div class="uncover_slice" style="background-color:${this.options.slicesColor}"></div>`;
-            }
-            inner += `</div>`; 
-            $(el).append(inner);
-		});
-	}
-
-	function animateSlices(selector, yMove, cb=null){
-		console.log("animateSlicesReveal");
-		let slices = $(selector + ' .uncover_slice'); 
-		console.log("slices: " + slices.length);
-		let sliceAnimation = new TimelineMax(); 
-		//let randomSlices = shuffle(slices);
-		slices.each((i, el) => {
-			sliceAnimation.to(el, 
-						.5, 
-						{y: yMove}, 
-						i * .07
-						//Math.abs(i- Math.random(0, 2)) * .15
-						//Math.random(.5, 2.5)
-			);
-		});
-		if(cb){
-			sliceAnimation.call(cb); 
-		}
-	}
+	
 
 	function reverseCheck(selector, nextClass){
 		console.log("Slices: Reverse Check");
@@ -372,6 +337,51 @@ function onWorkPageLoad(){
 	//pageTransitions();
 };
 
+function slices(selector, options){
+	this.options = options; 
+	let uncoverItems = $(selector);
+	console.log("slices: " + uncoverItems.length); 
+	//console.log("slices: " + ); 
+	$.each(uncoverItems, (i, el) => {
+		console.log("slices: " + el); 
+		let inner = '';
+		inner += `<div class="uncover_slices uncover_slices-${this.options.orientation}">`
+		for (let i = 0; i <= this.options.slicesTotal - 1; ++i) {
+            inner += `<div class="uncover_slice" style="background-color:${this.options.slicesColor}"></div>`;
+        }
+        inner += `</div>`; 
+        $(el).append(inner);
+	});
+}
+
+function animateSlices(selector, yMove=null, xMove=null, cb=null){
+	console.log("animateSlicesReveal");
+	let slices = $(selector + ' .uncover_slice'); 
+	console.log("slices: " + slices.length);
+	let sliceAnimation = new TimelineMax(); 
+	//let randomSlices = shuffle(slices);
+	slices.each((i, el) => {
+		sliceAnimation.to(el, 
+					.5, 
+					{y: yMove, x: xMove}, 
+					i * .07
+					//Math.abs(i- Math.random(0, 2)) * .15
+					//Math.random(.5, 2.5)
+		);
+	});
+	if(cb){
+		sliceAnimation.call(cb); 
+	}
+}
+
+function preloaderSlices(){
+	slices('#preloader', {
+		slicesTotal: 6,
+		slicesColor: 'yellow',
+		orientation: 'horizontal'
+	});
+}
+
 function onHomepageLoad(){
 	scrollController.destroy(true); 
 	console.log("home.js");
@@ -379,6 +389,8 @@ function onHomepageLoad(){
 	 , function(){
 	  	console.log("Particles Loaded");
 	 });
+
+	//preloaderSlices(); 
 }
 
 

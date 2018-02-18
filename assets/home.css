@@ -20,7 +20,7 @@ body {
 #preloader, .home-page-container {
   height: 100vh;
   width: 100%;
-  background-color: #F8E71C;
+  background-color: transparent;
   position: absolute; }
 
 #preloader {

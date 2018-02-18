@@ -94,11 +94,19 @@ function pageTransitions(){
 		let transitionTimeline = new TimelineMax(); 
 		transitionTimeline.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100, opacity: 0 })
 		                  .to('#preloader', 0.6, {xPercent:0}, "-=0.6")
-		                  .to('#preloader', 0.6, { xPercent: goingForward ? -100 : 100})
 		                  .to(this.newContainer, 0.6, { xPercent: 0, opacity: 1, onComplete: function() {
 								TweenLite.set(_this.newContainer, { clearProps: 'all' });
-									_this.done();
-						   }}, "-=1.2");
+								_this.done();
+						   }}, "-=0.6")
+		                  .set({}, {}, "+=.1")
+		                  .staggerTo("#preloader .uncover_slice",  1, {xPercent: goingForward ? -120 : 120, ease:Expo.easeOut,
+		                   onComplete: function(){
+		                  					TweenLite.set('#preloader .uncover_slice', {xPercent: 0});
+		                  					TweenLite.set('#preloader', {clearProps: 'all'});
+		                  					
+		                  				}}, .1)
+		                  //.to('#preloader', 0.6, { xPercent: goingForward ? -100 : 100})
+		                  
 
 		//TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100, opacity: 0 });
 		//TweenLite.to(this.newContainer, 0.6, { xPercent: 0, opacity: 1, onComplete: function() {
@@ -125,6 +133,8 @@ function loadPageJs(){
 			onWorkPageLoad(); 
 			break;
 		case '/work-cases/*':
+			break; 
+		case '/about': 
 			break; 
 		case '/home.html': 
 		case '/':
