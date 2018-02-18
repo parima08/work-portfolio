@@ -55,6 +55,12 @@ h1, h2, h3, h4, p, ul, li {
     font-size: 1.15rem;
     letter-spacing: .2rem;
     font-weight: 900; }
+  #sort-options h2 {
+    font-family: 'Playfair Display', 'Garamond', serif;
+    font-style: italic;
+    font-size: .9em;
+    letter-spacing: .02em;
+    font-weight: 300; }
   #sort-options ul {
     list-style-type: none;
     color: #616161;
@@ -328,3 +334,52 @@ h1, h2, h3, h4, p, ul, li {
 
 .uncover_slices-vertical .uncover_slice {
   box-shadow: 1px 0 0 #fff; }
+
+.close-title-container {
+  height: 20px;
+  width: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  background: #F6F6F6;
+  z-index: 9;
+  display: table; }
+
+.close-title-container a {
+  display: table-cell;
+  padding: 0 5px;
+  vertical-align: middle; }
+
+.close-title-container .close-container {
+  width: 20px;
+  height: 20px;
+  /*background-color: white;
+		background: url(../img/close-button.png);
+		background-origin: 50% 50%;
+		background-position: center;
+		background-size: 60%;
+		background-repeat: no-repeat;*/ }
+
+.close-title-container .close-container svg {
+  height: 80%; }
+
+.close-title-container a:hover {
+  background: #4A4A4A; }
+
+.close-title-container a:hover .close-container svg g #cross {
+  stroke: #F8E71C; }
+
+.close-title-container .work-title-container {
+  background-color: #4A4A4A;
+  color: #F6F6F6;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 15px;
+  /*padding: 5px 10px;*/ }
+
+.close-title-container .work-title-container h1 {
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  font-size: 0.9em !important;
+  font-weight: 900; }

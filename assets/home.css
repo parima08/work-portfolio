@@ -34,6 +34,9 @@ body {
 #canvas-container {
   background: #FFFFFF; }
 
+.particles-js-canvas-el {
+  height: 100vh; }
+
 canvas {
   opacity: 0.6; }
 
