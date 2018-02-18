@@ -27,35 +27,37 @@
     <![endif]-->
   </head>
   <body>
+    <div id = "preloader"></div>
     <div id = "barba-wrapper">
         <div class = "barba-container" data-namespace="homepage" data-forward = "work.html" data-backward = "about.html">
-            <div class = "particles-container">
-                <div id="particles-js"></div>
-            </div>
-            <div class = "grey-line top"></div>
-            <div class = "grey-line right"></div>
-            <div class = "grey-line bottom"></div>
-            <div class = "grey-line left"></div>
-            <div class = "side-button work-button-container"><a class = "work" href="work.html"><h1>WORK</h1></a></div>
-            <div class = "side-button about-button-container"><h1>ABOUT</h1></div>
-            <div class = "page-content">
-                <div class = "portfolio-title-container">
-                    <div class = "title">
-                        <h3>welcome to the portfolio of</h3>
-                        <h1>Parima <span>Shah<span></h1>
-                    </div>
-                    <div class = "subheading">
-                        <div class = "group1">
-                            <h2>Professional <span>Problem Solver</span> & <span>Creative Coder</span></h2>
+            <div class = "home-page-container">
+                <div class = "grey-line top"></div>
+                <div class = "grey-line right"></div>
+                <div class = "grey-line bottom"></div>
+                <div class = "grey-line left"></div>
+                <div class = "side-button work-button-container"><a class = "work" href="work.html"><h1>WORK</h1></a></div>
+                <div class = "side-button about-button-container"><h1>ABOUT</h1></div>
+                <div class = "page-content">
+                    <div class = "portfolio-title-container">
+                        <div class = "title">
+                            <h3>welcome to the portfolio of</h3>
+                            <h1>Parima <span>Shah<span></h1>
                         </div>
-                        <div class = "group2">
-                            <h2>
-                                in <span>San Diego</span> or <span>wandering</span> around 
-        Planet Earth
-                            </h2>
+                        <div class = "subheading">
+                            <div class = "group1">
+                                <h2>Professional <span>Problem Solver</span> & <span>Creative Coder</span></h2>
+                            </div>
+                            <div class = "group2">
+                                <h2>
+                                    in <span>San Diego</span> or <span>wandering</span> around Planet Earth
+                                </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class = "particles-container">
+                <div id="particles-js"></div>
             </div>
         </div>
     </div>
@@ -103,7 +105,7 @@
             Work.init(); 
             startBarba(); 
             pageTransitions(); 
-            onHomepageLoad(); 
+            //onHomepageLoad(); 
         })
     </script>
 

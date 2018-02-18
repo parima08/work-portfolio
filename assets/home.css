@@ -17,6 +17,20 @@ body {
   padding: 0;
   margin: 0; }
 
+#preloader, .home-page-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #F8E71C;
+  position: absolute; }
+
+#preloader {
+  z-index: 10;
+  visibility: hidden; }
+
+.home-page-container {
+  background: white;
+  position: absolute; }
+
 #canvas-container {
   background: #FFFFFF; }
 

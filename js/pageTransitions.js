@@ -52,20 +52,59 @@ function pageTransitions(){
 			goingForward = false;
 		}
 
+
+		// TweenLite.set(this.newContainer, {
+		// 	visibility: 'visible',
+		// 	xPercent: goingForward ? 100 : -100,
+		// 	position: 'fixed',
+		// 	left: 0,
+		// 	top: 0,
+		// 	right: 0,
+		// 	opacity: 0,
+		// 	scaleX: .8, 
+		// 	scaleY: .8
+		// });
+
+		// let blah = new TimelineMax(); 
+		// blah.to(this.oldContainer, .5, {scaleX: .8, scaleY: .8})
+		// .to(this.oldContainer, .5, { xPercent: goingForward ? -100 : 100, opacity: 0 })
+		// .to(this.newContainer, .6, { xPercent: 0, opacity: 1, onComplete: function() {
+		// 	TweenLite.set(_this.newContainer, { clearProps: 'all' });
+		// 	_this.done();
+		// }}, "-=.5");
+		// },
+
 		TweenLite.set(this.newContainer, {
 			visibility: 'visible',
 			xPercent: goingForward ? 100 : -100,
 			position: 'fixed',
 			left: 0,
 			top: 0,
-			right: 0
+			right: 0,
+			opacity: 0
 		});
+		TweenLite.set('#preloader', {
+			visibility: 'visible',
+			xPercent: goingForward ? 100 : -100,
+			position: 'fixed',
+			left: 0,
+			top: 0,
+			right: 0,
+		});
+		let transitionTimeline = new TimelineMax(); 
+		transitionTimeline.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100, opacity: 0 })
+		                  .to('#preloader', 0.6, {xPercent:0}, "-=0.6")
+		                  .to('#preloader', 0.6, { xPercent: goingForward ? -100 : 100})
+		                  .to(this.newContainer, 0.6, { xPercent: 0, opacity: 1, onComplete: function() {
+								TweenLite.set(_this.newContainer, { clearProps: 'all' });
+									_this.done();
+						   }}, "-=1.2");
 
-		TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100 });
-		TweenLite.to(this.newContainer, 0.6, { xPercent: 0, onComplete: function() {
-		TweenLite.set(_this.newContainer, { clearProps: 'all' });
-			_this.done();
-		}});
+		//TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100, opacity: 0 });
+		//TweenLite.to(this.newContainer, 0.6, { xPercent: 0, opacity: 1, onComplete: function() {
+		//TweenLite.set(_this.newContainer, { clearProps: 'all' });
+		// 	_this.done();
+		// }});
 		},
 
 		getNewPageFile: function() {
