@@ -51,7 +51,7 @@ body {
 }
 
 .particles-js-canvas-el{
-	height: 100vh;
+	height: 100vh!important;
 }
 
 canvas {
@@ -61,6 +61,7 @@ canvas {
 .grey-line { 
 	background: #F1F1F1; 
 	position: absolute;
+	z-index: 1;
 }
 
 .grey-line.top, .grey-line.bottom{
