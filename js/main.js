@@ -53,7 +53,7 @@ function onWorkPageLoad(){
 		//rescrolls to the top of the page... 
 
 		//Mustache templates load everything!
-		$.get('../templates.html', function(template){
+		$.get('templates.html', function(template){
 			//var projectList  =$('#project-list-template').html();
 			var projectList  = $(template).filter('#project-list-template').html();
 			//console.log($(template).html());
