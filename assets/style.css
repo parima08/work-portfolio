@@ -383,3 +383,71 @@ h1, h2, h3, h4, p, ul, li {
   letter-spacing: .2rem;
   font-size: 0.9em !important;
   font-weight: 900; }
+
+/****
+  *
+  *
+  *  Case Studies Styles
+  *
+  *
+  *
+**/
+.case-study .title-container {
+  position: relative;
+  margin-top: 10em; }
+
+.case-study .title-container .col-3 {
+  text-align: right; }
+  .case-study .title-container .col-3 h2 {
+    margin: 0;
+    font-family: "Lekton", "Courier New", sans-serif; }
+
+.case-study .title-container .col-7 {
+  text-align: left;
+  border-left: 1px solid black;
+  padding-left: 2em; }
+
+.case-study .title-container .col-7 h1 {
+  font-family: "Playfair Display", "Garamond", serif;
+  color: black;
+  font-size: 5em;
+  font-weight: 500; }
+
+.case-study .title-container .col-7 p {
+  font-family: "Playfair Display", "Garamond", serif;
+  font-size: 1em;
+  font-weight: 400;
+  margin-top: -20px; }
+
+.case-study .wc-details {
+  background: #EEEEEE;
+  min-height: 200px;
+  width: 100%;
+  position: relative;
+  margin-top: 9em;
+  margin-bottom: 5em; }
+  .case-study .wc-details .image-container {
+    position: absolute;
+    top: -30%;
+    right: 20%; }
+  .case-study .wc-details .wc-detail {
+    padding: 2.5em 3em; }
+    .case-study .wc-details .wc-detail h3 {
+      text-transform: uppercase;
+      color: black;
+      letter-spacing: .1em;
+      margin: 0; }
+    .case-study .wc-details .wc-detail p {
+      color: #616161;
+      font-family: "Playfair Display", "Garamond", serif;
+      margin: 0; }
+  .case-study .wc-details .wc-detail.role-container {
+    padding-top: 5em; }
+  .case-study .wc-details .wc-detail.skills-container {
+    padding-bottom: 5em; }
+
+.case-study .work-case-details {
+  position: relative; }
+  .case-study .work-case-details p {
+    color: black;
+    font-size: 1.3em; }

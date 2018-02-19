@@ -186,3 +186,98 @@ canvas {
 
 .side-button h1::before:hover {
   width: 200%; }
+
+.close-title-container.about {
+  right: 0;
+  top: 0;
+  left: auto; }
+
+.close-title-container.about .work-title-container h1 {
+  color: white; }
+
+#about-me {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+  color: #616161 !important;
+  overflow: hidden; }
+
+.about-background-container {
+  position: relative;
+  /*overflow: hidden;*/ }
+
+.about-background {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh; }
+
+.about-background .trap {
+  width: 35%;
+  height: 300%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 75%;
+  -webkit-transform: skew(35deg);
+  -moz-transform: skew(35deg);
+  -o-transform: skew(35deg);
+  background: #F8E71C;
+  opacity: 0.64; }
+
+.about-background .grey-trap {
+  width: 35%;
+  height: 300%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 10%;
+  -webkit-transform: skew(-35deg);
+  -moz-transform: skew(-35deg);
+  -o-transform: skew(-35deg);
+  background: #F5F5F5;
+  opacity: 0.64; }
+
+#about-me .about-text-container, #about-me .other-skills {
+  /*padding: 5em;*/ }
+
+#about-me .about-me-container {
+  margin-top: 30%;
+  z-index: 5;
+  position: relative; }
+
+#about-me .about-group {
+  padding: 20px 0; }
+
+#about-me h1 {
+  font-family: "Playfair Display", Garmond, serif;
+  font-style: italic;
+  font-size: 6em;
+  color: #616161;
+  /*color: $highlight-yellow;
+		background: black;*/ }
+
+#about-me h2 {
+  color: #616161;
+  font-weight: 500;
+  font-size: 2em; }
+
+#about-me p {
+  font-size: 1.3em;
+  color: #616161;
+  font-weight: 400; }
+
+#about-me .learnt-item {
+  border-left: 2px solid #616161;
+  padding: 0px 0px 0px 1em;
+  margin: 3em 0; }
+
+#about-me .learnt-item h3 {
+  font-weight: 500;
+  padding: 0;
+  font-size: 1.6em;
+  color: #616161;
+  margin: 0; }
+
+#about-me .learnt-item p {
+  margin: 0;
+  margin-top: 10px; }
