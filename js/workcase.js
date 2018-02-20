@@ -12,7 +12,11 @@ var workCases = {
 			subheading: "We were approached by one of America’s biggest banks with the challenge to increase their accounts with children. We developed an IoT artifact for them that engaged children and taught them basic budgetting techniques." , 
 			image: "img/project-bg/iot-piggybank-grad.png", 
 			readMore: true,
-			case_study_link: "work-cases/iot-piggybank.html" 
+			case_study_link: "work-cases/iot-piggybank.html",
+			case_study_subheading: "internet of things", 
+			technologies: "Android, Photon Development, Javascript",
+			skills: "Software Architecture, Mobile Development", 
+			case_study_image: "img/project-bg/iot-piggybank.png"
 		}, 
 		{
 			index: 2,
@@ -23,7 +27,8 @@ var workCases = {
 			class: "next",
 			skill_set: "full-stack-dev cloud",
 			industries: "iot",
-			image: "img/project-bg/smart-lock-grad.png"
+			image: "img/project-bg/smart-lock-grad.png", 
+			case_study_image: "img/project-bg/smart-lock.png"
 		},
 		{
 			index: 3,
@@ -32,7 +37,13 @@ var workCases = {
 			type: "Case Study/Room 5",
 			skill_set: "full-stack-dev ui-design",
 			industries: "cybersecurity",
-			image: "img/project-bg/network-visualization-grad.png"
+			image: "img/project-bg/network-visualization-grad.png", 
+			readMore: true, 
+			case_study_link: "work-cases/network-visualization.html", 
+			case_study_subheading: "data visualization",
+			technologies: "Ruby on Rails, d3.js, Git, Jenkins, Gerrit",
+			skills: "Full Stack Development, Design", 
+			case_study_image: ""
 			
 		},
 		{
@@ -42,7 +53,13 @@ var workCases = {
 			type: "Case Study/Room 5",
 			skill_set: "full-stack-dev ui-design",
 			industries: "cybersecurity",
-			image: "img/project-bg/network-visualization-grad.png"
+			image: "img/project-bg/network-visualization-grad.png", 
+			readMore: true, 
+			case_study_link: "work-cases/network-visualization.html", 
+			case_study_subheading: "cybersecurity", 
+			technologies: "Ruby on Rails, SNMP, SSE (Server Sent Events), HTTP, Git, Jenkins, Gerrit",
+			skills: "Full Stack Development, Design", 
+			case_study_image: "", 
 			
 		},
 		{

@@ -393,5 +393,31 @@ function onHomepageLoad(){
 	//preloaderSlices(); 
 }
 
+function onWorkCaseLoad(){
+	//check the URL - and then do a search in the workcases for that.. 
+	let url = $(location).attr('pathname');
+	console.log(url);
+
+	let thisWorkCase = workCases.workCases.filter(function(val){
+		//console.log(val);
+		if(val['case_study_link'] &&  url.includes(val["case_study_link"])){
+			return val;
+		}
+	}); 
+
+	console.log(thisWorkCase);
+
+
+	console.log("onWorkCaseLoad loaded");
+	$.get('../templates.html', function(template){
+		//var projectList  =$('#project-list-template').html();
+		var workCaseTemplate  = $(template).filter('#case-study-intro-template').html();
+		Mustache.parse(workCaseTemplate);
+		//console.log(workCaseTemplate);
+		var rendered = Mustache.render(workCaseTemplate,  {"workCases": thisWorkCase});
+		$('#work-case-intro-container').html(rendered);
+	})
+}
+
 
  

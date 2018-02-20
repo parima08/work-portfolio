@@ -128,17 +128,22 @@ function pageTransitions(){
 function loadPageJs(){
 	let url = $(location).attr('pathname');
 	console.log("URL: " + url); 
-	switch(url){
-		case '/work.html':
+
+	console.log(url.includes('/work.html')); 
+	switch(true){
+		case (url.includes('/work.html')):
+			console.log("loading work js"); 
 			onWorkPageLoad(); 
 			break;
-		case '/work-cases/*':
+		case (url.includes('/work-cases/')):
+			console.log("loading work cases");
 			break; 
-		case '/about': 
+		case url.includes('/about'): 
+			console.log("loading about");
 			break; 
-		case '/home.html': 
+		case url.includes('/index.html'): 
 		case '/':
-		default: 
+		default:
 			onHomepageLoad(); 
 			break;
 	}
