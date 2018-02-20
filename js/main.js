@@ -393,7 +393,12 @@ function onHomepageLoad(){
 	//preloaderSlices(); 
 }
 
+function onAboutpageLoad(){
+	scrollController.destroy(true);
+}
+
 function onWorkCaseLoad(){
+	scrollController.destroy(true); 
 	//check the URL - and then do a search in the workcases for that.. 
 	let url = $(location).attr('pathname');
 	console.log(url);

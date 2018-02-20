@@ -137,6 +137,7 @@ function loadPageJs(){
 			break;
 		case (url.includes('/work-cases/')):
 			console.log("loading work cases");
+			onWorkCaseLoad(); 
 			break; 
 		case url.includes('/about'): 
 			console.log("loading about");
@@ -144,6 +145,7 @@ function loadPageJs(){
 		case url.includes('/index.html'): 
 		case '/':
 		default:
+			console.log('loading home');
 			onHomepageLoad(); 
 			break;
 	}
