@@ -37,7 +37,7 @@
                 <div class = "work-title-container">
                     <h1>ABOUT</h1>
                 </div>
-                <a href="/" data-backward="/">
+                <a href="/index.html" data-backward="index.html">
                     <div class = "close-container">
                         <svg width="21px" height="22px" viewBox="0 0 21 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs></defs>
@@ -137,36 +137,5 @@
      <script src = "js/pageTransitions.js"></script> 
     <!-- <script src = "js/home.js"></script>  -->
     <script src = "js/main.js"></script>
-    <script>
-        $(function(){
-            let settings = {
-                onEnter: function() {
-                    console.log("onEnter")
-                  // The new Container is ready and attached to the DOM.
-                },
-                onEnterCompleted: loadPageJs,
-                onLeave: function() {
-                  // A new Transition toward a new page has just started.
-                },
-                //onLeaveCompleted: loadPageJs
-            }
-            var Homepage = Barba.BaseView.extend(
-                            $.extend({
-                                namespace: 'homepage',
-                            }, settings)
-            );
-            var Work = Barba.BaseView.extend(
-                            $.extend({
-                                namespace: 'work',
-                            }, settings)
-            );
-            Homepage.init();
-            Work.init(); 
-            startBarba(); 
-            pageTransitions(); 
-            //onHomepageLoad(); 
-        })
-    </script>
-
   </body>
 </html>

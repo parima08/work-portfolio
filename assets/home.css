@@ -148,10 +148,16 @@ canvas {
 .work-button-container {
   right: 0;
   /*transform: rotate(90deg);*/ }
+  .work-button-container a {
+    text-decoration: none;
+    color: #616161; }
 
 .about-button-container {
   left: 0;
   /*transform: rotate(-90deg);*/ }
+  .about-button-container a {
+    text-decoration: none;
+    color: #616161; }
 
 .side-button h1 {
   font-size: 1.2em;

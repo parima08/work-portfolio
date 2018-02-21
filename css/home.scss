@@ -175,11 +175,19 @@ canvas {
 .work-button-container{
 	right: 0;
 	/*transform: rotate(90deg);*/
+	a {
+		text-decoration: none;
+		color: $text-color;
+	}
 }
 
 .about-button-container{
 	left: 0;
 	/*transform: rotate(-90deg);*/
+	a {
+		text-decoration: none;
+		color: $text-color;
+	}
 }
 
 .side-button{
