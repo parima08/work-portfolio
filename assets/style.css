@@ -434,6 +434,12 @@ h1, h2, h3, h4, p, ul, li {
     vertical-align: middle;
     padding: 0 15px;
     /*padding: 5px 10px;*/ }
+  @media (max-width: 599px) {
+    .close-title-container .work-title-container.work-button {
+      width: 100%; } }
+  @media (max-width: 599px) {
+    .close-title-container .work-title-container.work-button h1 {
+      text-align: center; } }
   .close-title-container .work-title-container h1 {
     text-transform: uppercase;
     letter-spacing: .2rem;
@@ -442,6 +448,62 @@ h1, h2, h3, h4, p, ul, li {
     @media (max-width: 599px) {
       .close-title-container .work-title-container h1 {
         height: 1.2em; } }
+
+.status-bar {
+  display: none; }
+  @media (max-width: 599px) {
+    .status-bar {
+      display: table;
+      position: fixed;
+      top: 25px;
+      width: 100%;
+      height: 40px;
+      background: #EEEEEE;
+      z-index: 2;
+      text-align: center;
+      font-family: "Lekton", "Courier New", sans-serif; }
+      .status-bar h2 {
+        font-weight: 400; } }
+
+.scroll-down-instruction {
+  display: none; }
+  @media (max-width: 599px) {
+    .scroll-down-instruction {
+      display: table;
+      position: fixed;
+      bottom: 0px;
+      right: 40px;
+      height: 26px;
+      width: 100px;
+      padding: 5px;
+      /*background: $sort-bg;*/
+      z-index: 2;
+      text-align: center;
+      font-family: "Lekton", "Courier New", sans-serif;
+      transform: rotate(90deg);
+      transform-origin: right bottom; } }
+  .scroll-down-instruction .down-button-container {
+    width: auto;
+    display: table-cell;
+    vertical-align: middle; }
+  .scroll-down-instruction img {
+    /*width: auto;
+		height: auto;
+		position: absolute;
+		right: 10px;
+		bottom: 5px;*/
+    transform: rotate(-90deg);
+    height: 30%; }
+  .scroll-down-instruction p {
+    /*transform: rotate(90deg);*/
+    font-family: "Lekton", "Courier New", sans-serif;
+    display: table-cell;
+    margin-right: -20px;
+    vertical-align: middle;
+    /*height: 300px;*/
+    font-size: .9em;
+    color: #EEEEEE;
+    color: #D5D5D5; }
 
 /****
   *
@@ -510,7 +572,18 @@ h1, h2, h3, h4, p, ul, li {
     .case-study .wc-details .image-container {
       position: absolute;
       top: -30%;
-      right: 20%; }
+      right: 20%;
+      width: auto; }
+      @media (max-width: 599px) {
+        .case-study .wc-details .image-container {
+          right: 0;
+          left: 0;
+          margin: auto;
+          top: -20%;
+          width: 50%; } }
+      .case-study .wc-details .image-container img {
+        width: 100%;
+        height: 100%; }
     .case-study .wc-details .wc-detail {
       padding: 2.5em 3em; }
       .case-study .wc-details .wc-detail h3 {
@@ -524,6 +597,9 @@ h1, h2, h3, h4, p, ul, li {
         margin: 0; }
     .case-study .wc-details .wc-detail.role-container {
       padding-top: 5em; }
+      @media (max-width: 599px) {
+        .case-study .wc-details .wc-detail.role-container {
+          padding-top: 13em; } }
     .case-study .wc-details .wc-detail.skills-container {
       padding-bottom: 5em; }
   .case-study .work-case-details {
