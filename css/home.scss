@@ -1,3 +1,7 @@
+@mixin for-smaller-phones{
+	@media (max-width: 400px) { @content; }
+}
+
 @mixin for-phone-only {
   @media (max-width: 599px) { @content; }
 }
@@ -29,19 +33,21 @@
 
 $text-font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 $lekton-font: 'Lekton', 'Courier New', sans-serif;
-$grey-line-thickness: 50px; 
+$grey-line-thickness: 3.6em; 
 $highlight-yellow: #F8E71C;
 $text-color: #616161;
 
 html{
 	font-size: 14px;
-}
+	@include for-phone-only{
+		font-size: 10px;
+	}
 
-@include for-phone-only{
-	html{
-	font-size: 10px;
+	@include for-tablet-portrait-only{
+		font-size: 12px;
 	}
 }
+
 
 body{
 	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -103,25 +109,25 @@ canvas {
 	height: $grey-line-thickness;
 	width: 100%;
 
-	@include for-tablet-portrait-only{
+	/*@include for-tablet-portrait-only{
 		height: 30px;
 	}
 
 	@include for-phone-only{
 		height: 20px;
-	}
+	}*/
 }
 
 .grey-line.right, .grey-line.left{
 	width: $grey-line-thickness;
 	height: 100%;
-	@include for-tablet-portrait-only{
+	/*@include for-tablet-portrait-only{
 		width: 30px;
 	}
 
 	@include for-phone-only{
 		width: 20px;
-	}
+	}*/
 }
 
 .top {  top: 0; }
@@ -144,6 +150,10 @@ canvas {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+
+	@include for-phone-only{
+		width: 60%;
+	}
 }
 
 .title{
@@ -228,6 +238,12 @@ canvas {
 	a {
 		text-decoration: none;
 		color: $text-color;
+		@include for-phone-only{
+			font-size: 1.5em;
+		}
+		@include for-tablet-portrait-only{
+			font-size: 2em;
+		}
 	}
 }
 
@@ -237,6 +253,13 @@ canvas {
 	a {
 		text-decoration: none;
 		color: $text-color;
+		@include for-phone-only{
+			font-size: 1.5em;
+		}
+
+		@include for-tablet-portrait-only{
+			font-size: 2em;
+		}
 	}
 }
 
@@ -326,7 +349,7 @@ canvas {
 
 	@include for-tablet-landscape-down{
 		width: 50%;
-		height: 400%;
+		height: 150%;
 		-webkit-transform: skew(35deg);
 	   -moz-transform: skew(35deg);
 	     -o-transform: skew(35deg);
@@ -349,7 +372,7 @@ canvas {
 	@include for-tablet-landscape-down{
 		top: 80%;
 		width: 50%;
-		height: 450%;
+		height: 150%;
 		-webkit-transform: skew(-30deg);
 	   -moz-transform: skew(-30deg);
 	     -o-transform: skew(-30deg);
@@ -370,7 +393,7 @@ canvas {
 	.about-group{
 		padding: 20px 0;
 		@include for-phone-only{
-			padding: 5px;
+			padding: 15px;
 		}
 	}
 	h1{
@@ -390,7 +413,7 @@ canvas {
 		font-weight: 500;
 		font-size: 2em;
 		@include for-phone-only{
-			font-size: 1.4em;
+			font-size: 1.6em;
 		}
 	}
 
@@ -399,7 +422,7 @@ canvas {
 		color: #8F8F8F;
 		font-weight: 400;
 		@include for-phone-only{
-			font-size: 1em;
+			font-size: 1.2em;
 		}
 	}
 
@@ -437,11 +460,16 @@ canvas {
 			right: 15%;
 			top: 10%;
 		}
-
+/*
 		@include for-phone-only{
 			width: 140px;
 			right: 10%;
 			top: 10%;
+		}*/
+
+		@include for-phone-only{
+			top: 7%;
+			width: 45%;
 		}
 	}
 }

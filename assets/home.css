@@ -1,9 +1,11 @@
 html {
   font-size: 14px; }
-
-@media (max-width: 599px) {
-  html {
-    font-size: 10px; } }
+  @media (max-width: 599px) {
+    html {
+      font-size: 10px; } }
+  @media (min-width: 600px) and (max-width: 899px) {
+    html {
+      font-size: 12px; } }
 
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -50,24 +52,26 @@ canvas {
   z-index: 1; }
 
 .grey-line.top, .grey-line.bottom {
-  height: 50px;
-  width: 100%; }
-  @media (min-width: 600px) and (max-width: 899px) {
-    .grey-line.top, .grey-line.bottom {
-      height: 30px; } }
-  @media (max-width: 599px) {
-    .grey-line.top, .grey-line.bottom {
-      height: 20px; } }
+  height: 3.6em;
+  width: 100%;
+  /*@include for-tablet-portrait-only{
+		height: 30px;
+	}
+
+	@include for-phone-only{
+		height: 20px;
+	}*/ }
 
 .grey-line.right, .grey-line.left {
-  width: 50px;
-  height: 100%; }
-  @media (min-width: 600px) and (max-width: 899px) {
-    .grey-line.right, .grey-line.left {
-      width: 30px; } }
-  @media (max-width: 599px) {
-    .grey-line.right, .grey-line.left {
-      width: 20px; } }
+  width: 3.6em;
+  height: 100%;
+  /*@include for-tablet-portrait-only{
+		width: 30px;
+	}
+
+	@include for-phone-only{
+		width: 20px;
+	}*/ }
 
 .top {
   top: 0; }
@@ -95,6 +99,9 @@ canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
+  @media (max-width: 599px) {
+    .portfolio-title-container {
+      width: 60%; } }
 
 .title {
   text-align: center;
@@ -167,6 +174,12 @@ canvas {
   .work-button-container a {
     text-decoration: none;
     color: #616161; }
+    @media (max-width: 599px) {
+      .work-button-container a {
+        font-size: 1.5em; } }
+    @media (min-width: 600px) and (max-width: 899px) {
+      .work-button-container a {
+        font-size: 2em; } }
 
 .about-button-container {
   left: 0;
@@ -174,6 +187,12 @@ canvas {
   .about-button-container a {
     text-decoration: none;
     color: #616161; }
+    @media (max-width: 599px) {
+      .about-button-container a {
+        font-size: 1.5em; } }
+    @media (min-width: 600px) and (max-width: 899px) {
+      .about-button-container a {
+        font-size: 2em; } }
 
 .side-button h1 {
   font-size: 1.2em;
@@ -250,7 +269,7 @@ canvas {
   @media (max-width: 899px) {
     .about-background .trap {
       width: 50%;
-      height: 400%;
+      height: 150%;
       -webkit-transform: skew(35deg);
       -moz-transform: skew(35deg);
       -o-transform: skew(35deg); } }
@@ -271,7 +290,7 @@ canvas {
     .about-background .grey-trap {
       top: 80%;
       width: 50%;
-      height: 450%;
+      height: 150%;
       -webkit-transform: skew(-30deg);
       -moz-transform: skew(-30deg);
       -o-transform: skew(-30deg); } }
@@ -288,7 +307,7 @@ canvas {
   padding: 20px 0; }
   @media (max-width: 599px) {
     #about-me .about-group {
-      padding: 5px; } }
+      padding: 15px; } }
 
 #about-me h1 {
   font-family: "Playfair Display", Garmond, serif;
@@ -307,7 +326,7 @@ canvas {
   font-size: 2em; }
   @media (max-width: 599px) {
     #about-me h2 {
-      font-size: 1.4em; } }
+      font-size: 1.6em; } }
 
 #about-me p {
   font-size: 1.3em;
@@ -315,7 +334,7 @@ canvas {
   font-weight: 400; }
   @media (max-width: 599px) {
     #about-me p {
-      font-size: 1em; } }
+      font-size: 1.2em; } }
 
 #about-me .learnt-item {
   border-left: 2px solid #616161;
@@ -337,7 +356,13 @@ canvas {
   width: 350px;
   position: absolute;
   right: 10%;
-  top: 10%; }
+  top: 10%;
+  /*
+		@include for-phone-only{
+			width: 140px;
+			right: 10%;
+			top: 10%;
+		}*/ }
   #about-me .about-me-pic img {
     height: 100%;
     width: 100%; }
@@ -348,6 +373,5 @@ canvas {
       top: 10%; } }
   @media (max-width: 599px) {
     #about-me .about-me-pic {
-      width: 140px;
-      right: 10%;
-      top: 10%; } }
+      top: 7%;
+      width: 45%; } }

@@ -1,3 +1,35 @@
+@mixin for-smaller-phones{
+	@media (max-width: 400px) { @content; }
+}
+
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-portrait-only {
+  @media (min-width: 600px) and (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-tablet-landscape-down{
+	@media (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape-only {
+  @media (min-width: 900px) and (max-width: 1199px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-desktop-only {
+  @media (min-width: 1200px) and (max-width: 1799px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
 /* FONTS */ 
 $text-font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 $lekton-font: 'Lekton', 'Courier New', sans-serif;
@@ -50,20 +82,22 @@ h1, h2, h3, h4, p, ul, li{
 }
 
 #layout{
-	width: 100vh;
+	width: 100%;
 	height: 100vh;
 }
 
 #sort-options{
+
 	position: fixed;
 	height: 100%;
 	width: $sort-width;
 	background: $sort-bg;
 	display: inline-block;
 	padding-left: 1.8rem;
-}
 
-#sort-options{
+	@include for-phone-only{
+		display: none;
+	}
 	.sort-groups{
 		position: absolute;
 		top: 50%;
@@ -224,6 +258,9 @@ h1, h2, h3, h4, p, ul, li{
 	height: 9%;
 	background: $highlight-yellow;
 	left: $sort-width;
+	@include for-phone-only{
+		display: none;
+	}
 }
 
 #project-list{
@@ -235,6 +272,9 @@ h1, h2, h3, h4, p, ul, li{
 	display: flex;
     justify-content: space-between;
     flex-direction: column;
+    @include for-phone-only{
+		display: none;
+	}
 }
 
 
@@ -345,6 +385,12 @@ h1, h2, h3, h4, p, ul, li{
 }
 
 #project-content{
+
+	@include for-phone-only{
+		left: 0;
+		margin-left: 0;
+		width: 100%;
+	}
 
 	.project-content-container{
 		height: auto;
@@ -521,12 +567,18 @@ h1, h2, h3, h4, p, ul, li{
 	background: #F6F6F6;
 	z-index: 9;
 	display: table;
-}
-.close-title-container{
+
+	@include for-phone-only{
+		height: 30px;
+	}
+
 	a{
 		display: table-cell;
 		padding: 0 5px;
 		vertical-align: middle;
+		@include for-phone-only{
+			padding: 0 7px;
+		}
 	}
 	.close-container{
 		width: 20px;
@@ -567,6 +619,9 @@ h1, h2, h3, h4, p, ul, li{
 		letter-spacing: .2rem;
 		font-size: .9em!important; 
 		font-weight: 900;
+		@include for-phone-only{
+			height: 1.2em;
+		}
 	}
 }
 
