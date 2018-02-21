@@ -53,6 +53,17 @@ html{
 	font-size: 14px;
 }
 
+html{
+	font-size: 14px;
+	@include for-phone-only{
+		font-size: 10px;
+	}
+
+	@include for-tablet-portrait-only{
+		font-size: 12px;
+	}
+}
+
 body{
 	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 	margin: 0!important;
@@ -99,6 +110,11 @@ h1, h2, h3, h4, p, ul, li{
 	@include for-phone-only{
 		display: none;
 	}
+
+	@include for-tablet-portrait-only{
+		width: 200px;
+	}
+
 	.sort-groups{
 		position: absolute;
 		top: 50%;
@@ -259,8 +275,14 @@ h1, h2, h3, h4, p, ul, li{
 	height: 9%;
 	background: $highlight-yellow;
 	left: $sort-width;
+
 	@include for-phone-only{
 		display: none;
+	}
+
+	@include for-tablet-portrait-only{
+		left: 200px;
+		z-index: 2;
 	}
 }
 
@@ -277,6 +299,11 @@ h1, h2, h3, h4, p, ul, li{
     
     @include for-phone-only{
 		display: none;
+	}
+
+	@include for-tablet-portrait-only{
+		width: 100px;
+		margin-left: 200px;
 	}
 
 	.project-timeline-item{
@@ -364,6 +391,11 @@ h1, h2, h3, h4, p, ul, li{
 	height: 100vh;
 	/*background: yellow;*/
 	width: calc(100% - 130px - 230px);
+
+	@include for-tablet-portrait-only{
+		width: calc(100% - 200px - 100px);
+		margin-left: 300px;
+	}
 }
 
 #project-uncover{
