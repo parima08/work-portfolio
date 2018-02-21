@@ -9,14 +9,10 @@
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Lekton:400,700" rel="stylesheet">
 
-    <link href="css/pure.min.css" rel="stylesheet">
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="css/pure-grid-responsive-old-ie.min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-      <link rel="stylesheet" href="css/pure-grid-responsive.min.css">
-    <!--<![endif]-->
+ 
+    <link href="assets/simple-grid.min.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
+    <link href="assets/home.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +22,16 @@
     <![endif]-->
   </head>
   <body>
+    <div id = "preloader">
+        <div class="uncover_slices uncover_slices-horizontal">
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+        </div>
+    </div>
     <div id = "barba-wrapper">
         <div class = "barba-container" data-namespace="work" data-backward = "">
             <div id = "layout">
@@ -102,6 +108,7 @@
    <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
    <script src = "js/mustache.min.js"></script>
    <script src = "js/lettering.min.js"></script>
+   <script src = "js/barba.min.js"></script>
     <!--  <script src = "js/scrollMonitor.js"></script> -->
      <script src = "js/workcase.js"></script> 
     <script src = "js/pageTransitions.js"></script> 
@@ -109,10 +116,5 @@
     <!-- <script src="js/flowtype.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
-    <script>
-        $(function(){
-            onWorkPageLoad(); 
-        })
-    </script>
   </body>
 </html>

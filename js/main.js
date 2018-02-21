@@ -1,3 +1,32 @@
+ $(function(){
+    let settings = {
+        onEnter: function() {
+            console.log("onEnter")
+          // The new Container is ready and attached to the DOM.
+        },
+        onEnterCompleted: loadPageJs,
+        onLeave: function() {
+          // A new Transition toward a new page has just started.
+        },
+        //onLeaveCompleted: loadPageJs
+    }
+    var Homepage = Barba.BaseView.extend(
+                    $.extend({
+                        namespace: 'homepage',
+                    }, settings)
+    );
+    var Work = Barba.BaseView.extend(
+                    $.extend({
+                        namespace: 'work',
+                    }, settings)
+    );
+    Homepage.init();
+    Work.init(); 
+    startBarba(); 
+    pageTransitions(); 
+});
+
+
 let scrollController = new ScrollMagic.Controller();
 
 function onWorkPageLoad(){
@@ -106,7 +135,7 @@ function onWorkPageLoad(){
 		function initialize(){
 			let firstClass = "#" + contentItemIds[0]; 
 			let nextItemsToHighlight = highlightNextItems(firstClass)
-			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
+			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
 				projectScrollAnimation.set({}, {}, "+=.5")

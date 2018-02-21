@@ -236,6 +236,8 @@ canvas {
 	font-family: $text-font-stack!important;
 	color: $text-color!important;
 	overflow: hidden;
+	line-height: 1.5;
+	background: white;
 }
 
 .about-background-container{

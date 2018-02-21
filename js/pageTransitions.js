@@ -11,6 +11,154 @@ function pageTransitions(){
 		console.log("Barba: Something was clicked");
 	});
 
+
+	var OpenCaseStudy = Barba.BaseTransition.extend({
+		start: function() {
+			this.originalThumb = lastElementClicked;
+
+			Promise
+			.all([this.newContainerLoading, this.scrollTop()])
+			.then(this.movePages.bind(this));
+		},
+
+		scrollTop: function() {
+			var deferred = Barba.Utils.deferred();
+			var obj = { y: window.pageYOffset };
+
+			TweenLite.to(obj, 0.4, {
+				y: 0,
+				onUpdate: function() {
+					if (obj.y === 0) {
+					    deferred.resolve();
+					}
+
+					window.scroll(0, obj.y);
+				},
+				onComplete: function() {
+				  deferred.resolve();
+				}
+			});
+
+			return deferred.promise;
+		},
+
+		movePages: function() {
+			var _this = this;
+			var goingForward = true;
+
+			if (this.getNewPageFile() === this.oldContainer.dataset.backward) {
+				goingForward = false;
+			}
+
+			TweenLite.set(this.newContainer, {
+				visibility: 'visible',
+				yPercent: goingForward ? 100 : -100,
+				left: 0,
+				top: 0,
+				right: 0,
+				opacity: 0
+			});
+			// TweenLite.set(this.newContainer, {
+			// 	visibility: 'visible',
+			// 	scale: 2,
+			// 	left: 0,
+			// 	top: 0,
+			// 	right: 0,
+			// 	opacity: 0
+			// });
+
+			TweenLite.set(this.oldContainer, {
+				visibility: 'visible',
+				overflow: 'hidden'
+				
+			});
+			
+			let transitionTimeline = new TimelineMax(); 
+			
+			transitionTimeline
+						//.to(this.oldContainer, .4, {scale: .6})
+						.to(this.oldContainer, .3, {opacity: 0, 
+							onComplete: function(){
+								console.log("this is done");
+							 }}, 0)
+						 .to(this.newContainer, .5, {yPercent: 0, 
+														opacity: 1, 
+							onStart: function(){ _this.done(); 	},
+							onComplete: function(){
+	                  						TweenLite.set('_this.newContainer', {yPercent: 0});
+	                  						TweenLite.set('_this.newContainer', {clearProps: 'all'});
+	                  					},
+		                  	ease: Power4.easeOut}, "-=.1");	                  
+		},
+
+		getNewPageFile: function() {
+			return Barba.HistoryManager.currentStatus().url.split('/').pop();
+		}
+	});
+
+
+	var CloseCaseStudy = Barba.BaseTransition.extend({
+		start: function() {
+			this.originalThumb = lastElementClicked;
+
+			Promise
+			.all([this.newContainerLoading, this.scrollTop()])
+			.then(this.movePages.bind(this));
+		},
+
+		scrollTop: function() {
+			var deferred = Barba.Utils.deferred();
+			var obj = { y: window.pageYOffset };
+
+			TweenLite.to(obj, 0.4, {
+				y: 0,
+				onUpdate: function() {
+					if (obj.y === 0) {
+					    deferred.resolve();
+					}
+
+					window.scroll(0, obj.y);
+				},
+				onComplete: function() {
+				  deferred.resolve();
+				}
+			});
+
+			return deferred.promise;
+		},
+
+		movePages: function() {
+			var _this = this;
+			var goingForward = true;
+
+			if (this.getNewPageFile() === this.oldContainer.dataset.backward) {
+				goingForward = false;
+			}
+
+		
+			let transitionTimeline = new TimelineMax(); 
+			
+			transitionTimeline
+						//.to(this.oldContainer, .4, {scale: .6})
+						.to(this.oldContainer, .6, {yPercent: 100, opacity: 0}, 0)
+						.fromTo(this.newContainer, 1, {opacity: 0}, {opacity: 1, onStart: function(){
+								console.log("This is starting");
+								_this.done(); 
+							},}, "+=.2")
+						.set(this.oldContainer, {
+							onComplete: function(){
+	                  						TweenLite.set('_this.newContainer', {yPercent: 0, opacity: 1});
+	                  						TweenLite.set('_this.oldContainer', {clearProps: 'all'});
+	                  					}
+		                  });	                  
+		},
+
+		getNewPageFile: function() {
+			return Barba.HistoryManager.currentStatus().url.split('/').pop();
+		}
+	});
+
+
 	var MovePage = Barba.BaseTransition.extend({
 		start: function() {
 			this.originalThumb = lastElementClicked;
@@ -121,6 +269,19 @@ function pageTransitions(){
 	});
 
 	Barba.Pjax.getTransition = function() {
+		let prevUrl = Barba.HistoryManager.prevStatus().url;
+		console.log("prevUrl: " + prevUrl);
+		let url = $(location).attr("pathname"); 
+		// let prevUrl = Barba.HistorymManager.prevStatus().url;
+		///onsole.log("Prev Url: " + prevUrl);
+		if(url.includes('/work-cases/')){
+			console.log("Using the Case study transition")
+			return OpenCaseStudy;
+		}
+		if(prevUrl.includes('/work-cases/')){
+			console.log("going back to work"); 
+			return CloseCaseStudy; 
+		}
 		return MovePage;
 	};
 };

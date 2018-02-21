@@ -7,6 +7,7 @@ $text-color: #616161;
 $sort-bg: #EEEEEE;
 $project-bg: #F8F8F8;
 $highlight-yellow: #F8E71C;
+$body-color: #333; 
 
 /* WIDTHS */ 
 $sort-width: 230px;  
@@ -25,7 +26,14 @@ body{
 	padding: 0!important;
 	color: $text-color;
 	box-sizing: border-box;
+	background: $body-color;
 }
+
+/*#barba-wrapper{
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}*/
 
 h1, h2, h3, h4, p, ul, li{
 	-moz-osx-font-smoothing: grayscale;
@@ -343,7 +351,7 @@ h1, h2, h3, h4, p, ul, li{
 		padding: 0 2em;
 		box-sizing: border-box;
 		/*overflow: hidden;*/
-		/*background: pink;*/
+		background: white;
 	}
 
 	.project-content-item{
@@ -383,6 +391,7 @@ h1, h2, h3, h4, p, ul, li{
 			width: 80%;
 			max-width: 600px;
 			z-index: 10;
+			position: relative;
 		}
 
 		.type-of-project{
@@ -411,6 +420,7 @@ h1, h2, h3, h4, p, ul, li{
 			text-transform: uppercase; 
 			margin-right: 10px;
 			overflow: hidden;
+			font-weight: 400;
 		}
 
 		.subheading{
@@ -420,6 +430,51 @@ h1, h2, h3, h4, p, ul, li{
 			overflow: hidden;
 			max-width: 80%;
     		margin: 0 auto;
+    		p{
+    			font-weight: 400;
+    		}	
+		}
+
+		.read-more{
+			position: absolute;
+			right: 0;
+			a{
+				text-decoration: none;
+				color: $text-color;
+			}
+			p{
+				font-family: 'Playfair Display', 'Garamond', serif;
+				font-style: italic;
+			}
+			p::after{
+				content: '';
+				position: absolute;
+				height: 30%;
+				width: 100%;
+				bottom: 20%;
+				left: -100%;
+				z-index: -1;
+				opacity: .6;
+				background: $highlight-yellow;
+				-webkit-transform: translate3d(101%,0,0);
+				transform: translate3d(101%,0,0);
+				-webkit-transition: -webkit-transform 0.5s;
+				transition: all 0.5s;
+				-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+				transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+			}
+
+			a:hover{
+				color: $highlight-yellow;
+			}
+
+			a:hover p::after{
+				height: 60%;
+				width: 120%;
+				left: -130%;
+				background-color: $body-color;
+				opacity: 1;
+			}
 		}
 
 	}
@@ -527,9 +582,48 @@ h1, h2, h3, h4, p, ul, li{
 
 .case-study{
 
-	.title-container{
+	line-height: 1.5;
+	background: white;
+
+	.close-button-container{
+		padding-top: 15px;
+		    position: fixed;
+		    z-index: 20;
+		    left: 0;
+		    right: 0;
+
+		.close-button{
+			width: 20px;
+			height: 20px;
+			margin: auto;
+			padding: 10px;
+			border-radius: 50% 50% ;
+			background-color: $sort-bg;
+
+			svg{
+				height: 60%;
+				margin: auto;
+				stroke: $text-color;
+			}
+		}
+
+		.close-button:hover{
+			background: black;
+		}
+	}
+
+	
+
+	#work-case-intro-container{
+		top: 0;
+		margin-top: 0;
 		position: relative;
-		margin-top: 10em;
+	}
+
+	#work-case-intro-container .title-container{
+		position: relative;
+		padding-top: 10em;
+		background: white;
 	}
 
 	.title-container .col-3{

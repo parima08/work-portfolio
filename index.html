@@ -82,36 +82,5 @@
      <script src = "js/pageTransitions.js"></script> 
     <!-- <script src = "js/home.js"></script>  -->
     <script src = "js/main.js"></script>
-    <script>
-        $(function(){
-            let settings = {
-                onEnter: function() {
-                    console.log("onEnter")
-                  // The new Container is ready and attached to the DOM.
-                },
-                onEnterCompleted: loadPageJs,
-                onLeave: function() {
-                  // A new Transition toward a new page has just started.
-                },
-                //onLeaveCompleted: loadPageJs
-            }
-            var Homepage = Barba.BaseView.extend(
-                            $.extend({
-                                namespace: 'homepage',
-                            }, settings)
-            );
-            var Work = Barba.BaseView.extend(
-                            $.extend({
-                                namespace: 'work',
-                            }, settings)
-            );
-            Homepage.init();
-            Work.init(); 
-            startBarba(); 
-            pageTransitions(); 
-            //onHomepageLoad(); 
-        })
-    </script>
-
   </body>
 </html>
