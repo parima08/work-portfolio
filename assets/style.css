@@ -167,22 +167,7 @@ h1, h2, h3, h4, p, ul, li {
   background: #F8F8F8;
   display: flex;
   justify-content: space-between;
-  flex-direction: column; }
-  @media (max-width: 599px) {
-    #project-list {
-      display: none; } }
-
-/*#pc_iot_piggybank{
-	background-color: pink;
-}
-
-#pc_smart_lock{
-	background-color: yellow;
-}
-
-
-*/
-#project-list {
+  flex-direction: column;
   /*.project-timeline-name span::before{
 		content: attr(data-letters);
 		position: absolute;
@@ -195,6 +180,9 @@ h1, h2, h3, h4, p, ul, li {
 		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 	}*/ }
+  @media (max-width: 599px) {
+    #project-list {
+      display: none; } }
   #project-list .project-timeline-item {
     padding: 5px; }
   #project-list a {
@@ -231,11 +219,13 @@ h1, h2, h3, h4, p, ul, li {
     font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
     font-size: 1em;
     padding-bottom: 3px;
-    font-weight: 400; }
+    font-weight: 400;
+    color: #8F8F8F; }
   #project-list .project-timeline-name {
     font-family: "Lekton", "Courier New", sans-serif;
     font-size: .8rem;
-    line-height: 1rem; }
+    line-height: .95rem;
+    color: #8F8F8F; }
   #project-list #all-projects {
     cursor: pointer; }
 
@@ -503,7 +493,7 @@ h1, h2, h3, h4, p, ul, li {
     /*height: 300px;*/
     font-size: .9em;
     color: #EEEEEE;
-    color: #D5D5D5; }
+    color: #A2A2A2; }
 
 /****
   *

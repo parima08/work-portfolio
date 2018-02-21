@@ -36,6 +36,7 @@ $lekton-font: 'Lekton', 'Courier New', sans-serif;
 
 /* COLORS */ 
 $text-color: #616161;
+$light-text-color: #8F8F8F; 
 $sort-bg: #EEEEEE;
 $project-bg: #F8F8F8;
 $highlight-yellow: #F8E71C;
@@ -263,6 +264,7 @@ h1, h2, h3, h4, p, ul, li{
 	}
 }
 
+
 #project-list{
 	position: fixed;
 	height: 100%;
@@ -272,23 +274,11 @@ h1, h2, h3, h4, p, ul, li{
 	display: flex;
     justify-content: space-between;
     flex-direction: column;
+    
     @include for-phone-only{
 		display: none;
 	}
-}
 
-
-/*#pc_iot_piggybank{
-	background-color: pink;
-}
-
-#pc_smart_lock{
-	background-color: yellow;
-}
-
-
-*/
-#project-list{
 	.project-timeline-item{
 		padding: 5px;
 	}
@@ -352,12 +342,14 @@ h1, h2, h3, h4, p, ul, li{
 		font-size: 1em;
 		padding-bottom: 3px;
 		font-weight: 400;
+		color: $light-text-color;
 	}
 
 	.project-timeline-name{
 		font-family: $lekton-font;
 		font-size: .8rem;
-		line-height: 1rem;
+		line-height: .95rem;
+		color: $light-text-color;	
 	}
 
 	#all-projects{
@@ -702,7 +694,7 @@ h1, h2, h3, h4, p, ul, li{
 		/*height: 300px;*/
 		font-size: .9em;
 		color: $sort-bg;
-		color: #D5D5D5;
+		color: #A2A2A2;
 	}
 }
 

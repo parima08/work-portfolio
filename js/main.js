@@ -135,7 +135,7 @@ function onWorkPageLoad(){
 		function initialize(){
 			let firstClass = "#" + contentItemIds[0]; 
 			let nextItemsToHighlight = highlightNextItems(firstClass)
-			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
+			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
 				projectScrollAnimation.set({}, {}, "+=.5")
@@ -181,8 +181,8 @@ function onWorkPageLoad(){
 			projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
 			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%"}, "-=.5"); 
 			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
-			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400}, "-=1.1");
-			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600}, "-=1.1");
+			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400, color: "#8F8F8F"}, "-=1.1");
+			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600, color: "#616161"}, "-=1.1");
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
 			let nextItemsToHighlight = highlightNextItems(nextClass); 
