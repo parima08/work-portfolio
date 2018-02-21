@@ -1,3 +1,32 @@
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-portrait-only {
+  @media (min-width: 600px) and (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-tablet-landscape-down{
+	@media (max-width: 899px) { @content; }
+}
+@mixin for-tablet-landscape-only {
+  @media (min-width: 900px) and (max-width: 1199px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-desktop-only {
+  @media (min-width: 1200px) and (max-width: 1799px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
+
 $text-font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 $lekton-font: 'Lekton', 'Courier New', sans-serif;
 $grey-line-thickness: 50px; 
@@ -6,6 +35,12 @@ $text-color: #616161;
 
 html{
 	font-size: 14px;
+}
+
+@include for-phone-only{
+	html{
+	font-size: 10px;
+	}
 }
 
 body{
@@ -67,11 +102,26 @@ canvas {
 .grey-line.top, .grey-line.bottom{
 	height: $grey-line-thickness;
 	width: 100%;
+
+	@include for-tablet-portrait-only{
+		height: 30px;
+	}
+
+	@include for-phone-only{
+		height: 20px;
+	}
 }
 
 .grey-line.right, .grey-line.left{
 	width: $grey-line-thickness;
 	height: 100%;
+	@include for-tablet-portrait-only{
+		width: 30px;
+	}
+
+	@include for-phone-only{
+		width: 20px;
+	}
 }
 
 .top {  top: 0; }
@@ -273,20 +323,38 @@ canvas {
 	     -o-transform: skew(35deg);
 	background: #F8E71C;
 	opacity: 0.64;
+
+	@include for-tablet-landscape-down{
+		width: 50%;
+		height: 400%;
+		-webkit-transform: skew(35deg);
+	   -moz-transform: skew(35deg);
+	     -o-transform: skew(35deg);
+	}
 }
 
 .about-background .grey-trap{
 	width: 35%;
-	height: 300%;
+	height: 450%;
 	position: absolute;
 	overflow: hidden;
-	top: 0;
+	top: 50%;
 	right: 10%;
-	-webkit-transform: skew(-35deg);
-	   -moz-transform: skew(-35deg);
-	     -o-transform: skew(-35deg);
+	-webkit-transform: skew(-30deg);
+	   -moz-transform: skew(-30deg);
+	     -o-transform: skew(-30deg);
 	background: #F5F5F5;
 	opacity: 0.64;
+
+	@include for-tablet-landscape-down{
+		top: 80%;
+		width: 50%;
+		height: 450%;
+		-webkit-transform: skew(-30deg);
+	   -moz-transform: skew(-30deg);
+	     -o-transform: skew(-30deg);
+	}
+
 }
 
 #about-me{
@@ -301,6 +369,9 @@ canvas {
 
 	.about-group{
 		padding: 20px 0;
+		@include for-phone-only{
+			padding: 5px;
+		}
 	}
 	h1{
 		font-family: "Playfair Display", Garmond, serif;
@@ -309,18 +380,27 @@ canvas {
 		color: $text-color;
 		/*color: $highlight-yellow;
 		background: black;*/
+		@include for-phone-only{
+			font-size: 4em;
+		}
 	}
 
 	h2{
 		color: $text-color;
 		font-weight: 500;
 		font-size: 2em;
+		@include for-phone-only{
+			font-size: 1.4em;
+		}
 	}
 
 	p{
 		font-size: 1.3em;
-		color: $text-color;
+		color: #8F8F8F;
 		font-weight: 400;
+		@include for-phone-only{
+			font-size: 1em;
+		}
 	}
 
 	.learnt-item{
@@ -341,7 +421,35 @@ canvas {
 		margin: 0;
 		margin-top: 10px;
 	}
+
+	.about-me-pic{
+		width: 350px;
+		position: absolute;
+		right: 10%;
+		top: 10%;
+		img{
+			height: 100%;
+			width: 100%;
+		}
+
+		@include for-tablet-portrait-only{
+			width: 225px;
+			right: 15%;
+			top: 10%;
+		}
+
+		@include for-phone-only{
+			width: 140px;
+			right: 10%;
+			top: 10%;
+		}
+	}
 }
+
+
+
+
+
 
 
 

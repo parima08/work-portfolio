@@ -1,6 +1,10 @@
 html {
   font-size: 14px; }
 
+@media (max-width: 599px) {
+  html {
+    font-size: 10px; } }
+
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   margin: 0 !important;
@@ -48,10 +52,22 @@ canvas {
 .grey-line.top, .grey-line.bottom {
   height: 50px;
   width: 100%; }
+  @media (min-width: 600px) and (max-width: 899px) {
+    .grey-line.top, .grey-line.bottom {
+      height: 30px; } }
+  @media (max-width: 599px) {
+    .grey-line.top, .grey-line.bottom {
+      height: 20px; } }
 
 .grey-line.right, .grey-line.left {
   width: 50px;
   height: 100%; }
+  @media (min-width: 600px) and (max-width: 899px) {
+    .grey-line.right, .grey-line.left {
+      width: 30px; } }
+  @media (max-width: 599px) {
+    .grey-line.right, .grey-line.left {
+      width: 20px; } }
 
 .top {
   top: 0; }
@@ -231,19 +247,34 @@ canvas {
   -o-transform: skew(35deg);
   background: #F8E71C;
   opacity: 0.64; }
+  @media (max-width: 899px) {
+    .about-background .trap {
+      width: 50%;
+      height: 400%;
+      -webkit-transform: skew(35deg);
+      -moz-transform: skew(35deg);
+      -o-transform: skew(35deg); } }
 
 .about-background .grey-trap {
   width: 35%;
-  height: 300%;
+  height: 450%;
   position: absolute;
   overflow: hidden;
-  top: 0;
+  top: 50%;
   right: 10%;
-  -webkit-transform: skew(-35deg);
-  -moz-transform: skew(-35deg);
-  -o-transform: skew(-35deg);
+  -webkit-transform: skew(-30deg);
+  -moz-transform: skew(-30deg);
+  -o-transform: skew(-30deg);
   background: #F5F5F5;
   opacity: 0.64; }
+  @media (max-width: 899px) {
+    .about-background .grey-trap {
+      top: 80%;
+      width: 50%;
+      height: 450%;
+      -webkit-transform: skew(-30deg);
+      -moz-transform: skew(-30deg);
+      -o-transform: skew(-30deg); } }
 
 #about-me .about-text-container, #about-me .other-skills {
   /*padding: 5em;*/ }
@@ -255,6 +286,9 @@ canvas {
 
 #about-me .about-group {
   padding: 20px 0; }
+  @media (max-width: 599px) {
+    #about-me .about-group {
+      padding: 5px; } }
 
 #about-me h1 {
   font-family: "Playfair Display", Garmond, serif;
@@ -263,16 +297,25 @@ canvas {
   color: #616161;
   /*color: $highlight-yellow;
 		background: black;*/ }
+  @media (max-width: 599px) {
+    #about-me h1 {
+      font-size: 4em; } }
 
 #about-me h2 {
   color: #616161;
   font-weight: 500;
   font-size: 2em; }
+  @media (max-width: 599px) {
+    #about-me h2 {
+      font-size: 1.4em; } }
 
 #about-me p {
   font-size: 1.3em;
-  color: #616161;
+  color: #8F8F8F;
   font-weight: 400; }
+  @media (max-width: 599px) {
+    #about-me p {
+      font-size: 1em; } }
 
 #about-me .learnt-item {
   border-left: 2px solid #616161;
@@ -289,3 +332,22 @@ canvas {
 #about-me .learnt-item p {
   margin: 0;
   margin-top: 10px; }
+
+#about-me .about-me-pic {
+  width: 350px;
+  position: absolute;
+  right: 10%;
+  top: 10%; }
+  #about-me .about-me-pic img {
+    height: 100%;
+    width: 100%; }
+  @media (min-width: 600px) and (max-width: 899px) {
+    #about-me .about-me-pic {
+      width: 225px;
+      right: 15%;
+      top: 10%; } }
+  @media (max-width: 599px) {
+    #about-me .about-me-pic {
+      width: 140px;
+      right: 10%;
+      top: 10%; } }
