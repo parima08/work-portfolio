@@ -302,6 +302,7 @@ function loadPageJs(){
 			break; 
 		case url.includes('/about'): 
 			console.log("loading about");
+			onAboutPageLoad();
 			break; 
 		case url.includes('/index.html'): 
 		case '/':

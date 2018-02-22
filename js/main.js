@@ -35,6 +35,7 @@ function onWorkPageLoad(){
 	var scrollMagicScenes = []; 
 	//loads the templates and draws them onto the screen
 	scrollController = new ScrollMagic.Controller();
+
 	draw(workCases);
 
 	$('.skill-set a.filter-proj').on('click', function(){filterObject('skill_set', this.id); 
@@ -99,6 +100,9 @@ function onWorkPageLoad(){
 			$('.project-content-container').html(rendered);
 		})
 		.done(function(){
+			
+			//let the height of the container so that scrollmagic can work
+			$("#layout").height($('.project-content-container').height() * 1.5); 
 
 			// Charming: 
 			// Seperates each "word" by putting spans around them
@@ -217,11 +221,12 @@ function onWorkPageLoad(){
 				triggerElement: "#layout", 
 				triggerHook: "onLeave", 
 				duration: duration + "%",
+				pushfollowers: true,
 		    })
 			.setPin('#project-content')
 			.setTween(projectScrollAnimation)
-			//.addIndicators()
-			.addTo(scrollController); 
+			.addTo(scrollController);
+			//.addIndicators(); 
 
 		scrollMagicScenes.push(scrollMagicScene);
 
@@ -424,8 +429,15 @@ function onHomepageLoad(){
 	//preloaderSlices(); 
 }
 
-function onAboutpageLoad(){
+function onAboutPageLoad(){
 	scrollController.destroy(true);
+	console.log("I got here");
+	window.sr = ScrollReveal({ reset: true });
+	sr.reveal('.about-me-pic');
+	sr.reveal('.hello-container');
+	sr.reveal('.about-group');
+	sr.reveal('.about-group .learnt-item', {origin: "left", distance: "100px"}, 400);
+	sr.reveal('.about-group.other-skills .col-6', {origin: "left", distance: "50px"}, 400);
 }
 
 function onWorkCaseLoad(){
@@ -443,7 +455,7 @@ function onWorkCaseLoad(){
 
 	console.log(thisWorkCase);
 
-
+	window.sr = ScrollReveal({ reset: true });
 	console.log("onWorkCaseLoad loaded");
 	$.get('../templates.html', function(template){
 		//var projectList  =$('#project-list-template').html();
@@ -452,7 +464,13 @@ function onWorkCaseLoad(){
 		//console.log(workCaseTemplate);
 		var rendered = Mustache.render(workCaseTemplate,  {"workCases": thisWorkCase});
 		$('#work-case-intro-container').html(rendered);
-	})
+	}).done(function(){
+		
+		sr.reveal('.title-container h1', {origin: "left", distance: "30px"});
+		sr.reveal('.title-container p', {origin: "left", distance: "30px"});
+		sr.reveal('.wc-details .image-container img', {delay: 500});
+		sr.reveal('.work-case-details .section'); 
+	}); 
 }
 
 

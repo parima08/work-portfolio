@@ -338,37 +338,27 @@ h1, h2, h3, h4, p, ul, li{
 		width: 100%;
 	}
 
-	/*.project-timeline-name span::before{
-		content: attr(data-letters);
-		position: absolute;
-		color: black;
-		left: 0;
-		overflow: hidden;
-		width: 0%;
-		-webkit-transition: width 0.5s;
-		transition: width 0.5s;
-		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	}*/
-
+	
 	a::after{
 		content: '';
 		position: absolute;
 		height: 100%;
-		width: 100%;
+		width: 0%;
 		top: 0;
 		left: 0;
 		z-index: -1;
 		background: $highlight-yellow;
+		opacity: .5;
 		-webkit-transform: translate3d(101%,0,0);
-		transform: translate3d(101%,0,0);
-		-webkit-transition: -webkit-transform 0.5s;
-		transition: transform 0.5s;
+		transform: translate3d(0,0,0);
+		-webkit-transition: -webkit-transform 0.3s;
+		transition: all 0.3s;
 		-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 		transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 	}
 
 	a:hover::after {
+		width: 100%;
 		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
@@ -397,17 +387,43 @@ h1, h2, h3, h4, p, ul, li{
 		}
 	}
 
+	a:hover .project-timeline-name, a:hover .project-index{
+		font-weight: 600;
+		color: $text-color;
+	}
+
+	a:hover .project-timeline-name{
+		text-decoration: underline;
+	}
+
+	/*a:hover .project-timeline-name::after{
+	  content:"";
+	  position:absolute;
+	  left:0;
+	  bottom:0;
+	  right:0;
+	  margin:auto;
+	  background: $highlight-yellow;
+	  height:10px;
+	  width: 80%;
+	  opacity: .5;
+
+	}*/
+
+
 	#all-projects{
 		cursor: pointer;
 	}
 }
 
 #project-content, #project-uncover{
-	/*position: fixed;*/
-	position: absolute;
-	margin-left: $project-content-offset;
+	position: fixed;
+    margin: auto;
+    top: 0px;
+    bottom: auto;
+    right: auto;
+	left: $project-content-offset;
 	height: 100vh;
-	/*background: yellow;*/
 	width: calc(100% - 130px - 230px);
 
 	@include for-tablet-portrait-only{
@@ -896,6 +912,15 @@ h1, h2, h3, h4, p, ul, li{
 		p{
 			color: black;
 			font-size: 1.3em;
+		}
+
+		ol{
+			font-size: 1.2em;
+			font-weight: 300;
+			color: black;
+			li{
+				padding: 5px;
+			}
 		}
 	}
 }
