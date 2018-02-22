@@ -220,7 +220,7 @@ function onWorkPageLoad(){
 		    })
 			.setPin('#project-content')
 			.setTween(projectScrollAnimation)
-			.addIndicators()
+			//.addIndicators()
 			.addTo(scrollController); 
 
 		scrollMagicScenes.push(scrollMagicScene);
