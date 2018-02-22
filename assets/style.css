@@ -132,7 +132,7 @@ h1, h2, h3, h4, p, ul, li {
   #sort-options #all-projects:hover span::before {
     transform: scale3d(1, 1, 1); }
   #sort-options #all-projects:hover {
-    color: blue; }
+    color: #F8E71C; }
   #sort-options a.filter-proj.selected li span::before {
     transform: scale3d(1, 1, 1);
     top: 90%;
@@ -237,15 +237,24 @@ h1, h2, h3, h4, p, ul, li {
     transform: translate3d(0, 0, 0); }
   #project-list .project-index {
     font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-    font-size: 1em;
+    font-size: .9em;
     padding-bottom: 3px;
     font-weight: 400;
     color: #8F8F8F; }
+    @media (max-height: 700px) {
+      #project-list .project-index {
+        font-size: .7em; } }
   #project-list .project-timeline-name {
     font-family: "Lekton", "Courier New", sans-serif;
     font-size: .8rem;
     line-height: .95rem;
     color: #8F8F8F; }
+    @media (max-height: 445px) {
+      #project-list .project-timeline-name {
+        display: none; } }
+    @media (max-height: 700px) {
+      #project-list .project-timeline-name {
+        font-size: .8em; } }
   #project-list #all-projects {
     cursor: pointer; }
 

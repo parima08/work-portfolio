@@ -135,9 +135,10 @@ function onWorkPageLoad(){
 		function initialize(){
 			let firstClass = "#" + contentItemIds[0]; 
 			let nextItemsToHighlight = highlightNextItems(firstClass)
-			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
+			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
+				projectScrollAnimation.set(".project-timeline-name:first", {fontWeight: 600, color: "#616161"}, "0")
 				projectScrollAnimation.set({}, {}, "+=.5")
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
 			}
@@ -334,6 +335,7 @@ function onWorkPageLoad(){
 	}
 
 	function loadPreloader(){
+		console.log("Loading Preloader");
 		$('#project-uncover.uncover').empty();
 		slices('#project-uncover.uncover', {
 			slicesTotal: 3,
@@ -342,7 +344,7 @@ function onWorkPageLoad(){
 		}); 
 		TweenLite.set('#project-uncover.uncover .uncover_slice', {y: "-100%"}); 
 		$('#project-uncover').show(); 
-		animateSlices('#project-uncover', "0%", ()=>{animateSlices('#project-uncover', "100%", ()=>{$('#project-uncover').hide();})}); 
+		animateSlices('#project-uncover', "0%", null, ()=>{animateSlices('#project-uncover', "100%", null, ()=>{$('#project-uncover').hide();})}); 
 	}
 
 	function getDocHeight() {
@@ -384,7 +386,7 @@ function slices(selector, options){
 }
 
 function animateSlices(selector, yMove=null, xMove=null, cb=null){
-	console.log("animateSlicesReveal");
+	console.log("animateSlicesReveal: " + selector);
 	let slices = $(selector + ' .uncover_slice'); 
 	console.log("slices: " + slices.length);
 	let sliceAnimation = new TimelineMax(); 

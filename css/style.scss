@@ -29,6 +29,14 @@
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) { @content; }
 }
+@mixin for-smallest-height {
+	@media(max-height: 445px) { @content; }
+}
+
+@mixin for-medium-height {
+	@media(max-height: 700px) { @content; }
+}
+
 
 /* FONTS */ 
 $text-font-stack: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -218,7 +226,7 @@ h1, h2, h3, h4, p, ul, li{
 	}
 
 	#all-projects:hover{
-		color: blue;
+		color: $highlight-yellow;
 	}
 
 /*	.filter-proj.selected li span{
@@ -306,6 +314,7 @@ h1, h2, h3, h4, p, ul, li{
 		margin-left: 200px;
 	}
 
+
 	.project-timeline-item{
 		padding: 5px;
 	}
@@ -366,17 +375,26 @@ h1, h2, h3, h4, p, ul, li{
 
 	.project-index{
 		font-family: $text-font-stack;
-		font-size: 1em;
+		font-size: .9em;
 		padding-bottom: 3px;
 		font-weight: 400;
 		color: $light-text-color;
+		@include for-medium-height{
+			font-size: .7em;
+		}
 	}
 
 	.project-timeline-name{
 		font-family: $lekton-font;
 		font-size: .8rem;
 		line-height: .95rem;
-		color: $light-text-color;	
+		color: $light-text-color;
+		@include for-smallest-height{
+			display: none;
+		}	
+		@include for-medium-height{
+			font-size: .8em;
+		}
 	}
 
 	#all-projects{
