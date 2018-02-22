@@ -41,42 +41,42 @@
                 <div class = "col-10">
                   <div class = "section">
                   <p>
-                    One of America’s forefront banks wanted to incentivize their clients to open accounts for their children while being able to educate the new generation on basic budgeting concepts.
-                  </p>
-                  <p>
-                    The approach that was conceptualized by our team was an Internet of Things Piggybank that would allow:
+                    Our client approached us with the vision of a revolutionary consumer smart lock to:   
                   </p>
                  <p>
-                  <ol>
-                    <li>Children to interact and engage with a physical artifact to help educate them on budgeting. </li>
-                    <li>Parents to easily deposit money in the children’s bank account. </li>
-                  </ol>
+                  <ul>
+                    <li>View real-time pictures of visitors at your door from your smartphone </li> 
+                    <li>Review all lock activity recorded and logged by the system    </li> 
+                    <li>Easy installation and replacement of existing lock </li>      
+                    <li>Provide temporary access for family, guests, contractors etc</li>  
+                    <li>Allow for proximity-based access via smartphones and programmable fobs</l>
+
+                  </ul>
                 </p>
               </div>
               <div class = "section">
                   
-                  <h3> Solution Architecture: </h3>
+                  <h3> The Solution: </h3>
                   <p>
-                    I was involved with architecting interaction between the mobile application and the actual physical Piggybank through a cloud API.  As the solution had to be extensible and flexible to fit in the client’s current application,  I developed an abstraction layer library with a well documented API. This architecture allowed for easy integration with any (existing) app. In order to demonstrate the ease-of-use, I also crafted a minimal demo application that interacted with the physical artifact. You can check out a video on the interaction below.
-                  </p> 
+                    Working on a team of twelve, I took the lead on designing the data architecture and protocol for how data is represented and exchanged throughout the entire system (on embedded devices and on mobile applications). </p>
+
+                    <p>We used a Ruby on Rails/PostgreSQL/AWS stack for our approach with successful builds that passed through Gerrit and Jenkins being deployed on Heroku. We also handled the cloud aspect of over-the-air (OTA) updates of the firmware for the smart lock. </p>
+
+                    <p>For this project, we took a test-driven development (TTD) approach, using Rspec in Ruby. This allowed for rapid, clean, and elegant development. </p>
+
+                    <p>In the end, we developed a RESTful JSON API for the entire IoT system, a secure, extensible cloud system, an integration pipeline, and an admin dashboard. </p>
                   <p>
-                    On of the biggest challenges on this project was developing our module for provisioning. We had to architect a solution over the bluetooth stack so that the app would be able toto bring the hardware device online. I wrote an Android library that would allow the mobile device connect to the Piggybank over Bluetooth, pass wifi credentials to the hardware, and disconnect once the Piggybank would be successfully connected. 
-                  </p>
-                  <p>
-                    You can checkout the details of the solution <a href="www.github.com/parima08">here</a>, or feel free to email me parima08 at gmail to discuss! 
+                    You can checkout the details of the solution on Github <a href="www.github.com/parima08">here</a>
                   </p>
                 </div>
-
-              <div class = "images">
-                <div class="col-2"></div>
-                <div class = "col-8">
-                <image src = "../img/project-assets/iot-piggybank/provisioning-flow.png" />
-                <image src = "../img/project-assets/iot-piggybank/latest-piggybank.jpg" />
-                <image src = "../img/project-assets/iot-piggybank/piggybank-phone1.png" style=" width: 200px; margin: auto" />
-                <image src = "../img/project-assets/iot-piggybank/piggybank-phone2.png"  style="width: 200px; margin: auto"/>
-              </div>
-              </div>
-              </div>
+                <div class = "images">
+                  <div class="col-2"></div>
+                  <div class = "col-8">
+                    <image src = "../img/project-assets/smart-lock/the-project-highlights.png" />
+                    <image src = "../img/project-assets/smart-lock/smart-lock.png" />
+                    <image src = "../img/project-assets/smart-lock/smart-lock-app.png" style=" width: 200px; margin: auto" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

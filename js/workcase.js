@@ -16,7 +16,8 @@ var workCases = {
 			case_study_subheading: "internet of things", 
 			technologies: "Android, Photon Development, Javascript",
 			skills: "Software Architecture, Mobile Development", 
-			case_study_image: "img/project-bg/iot-piggybank.png"
+			case_study_image: "img/project-bg/iot-piggybank.png", 
+			bg_color: "#F7D0B8",
 		}, 
 		{
 			index: 2,
@@ -33,22 +34,25 @@ var workCases = {
 			case_study_link: "work-cases/smart-lock.html",
 			case_study_subheading: "internet of things",
 			technologies: "Ruby on Rails,  AWS, Heroku",
-			skills: "Full Stack Development, Cloud Services"
+			skills: "Full Stack Development, Cloud Services", 
+			bg_color: "#DDC2E4",
 		},
 		{
 			index: 3,
 			name: "Cybersecurity Dashboard", 
 			subheading: "For this project, I built the user facing system of a protocol that protects against DDoS attacks. For this project, I wrote a scrubber that grabbed data from the back end system, a configurable metrics dashboard that plugged into the system, and a set of extensible visualization tools that exposed the protocol to non-technical users. ", 
 			type: "Case Study/Room 5",
+			role: "Lead Full Stack Developer",
 			skill_set: "full-stack-dev ui-design",
 			industries: "cybersecurity",
-			image: "img/project-bg/network-visualization-grad.png", 
+			image: "img/project-bg/cybersecurity-dashboard-grad.png", 
 			readMore: true, 
-			case_study_link: "work-cases/network-visualization.html", 
+			case_study_link: "work-cases/cybersecurity-dashboard.html", 
 			case_study_subheading: "cybersecurity", 
 			technologies: "Ruby on Rails, SNMP, SSE (Server Sent Events), HTTP, Git, Jenkins, Gerrit",
 			skills: "Full Stack Development, Design", 
-			case_study_image: "", 
+			case_study_image: "img/project-bg/cybersecurity-dashboard.png", 
+			bg_color: "#D5E4F7"
 			
 		},
 		{
@@ -56,6 +60,7 @@ var workCases = {
 			name: "Network Visualization", 
 			subheading: "I developed a web-based visual tool that would allow non-technical users to clearly see what occurs during DDoS attacks and view the protective effects of a cybersecurity protocol implemented at the ISP level. ", 
 			type: "Case Study/Room 5",
+			role: "Lead Full Stack Developer",
 			skill_set: "full-stack-dev ui-design",
 			industries: "cybersecurity",
 			image: "img/project-bg/network-visualization-grad.png", 
@@ -64,20 +69,33 @@ var workCases = {
 			case_study_subheading: "data visualization",
 			technologies: "Ruby on Rails, d3.js, Git, Jenkins, Gerrit",
 			skills: "Full Stack Development, Design", 
-			case_study_image: ""
+			case_study_image: "img/project-bg/network-visualization.png",
+			bg_color: "rgba(177,177,81,0.6)"
+			//bg_color: "linear-gradient(-180deg, rgba(177,177,81,0.93) 0%, rgba(185,65,25,0.91) 100%);"
 			
 		},
 		{
 			index: 5,
-			name: "Microns Developer Portal",
+			name: "Micron Developer Portal",
 			image: "img/project-bg/micron-grad.png", 
 			skill_set: "full-stack-dev ui-design",
+			type: "Case Study/Ciklum",
+			role: "Lead Full Stack Developer",
+			readMore: true,
+			case_study_link: "work-cases/developer-portal.html",
+			subheading: "With the release of their revolutionary product, the Automata Processor, Micron needed an equally revolutionary system to introduce the product to the world and monitor and manage their audience’s response. I developed a developer portal for Micron.",
+			skills: "Project Management, UI, Design, Full Stack Development, Testing",
+			technologies: "Ruby on Rails, Selinum, Git, Agile, Flexeria and Nalperion Licensing APIs, SDK Distribution and Licensing",
+			case_study_image: "img/project-bg/micron.png",
+			bg_color: "#C6EBA1"
 		},
 		{
 			index: 6,
 			name: 'Verifone',
 			image: "img/project-bg/verifone-grad.png",
 			skill_set: "full-stack-dev project-management",
+			role: "Interaction Designer and Front End Developer",
+			subheading: "Verifone needed help in developing a UI toolkit for their Point-of-Sale terminal devices. They had two tiers of their terminal devices that had to be supported with their new designs. Older devices ran using a language called Direct GUI which runs a proprietary  stripped down version of HTML. The other tier used webkit. I create and implemented a new, modern UI toolkit and introduced animation into the constraints of Direct GUI.", 
 		},
 		{
 			index: 7,
@@ -91,6 +109,8 @@ var workCases = {
 			name: 'Net Zero Enterprises',
 			image: "img/project-bg/net-zero-grad.png",
 			skill_set: "project-management cms ui-design",
+			role: "Consultant and Wordpress Developer", 
+			subheading: "This start up brought me in to consult them on their existing Wordpress site. I cleaned up their code base, optimized their solution, automated tasks, improved the company DevOps, and expanded their commerce module. The site can be found here. "
 		},
 		{
 			index: 9,

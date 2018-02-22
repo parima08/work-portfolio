@@ -40,40 +40,31 @@
                 <div class ="col-1"> </div>
                 <div class = "col-10">
                   <div class = "section">
+
+
+
                   <p>
-                    One of America’s forefront banks wanted to incentivize their clients to open accounts for their children while being able to educate the new generation on basic budgeting concepts.
+                    Following up on the DDoS prevention protocol we had written earlier, our client requested a visualization tool that would allow a non-technical audience to understand how the protocol worked. We decided to build a web-based visualization tool that would be able extend it’s functionality from being just an educational tool, to a functional tool that would be able to hook into cyber ranges and actually expose real time attacks in real time. 
                   </p>
                   <p>
-                    The approach that was conceptualized by our team was an Internet of Things Piggybank that would allow:
+                    A UI Specialist and I came together and looked at various metaphors for defense and attack systems.
                   </p>
-                 <p>
-                  <ol>
-                    <li>Children to interact and engage with a physical artifact to help educate them on budgeting. </li>
-                    <li>Parents to easily deposit money in the children’s bank account. </li>
-                  </ol>
-                </p>
               </div>
               <div class = "section">
                   
-                  <h3> Solution Architecture: </h3>
+                  <h3> The Solution</h3>
                   <p>
-                    I was involved with architecting interaction between the mobile application and the actual physical Piggybank through a cloud API.  As the solution had to be extensible and flexible to fit in the client’s current application,  I developed an abstraction layer library with a well documented API. This architecture allowed for easy integration with any (existing) app. In order to demonstrate the ease-of-use, I also crafted a minimal demo application that interacted with the physical artifact. You can check out a video on the interaction below.
+                   After examining several options, we narrowed down on using the metaphor of biological inflammation as a way of showing attack and defense, we mapped network attacks and responses using a force-directed graph with the target system at the center.  Attacks are shown as red inflammation, clustered around the target system. When the defense is activated, it pushes the inflammation back to its sources, restoring healthy networks and communications. The system had a demo-able mode and easily allowed non-technical users to get familiarized with the back end protocol.  
                   </p> 
                   <p>
-                    On of the biggest challenges on this project was developing our module for provisioning. We had to architect a solution over the bluetooth stack so that the app would be able toto bring the hardware device online. I wrote an Android library that would allow the mobile device connect to the Piggybank over Bluetooth, pass wifi credentials to the hardware, and disconnect once the Piggybank would be successfully connected. 
-                  </p>
-                  <p>
-                    You can checkout the details of the solution <a href="www.github.com/parima08">here</a>, or feel free to email me parima08 at gmail to discuss! 
+                    I built the tool a top HTML Canvas, leveraging the D3 library to help build the force-directed graph. The end product resulted in being an interactive, graphic version of a network topology on fly, configurable to the client's needs. The tool allowed the users to step through example of a DDoS attack and actually watch what happens when a network is under attack.  Once the cybersecurity protocol would kick in, the user would be able to witness the robustness and resilience of our protocol to these various types of attacks. 
                   </p>
                 </div>
 
               <div class = "images">
                 <div class="col-2"></div>
                 <div class = "col-8">
-                <image src = "../img/project-assets/iot-piggybank/provisioning-flow.png" />
-                <image src = "../img/project-assets/iot-piggybank/latest-piggybank.jpg" />
-                <image src = "../img/project-assets/iot-piggybank/piggybank-phone1.png" style=" width: 200px; margin: auto" />
-                <image src = "../img/project-assets/iot-piggybank/piggybank-phone2.png"  style="width: 200px; margin: auto"/>
+                <image src = "../img/project-assets/network-visualization/notx2.png" style = "max-width: 100%"/>
               </div>
               </div>
               </div>

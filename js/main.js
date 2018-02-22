@@ -114,8 +114,6 @@ function onWorkPageLoad(){
 				orientation: 'vertical'
 			});
 
-			animateSlices('#' + $('.project-content-item')[0].id, "100%"); 
-
 			//calculate the timeline
 			//reintialize the controller
 			//reintialize the scrollmagic scene
@@ -137,8 +135,10 @@ function onWorkPageLoad(){
 		//let tweenAnimations = []; 
 
 		function initialize(){
+			animateSlices('#' + $('.project-content-item')[0].id, "100%"); 
 			let firstClass = "#" + contentItemIds[0]; 
 			let nextItemsToHighlight = highlightNextItems(firstClass)
+			$(".sort-group ul a li").removeClass("active")
 			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
@@ -155,7 +155,9 @@ function onWorkPageLoad(){
 				new TweenLite.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
-				.eventCallback("onComplete", animateSlices, [currClass, "0%"]), 
+				.eventCallback("onComplete", animateSlices, [currClass, "0%"])
+				.eventCallback("onComplete", setEventStatusBar, [currClass]) 
+				.eventCallback("onReverseComplete", setEventStatusBar, [currClass]) 
 			];
 		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
 		}
@@ -197,7 +199,7 @@ function onWorkPageLoad(){
 				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
 			}
 			//ADDS A DELAY of 1 second:
-			projectScrollAnimation.set({}, {}, "+=1")
+			projectScrollAnimation.set({}, {}, "+=.25")
 
 			//TODO: Add a bounce to the image
 			//projectScrollAnimation.to(nextClass + ' img', .5, {y: "-20%", ease:Expo.easeOut}, "-=.5");
@@ -322,6 +324,16 @@ function onWorkPageLoad(){
 
 	}
 
+
+	function setEventStatusBar(currClass){
+		let statusBarIndex = $('.status-bar .curr-index'); 
+		let statusBarTotal = $('.status-bar .total');
+		let currIndex = $(currClass).index() + 2; 
+		console.log("The Current Index: " + currIndex + " " + currClass); 
+		console.log("The Current Index: " + $(statusBarIndex).text()); 
+		statusBarIndex.text(currIndex); 
+
+	}
 	
 
 	function reverseCheck(selector, nextClass){
