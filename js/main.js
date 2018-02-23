@@ -138,7 +138,6 @@ function onWorkPageLoad(){
 			animateSlices('#' + $('.project-content-item')[0].id, "100%"); 
 			let firstClass = "#" + contentItemIds[0]; 
 			let nextItemsToHighlight = highlightNextItems(firstClass)
-			$(".sort-group ul a li").removeClass("active")
 			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
@@ -157,7 +156,6 @@ function onWorkPageLoad(){
 				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
 				.eventCallback("onComplete", animateSlices, [currClass, "0%"])
 				.eventCallback("onComplete", setEventStatusBar, [currClass]) 
-				.eventCallback("onReverseComplete", setEventStatusBar, [currClass]) 
 			];
 		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
 		}
@@ -175,6 +173,49 @@ function onWorkPageLoad(){
 			];
 		 }
 
+		 function animateSectionEnter(currClass, nextClass){
+		 	let animateSectionEnter = new TimelineMax()
+		 		// .from(nextClass, 1, {yPercent: 100, opacity: 0}, "-=0.2")
+				.fromTo(nextClass + ' .project-image', .8, {opacity: 0, y: "20%"}, {opacity: 1, y:0, ease:Expo.easeOut}, "0")
+					.eventCallback("onStart", animateSlices, [nextClass, "100%"])
+					.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass])
+				.staggerFrom(nextClass + ' .project-title h1.title span', 1.6, {opacity: 0, y: "200%", ease:Expo.easeOut}, .08, ".1")
+				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
+				.from(nextClass + ' .type-of-project', 1, {opacity: 0, y: "100%", ease:Expo.easeOut}, "0")
+				.from(nextClass + ' .role', 1, {opacity: 0, y: "100%", ease:Expo.easeOut}, ".2")
+				.from(nextClass + ' .subheading p', 1, {opacity: 0, y: "200%", ease:Expo.easeOut}, ".4")
+
+			return animateSectionEnter; 
+
+		 }
+
+		 function animateSectionExit(currClass, nextClass){
+
+		 	console.log("Animate Section Exit");
+		 	let animateSectionExit = new TimelineMax()
+		 		.staggerTo(currClass + ' .project-title h1.title span', .8, {opacity: 0, y: "-140%", ease:Expo.easeOut}, .08, "0")
+				.to(currClass + ' .role', .8, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8", )
+				.to(currClass + ' .type-of-project', .4, {opacity: 0, y: "-100%", ease:Expo.easeOut}, "-=.8")
+				.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8")
+				.to(currClass + ' .project-image', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
+				.eventCallback("onComplete", animateSlices, [currClass, "0%"])
+				.eventCallback("onComplete", setEventStatusBar, [currClass]) 
+				.eventCallback("onReverseComplete", setEventStatusBar, [currClass]) 
+
+			return animateSectionExit; 
+		 }
+
+		 function animateSectionEnterReverse(currClass, nextClass){
+		 	let animateSectionEnter = new TimelineMax()
+		 		// .from(nextClass, 1, {yPercent: 100, opacity: 0}, "-=0.2")
+				.fromTo(nextClass + ' .project-image', .8, {opacity: 0, y: "-20%"}, {opacity: 1, y:0, ease:Expo.easeOut}, "0")
+					.eventCallback("onStart", animateSlices, [nextClass, "-100%"])
+				.staggerFrom(nextClass + ' .project-title h1.title span', 1.6, {opacity: 0, y: "-200%", ease:Expo.easeOut}, .08, ".1")
+				.from(nextClass + ' .type-of-project', 1, {opacity: 0, y: "-100%", ease:Expo.easeOut}, ".2")
+				.from(nextClass + ' .role', 1, {opacity: 0, y: "-100%", ease:Expo.easeOut}, ".2")
+				.fromTo(nextClass + ' .subheading p', 1, {opacity: 0, y: "-200%", ease:Expo.easeOut}, {opacity: 1, y: 0}, ".4")
+
+		 }
 
 		initialize(); 
 		for(let i = 0; i < numOfProjects -1; i++){
@@ -183,23 +224,49 @@ function onWorkPageLoad(){
 			timelineMove += stepLength;
 			let currClass = "#" + contentItemIds[i].trim();
 			let nextClass = "#" + contentItemIds[i+1].trim();
-			let nextProjectItem = $(".project-timeline-item[data-work-case = '" + contentItemIds[i+1].trim() + "'] .project-timeline-name"); 
-			console.log(nextProjectItem);
-			projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
-			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%"}, "-=.5"); 
-			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
-			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400, color: "#8F8F8F"}, "-=1.1");
-			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600, color: "#616161"}, "-=1.1");
-			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
-			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
-			let nextItemsToHighlight = highlightNextItems(nextClass); 
-			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
-			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
-				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
-				//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			let prevClass = null; 
+			if(i>0){
+				prevClass = "#" + contentItemIds[i-1].trim(); 
 			}
+			let nextProjectItem = $(".project-timeline-item[data-work-case = '" + contentItemIds[i+1].trim() + "'] .project-timeline-name"); 
+			//projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
+			projectScrollAnimation.set({}, {}, "+=.2")
+			projectScrollAnimation.set({}, {onComplete: function(){
+				console.log("Going to move the top")
+				animateSectionExit(currClass, nextClass); 
+			}}, "+=1")
+			//projectScrollAnimation.set({}, {}, "+=.2")
+
+			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%", 
+					// onStart: function(){
+					// 	console.log("starting the exit");
+					// 	animateSectionExit(currClass, nextClass); 
+					// },
+					onComplete: function(){console.log("just moved to the new section"); 
+						animateSectionEnter(currClass, nextClass)
+					}
+					,
+					onReverseComplete: function(){
+						animateSectionExit(currClass, nextClass).reverse(); 
+					}
+				}
+			); 
+			
+
+
+			// projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
+			// projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400, color: "#8F8F8F"}, "-=1.1");
+			// projectScrollAnimation.set(nextProjectItem, {fontWeight: 600, color: "#616161"}, "-=1.1");
+			// //projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
+			// //projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
+			// let nextItemsToHighlight = highlightNextItems(nextClass); 
+			// projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
+			// if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+			// 	projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "-=.8")
+			// 	//projectScrollAnimation.to(nextItemsToHighlight.toString(), .01, {fontWeight: 600, background: 'black'}, "-=.8")
+			// }
 			//ADDS A DELAY of 1 second:
-			projectScrollAnimation.set({}, {}, "+=.25")
+			
 
 			//TODO: Add a bounce to the image
 			//projectScrollAnimation.to(nextClass + ' img', .5, {y: "-20%", ease:Expo.easeOut}, "-=.5");
