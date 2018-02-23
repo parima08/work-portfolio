@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Parima Shah Portfolio</title>
+
+     <link href="https://fonts.googleapis.com/css?family=Lekton:400,700|Playfair+Display:400,400i,700i|Source+Sans+Pro:300,400,700" rel="stylesheet">
+
+    <link href="../assets/simple-grid.min.css" rel="stylesheet">
+    <link href="../assets/style.css" rel="stylesheet">
+    <link href="../assets/home.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id = "preloader">
+        <div class="uncover_slices uncover_slices-horizontal">
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+            <div class="uncover_slice"></div>
+        </div>
+    </div>
+    <div id = "barba-wrapper">
+        <div class = "barba-container case-study"  data-namespace = "work" data-backward = "/work.html">
+          <div id = "work-case-intro-container"></div>
+          <div class = "work-case-details">
+            <div class = "container">
+              <div class = "row">
+                <div class ="col-1"> </div>
+                <div class = "col-10">
+                  <div class = "section">
+                  <p>Love and Care is an amazing organization that does non-profit work all over the world. They have ten areas of outreach - Woman Care, Tribal Care, Education Care, Health Care, etc- and over 60 centers all over the world. With such a large, distributed team it was difficult for them to standardize their assets. For each location, individual flyers, business cards, banners, posters would have to be created putting a lot of pressure on their design team. It would take their design team 2-3 days to revert with the necessary assets, delaying volunteers from doing the impactful work they had signed up to do. Furthermore, because their design team was getting overloaded, they had no method set workflow to maintain quality control. </p>
+
+                  <p>When I was volunteering with this organization, I saw the gaps in the organization and decided to create web portal that would allow centers all over the world to design and customize their own assets using preset templates for banners, posters, flyers, business cards, invitations, etc. </p>
+                  </div>
+                  <div class = "section">
+                  <h3>The Requirements</h3>
+                  <p>Since this was a non-profit organization, they didn’t have a budget for a new project. Furthermore, the members of the organization were not technically savvy - they didn’t want to have to maintain large SQL databases. Most of their current data was stored in either excel spreadsheets or google spreadsheets. They wanted to be able to use Google Spreadsheets as their primary database. </p>
+
+                  <p>Because of these requirements, I decided to create the application on the stack of AngularJS, AWS, and Google Spreadsheet (as the main database). With some trickery, I was able to get Github Pages to run AngularJS. Then, I used AWS S3 to store all the template assets. I wrote lambas to optimize serving images to the application and to generate thumbnails on the fly. Finally, I used Google Spreadsheets as CMS Database, leveraging the Google API to parse data out of the spreadsheets.</p> 
+
+                  <p>On the application side, I used Canvas to draw the image assets. The web application would create a form based on the field inputs specified in the asset’s worksheet. On form submit, the canvas would be redrawn based on the user’s inputs and the field’s according XY-coordinate.  This would allow users to quickly generate standardized collaterals with their location, dates, contact information, sponsor logos, etc. </p>
+                  </div>
+
+                 <div class = 'section'> 
+                  <h3>Challenges</h3>
+                 
+                   <p>One of the greatest challenge on this project was making sure that the downloaded Canvas Assets had a high enough resolution to be printed. Some of the banners would measure to be 6ft x 10ft. It was taking a lot of time and bandwidth to download files in their original size. And the canvas size that fit on the user’s screen was quite small to fit such a large file. In end, when the user would press “Download,” I created a detached Canvas object that would scale up without having to render to the screen. </p>
+ 
+                   <p>Another challenge was publishing the assets as PDFs (as with brochures, letterheads, and invitations).</p> 
+ 
+                   <p>All assets, to ensure standardization, upon download, would also be uploaded into an unlimited Google Drive folder and emailed to a member on the design team. The Design team would be able to look at it and ensure the quality of the asset without interfering the user’s use of the asset. </p>
+
+                 </div>
+                 <div class = "section">
+ 
+                   <h3>The Result</h3>
+ 
+                   <p>The result was that the entire volunteer organization ran smoother and faster. Centers enjoyed the portal as there was no delays in their timelines. The design team was freed up to work on generating new material rather than providing support for existing materials! </p>
+                 </div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+   <script src = "../js/mustache.min.js"></script>
+   <script src = "../js/lettering.min.js"></script>
+   <script src = "../js/barba.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+     <script src = "../js/workcase.js"></script> 
+    <script src = "../js/pageTransitions.js"></script>
+    <script src = "../js/main.js"></script>
+    <!-- <script src="js/flowtype.js"></script> -->
+    <script>
+      $(function(){
+        onWorkCaseLoad(); 
+      })
+    </script>
+  </body>
+</html>

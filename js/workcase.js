@@ -102,7 +102,16 @@ var workCases = {
 			name: 'SR Love and Care',
 			image: "img/project-bg/srlc-grad.png",
 			skill_set: "full-stack-dev  project-management ui-design cloud",
-			industries: "non-profit"
+			industries: "non-profit",
+			role: "Software Architect and Developer", 
+			subheading: "I work with a globally distributed non-profit organization to create a web application that would optimize their workflows and allow them to create, design, and download their collaterals  on the fly.", 
+			readMore: true, 
+			case_study_link: "work-cases/love-and-care.html", 
+			skills: "Software Architecture Project Management, UI, Design, Full Stack Development",
+			technologies: "AngularJS, HTML5 Canvas, AWS, Git, Google API",
+			case_study_image: "img/project-bg/love-and-care.png",
+			bg_color: "#DDDAEA",
+
 		}, 
 		{
 			index: 8,
@@ -119,6 +128,7 @@ var workCases = {
 			type: "Project/Freelance",
 			skill_set: "project-management cms",
 			image: "img/project-bg/neurohacker-grad.png",
+			subheading: "This start-up brought me in to consult them on their existing Wordpress site. I cleaned up their code base, optimized their solution, automated tasks, improved the company DevOps, and expanded their commerce module. The site can be found here. "
 		}, 
 		{
 			index: 10,
