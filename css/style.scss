@@ -302,7 +302,7 @@ h1, h2, h3, h4, p, ul, li{
 	margin-left: $sort-width;
 	background: $project-bg;
 	display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     
     @include for-phone-only{

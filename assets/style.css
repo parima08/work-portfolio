@@ -182,7 +182,7 @@ h1, h2, h3, h4, p, ul, li {
   margin-left: 230px;
   background: #F8F8F8;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   /*a:hover .project-timeline-name::after{
 	  content:"";

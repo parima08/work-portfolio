@@ -31,6 +31,7 @@ let scrollController = new ScrollMagic.Controller();
 
 function onWorkPageLoad(){
 	console.log("onWorkPageLoad"); 
+	//alert("Previous URL: " + Barba.HistoryManager.prevStatus().url);
 	idx = 1; 
 	var scrollMagicScenes = []; 
 	//loads the templates and draws them onto the screen
@@ -102,7 +103,7 @@ function onWorkPageLoad(){
 		.done(function(){
 			
 			//let the height of the container so that scrollmagic can work
-			$("#layout").height($('.project-content-container').height() * 1.5); 
+			$("#layout").height($('.project-content-container').height() * 1.2); 
 
 			// Charming: 
 			// Seperates each "word" by putting spans around them
@@ -141,6 +142,8 @@ function onWorkPageLoad(){
 			$(".sort-group ul a li").removeClass("active")
 			//projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "0")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
+				projectScrollAnimation.set("#project-timeline", {height: timelineMove + "%"});
+				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
 				projectScrollAnimation.set(nextItemsToHighlight, {className: "+=active"}, "0")
 				projectScrollAnimation.set(".project-timeline-name:first", {fontWeight: 600, color: "#616161"}, "0")
 				projectScrollAnimation.set({}, {}, "+=.5")
@@ -165,7 +168,7 @@ function onWorkPageLoad(){
 		function sectionEnter(currClass, nextClass){
 			return [
 				new TweenLite.from(nextClass + ' img', .4, {opacity: 0, y: "20%", ease:Expo.easeOut})
-				.eventCallback("onComplete", animateSlices, [nextClass, "100%"])
+				.eventCallback("onStart", animateSlices, [nextClass, "100%"])
 				.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass]),
 				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "200%", ease:Expo.easeOut}, .08),
 				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
@@ -186,12 +189,20 @@ function onWorkPageLoad(){
 			let nextProjectItem = $(".project-timeline-item[data-work-case = '" + contentItemIds[i+1].trim() + "'] .project-timeline-name"); 
 			console.log(nextProjectItem);
 			projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
-			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%"}, "-=.5"); 
-			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
-			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400, color: "#8F8F8F"}, "-=1.1");
-			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600, color: "#616161"}, "-=1.1");
+			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%", }, "-=.5"); 
+			
+
+			
+
+
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
+
+			projectScrollAnimation.to("#project-timeline", .3, {height: timelineMove + "%"}, "-=.8");
+			projectScrollAnimation.set('.project-timeline-name', {fontWeight: 400, color: "#8F8F8F"}, "-=.8");
+			projectScrollAnimation.set(nextProjectItem, {fontWeight: 600, color: "#616161"}, "-=.8");
+
+
 			let nextItemsToHighlight = highlightNextItems(nextClass); 
 			projectScrollAnimation.set(".sort-group ul a li", {className: "-=active"}, "-=.8")
 			if(nextItemsToHighlight && nextItemsToHighlight.length != 0){
@@ -217,7 +228,7 @@ function onWorkPageLoad(){
 
 		};
 
-		let duration = numOfProjects * 100 * 1.5; 
+		let duration = numOfProjects * 100 * 1; 
 		//let duration = numOfProjects * 100; 
 		let scrollMagicScene = new ScrollMagic.Scene({
 				triggerElement: "#layout", 
@@ -264,7 +275,7 @@ function onWorkPageLoad(){
 				//let scrollToPos = (docHeight/numOfProjects) * (indexOfId - 1) * (1.03)
 				
 				let indexOfId =  $('.project-timeline-link').index(this); 
-				let scrollToPos = (docHeight/numOfProjects) * indexOfId * (1.03)
+				let scrollToPos = (docHeight/numOfProjects) * indexOfId * (.9)
 
 				//TODO: 
 				//change the tween duration to calculate overall height and divide it
@@ -283,7 +294,8 @@ function onWorkPageLoad(){
 
 		function reintialize(){
 			TweenMax.set('.project-content-container', {y: "0%"});
-			TweenMax.set('#project-timeline', {height: "0%"});
+			TweenMax.to(window, .2, {scrollTo: { y: 0}})
+			//TweenMax.set('#project-timeline', {height: "0%"});
 		}
 
 
@@ -441,6 +453,15 @@ function onHomepageLoad(){
 	//preloaderSlices(); 
 }
 
+function filterWorkCasesByLink(url){
+	return workCases.workCases.filter(function(val){
+		//console.log(val);
+		if(val['case_study_link'] &&  url.includes(val["case_study_link"])){
+			return val;
+		}
+	}); 
+}
+
 function onAboutPageLoad(){
 	scrollController.destroy(true);
 	console.log("I got here");
@@ -458,12 +479,7 @@ function onWorkCaseLoad(){
 	let url = $(location).attr('pathname');
 	console.log(url);
 
-	let thisWorkCase = workCases.workCases.filter(function(val){
-		//console.log(val);
-		if(val['case_study_link'] &&  url.includes(val["case_study_link"])){
-			return val;
-		}
-	}); 
+	let thisWorkCase = filterWorkCasesByLink(url);
 
 	console.log(thisWorkCase);
 
