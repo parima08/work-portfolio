@@ -136,7 +136,15 @@ var workCases = {
 			type: "Project/Freelance",
 			skill_set: "project-management",
 			image: "img/project-bg/engineering-workshop.png",
-			industries: "non-profit"
+			industries: "non-profit",
+			subheading: "I designed a workshop curriculum that would expose and encourage students in rural India to pursue an education in engineering and computer science with limited resources (no computers, equipment, etc). Then, with a team of 3 other teachers, we reached out to schools in the local tribal region.",
+			readMore: true, 
+			case_study_link: "work-cases/rural-india.html",
+			skills: "Project Management, Teaching", 
+			Technologies: "Paper and Pen",
+			role: "Curriculum Designer and Teacher", 
+			case_study_image: "img/project-bg/engineering-workshop.png",
+			bg_color: "#FFE392"
 		},
 		{
 			index: 11,
