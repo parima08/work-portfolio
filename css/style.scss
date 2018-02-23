@@ -115,6 +115,7 @@ h1, h2, h3, h4, p, ul, li{
 	display: inline-block;
 	padding-left: 1.8rem;
 
+
 	@include for-phone-only{
 		display: none;
 	}
@@ -133,6 +134,14 @@ h1, h2, h3, h4, p, ul, li{
 		padding: 8px 0 8px 0;
 	}
 
+	.sort-group.projects{
+		padding-top: 0px;
+	}
+
+	.sort-group.projects h1{
+		padding: 0;
+	}
+
 	h1 {
 		text-transform: uppercase;
 		font-size: 1.15rem;
@@ -143,9 +152,11 @@ h1, h2, h3, h4, p, ul, li{
 	h2{
 		font-family: 'Playfair Display', 'Garamond', serif;
 		font-style: italic;
-		font-size: .9em;
-		letter-spacing: .02em;
-		font-weight: 300;
+		font-size: .95em;
+		letter-spacing: .01em;
+		color: $light-text-color;
+		font-weight: 900;
+		padding-bottom: 2px;
 	}
 
 	ul{

@@ -69,6 +69,10 @@ h1, h2, h3, h4, p, ul, li {
     transform: translateY(-45%); }
   #sort-options .sort-group {
     padding: 8px 0 8px 0; }
+  #sort-options .sort-group.projects {
+    padding-top: 0px; }
+  #sort-options .sort-group.projects h1 {
+    padding: 0; }
   #sort-options h1 {
     text-transform: uppercase;
     font-size: 1.15rem;
@@ -77,9 +81,11 @@ h1, h2, h3, h4, p, ul, li {
   #sort-options h2 {
     font-family: 'Playfair Display', 'Garamond', serif;
     font-style: italic;
-    font-size: .9em;
-    letter-spacing: .02em;
-    font-weight: 300; }
+    font-size: .95em;
+    letter-spacing: .01em;
+    color: #8F8F8F;
+    font-weight: 900;
+    padding-bottom: 2px; }
   #sort-options ul {
     list-style-type: none;
     color: #616161;
