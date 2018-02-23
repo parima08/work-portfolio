@@ -190,10 +190,6 @@ function onWorkPageLoad(){
 			console.log(nextProjectItem);
 			projectScrollAnimation.add(sectionExit(currClass), "+=.01", "start", .01);
 			projectScrollAnimation.to(".project-content-container", .2, {y: "-" + yMove + "%", }, "-=.5"); 
-			
-
-			
-
 
 			//projectScrollAnimation.to('#full-stack-dev li', .2, {fontWeight: 600, background: '#DCDCDC'}, "-=.8")
 			projectScrollAnimation.add(sectionEnter(currClass, nextClass), "-=.3", "start", .01);
@@ -228,7 +224,7 @@ function onWorkPageLoad(){
 
 		};
 
-		let duration = numOfProjects * 100 * 1; 
+		let duration = numOfProjects * 100; 
 		//let duration = numOfProjects * 100; 
 		let scrollMagicScene = new ScrollMagic.Scene({
 				triggerElement: "#layout", 
@@ -273,9 +269,17 @@ function onWorkPageLoad(){
 
 				//let indexOfId = $(this).data('index');
 				//let scrollToPos = (docHeight/numOfProjects) * (indexOfId - 1) * (1.03)
-				
+				//let factor; 
+				let factor = (-0.02 * numOfProjects) + 1.14
+
+				// if(numOfProjects > 10){
+				// 	factor = .9
+				// }
+				// else{
+				// 	factor = 1.04
+				// }
 				let indexOfId =  $('.project-timeline-link').index(this); 
-				let scrollToPos = (docHeight/numOfProjects) * indexOfId * (.9)
+				let scrollToPos = (docHeight/numOfProjects) * indexOfId * factor;
 
 				//TODO: 
 				//change the tween duration to calculate overall height and divide it
