@@ -159,8 +159,8 @@ function onWorkPageLoad(){
 				new TweenLite.to(currClass + ' .subheading p', .4, {opacity: 0, y: "-10%", ease:Expo.easeOut}, "-=.8"),
 				new TweenLite.to(currClass + ' img', .4, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.6")
 				.eventCallback("onComplete", animateSlices, [currClass, "0%"])
-				.eventCallback("onComplete", setEventStatusBar, [currClass]) 
-				.eventCallback("onReverseComplete", setEventStatusBar, [currClass]) 
+				.eventCallback("onReverseComplete", setEventStatusBar, [currClass])
+				//.eventCallback("onReverseComplete", setEventStatusBar, [currClass]) 
 			];
 		// tweenAnimations.push(new TweenLite.to(currClass + ' img', .2, {opacity: 0, y: "-40%", ease:Expo.easeOut}, "-=.8"))
 		}
@@ -172,7 +172,8 @@ function onWorkPageLoad(){
 				.eventCallback("onReverseComplete", reverseCheck, [currClass, nextClass]),
 				new TweenMax.staggerFrom(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "200%", ease:Expo.easeOut}, .08),
 				//new TweenLite.from(nextClass + ' .project-title h1.title span', .8, {opacity: 0, y: "100%", ease:Expo.easeOut}, "-=.7"),
-				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
+				new TweenLite.from(nextClass + ' .type-of-project', .3, {opacity: 0, y: "100%", ease:Expo.easeOut})
+					.eventCallback("onStart", setEventStatusBar, [nextClass]),
 				new TweenLite.from(nextClass + ' .role', .3, {opacity: 0, y: "100%", ease:Expo.easeOut}),
 				new TweenLite.from(nextClass + ' .subheading p', .4, {opacity: 0, y: "40%", ease:Expo.easeOut}),
 			];
@@ -342,11 +343,13 @@ function onWorkPageLoad(){
 
 
 	function setEventStatusBar(currClass){
+		let currIndex = $(currClass).data('index'); 
+
 		let statusBarIndex = $('.status-bar .curr-index'); 
-		let statusBarTotal = $('.status-bar .total');
-		let currIndex = $(currClass).index() + 2; 
+		// let statusBarTotal = $('.status-bar .total');
+		// let currIndex = $(currClass).index() + 2; 
 		console.log("The Current Index: " + currIndex + " " + currClass); 
-		console.log("The Current Index: " + $(statusBarIndex).text()); 
+		// console.log("The Current Index: " + $(statusBarIndex).text()); 
 		statusBarIndex.text(currIndex); 
 
 	}
