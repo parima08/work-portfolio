@@ -581,10 +581,11 @@ h1, h2, h3, h4, p, ul, li {
     .case-study .title-container .col-3 h2 {
       margin: 0;
       font-family: "Lekton", "Courier New", sans-serif; }
-  .case-study .title-container .col-8 {
+  .case-study .title-container .col-9 {
     text-align: left;
     border-left: 1px solid black;
-    padding-left: 2em; }
+    padding-left: 2em;
+    box-sizing: border-box; }
   .case-study .title-container h1 {
     font-family: "Playfair Display", "Garamond", serif;
     color: black;

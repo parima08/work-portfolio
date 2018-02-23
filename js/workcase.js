@@ -109,18 +109,21 @@ var workCases = {
 			name: 'Net Zero Enterprises',
 			image: "img/project-bg/net-zero-grad.png",
 			skill_set: "project-management cms ui-design",
+			type: "Project/Freelance",
 			role: "Consultant and Wordpress Developer", 
 			subheading: "This start up brought me in to consult them on their existing Wordpress site. I cleaned up their code base, optimized their solution, automated tasks, improved the company DevOps, and expanded their commerce module. The site can be found here. "
 		},
 		{
 			index: 9,
 			name: 'Neurohacker',
+			type: "Project/Freelance",
 			skill_set: "project-management cms",
 			image: "img/project-bg/neurohacker-grad.png",
 		}, 
 		{
 			index: 10,
 			name: 'Rural India - Workshop',
+			type: "Project/Freelance",
 			skill_set: "project-management",
 			image: "img/project-bg/engineering-workshop.png",
 			industries: "non-profit"
@@ -129,12 +132,23 @@ var workCases = {
 			index: 11,
 			name: 'L7 Partnership', 
 			skill_set: "project-management cms",
+			type: "Case Study/Ciklum",
 			image: "img/project-bg/l7-partnership-grad.png",
+			subheading: "I partnered up with a local creative agency in developing and managing an offshore team for their web projects.",
+			role: "Project Manager",
+			technologies: "Drupal, CMS Systems, JS, HTML, CSS",
+			skills: "Project Management", 
+			readMore: true, 
+			case_study_link: "work-cases/l7-partnerships.html",
+			case_study_subheading: "project management", 
+			case_study_image: "img/project-bg/l7-partnership.png",
+			bg_color: "",
 			
 		}, 
 		{
 			index: 12,
 			name: 'Other Projects', 
+			readMore: true,
 		}
 		
 	],
