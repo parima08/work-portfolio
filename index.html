@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Parima Shah Portfolio</title>
     <!-- <base href="/work-portfolio"></base> -->
@@ -13,6 +13,13 @@
     <link href="assets/simple-grid.min.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
     <link href="assets/home.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117086836-1"></script>
@@ -32,6 +39,7 @@
     <![endif]-->
   </head>
   <body>
+<<<<<<< Updated upstream
     <div id = "preloader">
         <div class="uncover_slices uncover_slices-horizontal">
             <div class="uncover_slice"></div>
@@ -75,11 +83,56 @@
             </div>
         </div>
     </div>
+=======
+    <div id="layout">
+      <div id="sort-options">
+        <div class="sort-groups">
+          <div class="sort-group">
+            <a id="all-projects"><h1>ALL PROJECTS</h1></a>
+          </div>
+          <div class="sort-group skill-set">
+            <h1>Skill Set</h1>
+            <ul id="skill-set-list">
+              <a id="full-stack-dev" class="filter-proj"
+                ><li>Full Stack Dev</li></a
+              >
+              <a id="project-management" class="filter-proj"
+                ><li>Project Management</li></a
+              >
+              <a id="mobile-application" class="filter-proj"
+                ><li>Mobile Application</li></a
+              >
+              <a id="ui-design" class="filter-proj"><li>UI/Design</li></a>
+              <a id="cms" class="filter-proj"><li>CMS</li></a>
+              <a id="cloud" class="filter-proj"><li>Cloud</li></a>
+            </ul>
+          </div>
+          <div class="sort-group industries">
+            <h1>Industries</h1>
+            <ul id="industries-list">
+              <a id="iot" class="filter-proj"><li>Internet of Things</li></a>
+              <a id="cybersecurity" class="filter-proj"
+                ><li>Cybersecurity</li></a
+              >
+              <a id="non-profit" class="filter-proj"><li>Non Profit</li></a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="project-list"></div>
+      <div id="project-timeline"></div>
+      <div id="project-content">
+        <div class="project-content-container"></div>
+      </div>
+    </div>
+    <!-- end of layout -->
+>>>>>>> Stashed changes
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js"></script>
+<<<<<<< Updated upstream
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
@@ -97,3 +150,49 @@
   </body>
 
 </html>
+=======
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
+
+    <!--  <script src = "js/handlebars-v4.0.11.js"></script> -->
+    <script src="js/mustache.min.js"></script>
+    <script src="js/lettering.min.js"></script>
+    <!--  <script src = "js/scrollMonitor.js"></script> -->
+    <script src="js/workcase.js"></script>
+    <script src="js/main_test.js"></script>
+    <!-- <script src="js/flowtype.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+
+    <script id="project-list-template" type="text/x-tmpl-mustache">
+      {{#workCases}}
+        <a class = "project-timeline-link" href="#{{css_class}}" data-index = {{index}}>
+            <div class = "project-timeline-item" data-work-case={{css_class}}>
+                <div class = "project-index">{{idx}}</div>
+                <div class = "project-timeline-name"><span data-letters="{{name}}">{{name}}</span></div>
+            </div>
+        </a>
+      {{/workCases}}
+    </script>
+    <script id="project-content-template" type="text/x-tmpl-mustache">
+      {{#workCases}}
+          <div id = {{css_class}} data-skill-set = "{{skill_set}}" data-industries = "{{industries}}"
+          data-index="{{index}}" class = "project-content-item {{class}} {{css_class}}">
+              <div class = "project-image-container">
+                  <img src = {{image}} />
+              </div>
+              <div class = "project-content-item-container">
+                  <div class = "type-of-project">{{type}}</div>
+                  <div class = "project-title"><h1 class = "title">{{name}}<h1></div>
+                  <div class = "role">
+                      <span class="role-text"> ROLE </span> <span class = "the-role">{{role}}</span>
+                  </div>
+                  <div class = "subheading"><p>{{subheading}}</p></div>
+              </div>
+          </div>
+      {{/workCases}}
+    </script>
+  </body>
+</html>
+>>>>>>> Stashed changes
